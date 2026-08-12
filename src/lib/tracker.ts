@@ -309,6 +309,47 @@ export function downloadTrackerSnapshot(state: TrackerState, fileName = "tracker
   URL.revokeObjectURL(url);
 }
 
+function mergeMaps<T extends Record<string, unknown>>(base: T, overlay: T): T {
+  return { ...base, ...overlay };
+}
+
+function mergeTechnicianLists(base: Technician[], overlay: Technician[]): Technician[] {
+  const byId = new Map<string, Technician>();
+  for (const tech of base) byId.set(tech.id, tech);
+  for (const tech of overlay) byId.set(tech.id, tech);
+  const byName = new Map<string, Technician>();
+  for (const tech of byId.values()) {
+    const key = tech.name.trim().toLowerCase();
+    const existing = byName.get(key);
+    if (!existing) byName.set(key, tech);
+    else byName.set(key, tech);
+  }
+  return mergeDefaultTechnicians([...byName.values()]);
+}
+
+/**
+ * Snapshot zuerst, lokaler Stand überschreibt gleiche Keys.
+ * So bleiben historische Seed-Daten erhalten; neue Importe/Einträge werden angefügt.
+ */
+export function mergeTrackerStates(
+  base: TrackerState | null | undefined,
+  overlay: TrackerState | null | undefined,
+): TrackerState {
+  const left = base ?? createDefaultTracker();
+  const right = overlay ?? createDefaultTracker();
+  return foldChristianZimmermannIntoPartner({
+    year: right.year || left.year,
+    technicians: mergeTechnicianLists(left.technicians, right.technicians),
+    tickets: mergeMaps(left.tickets, right.tickets),
+    statuses: mergeMaps(left.statuses, right.statuses),
+    notes: mergeMaps(left.notes, right.notes),
+    openTickets: mergeMaps(left.openTickets, right.openTickets),
+    openStatuses: mergeMaps(left.openStatuses, right.openStatuses),
+    openNotes: mergeMaps(left.openNotes, right.openNotes),
+    tourTickets: mergeMaps(left.tourTickets, right.tourTickets),
+  });
+}
+
 /** Auswertung startet ab diesem Datum (kein früherer Monat wählbar). */
 export const EVALUATION_START = "2026-07-01";
 export const EVALUATION_START_YEAR = 2026;

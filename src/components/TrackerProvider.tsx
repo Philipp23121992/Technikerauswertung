@@ -16,6 +16,7 @@ import {
   hasTrackerInStorage,
   loadTrackerFromStorage,
   loadTrackerSnapshotFromPublic,
+  mergeTrackerStates,
   nextWorkday,
   previousWorkday,
   saveTrackerToStorage,
@@ -94,9 +95,9 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
       const entryDate = clampToEvaluationStart(toDateInputValue(previousWorkday()));
       const year = Number(entryDate.slice(0, 4));
 
-      let loaded = hasTrackerInStorage()
-        ? loadTrackerFromStorage()
-        : ((await loadTrackerSnapshotFromPublic()) ?? createDefaultTracker());
+      const snapshot = await loadTrackerSnapshotFromPublic();
+      const local = hasTrackerInStorage() ? loadTrackerFromStorage() : null;
+      const loaded = mergeTrackerStates(snapshot, local);
 
       if (cancelled) return;
 
@@ -351,6 +352,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
       const tickets = { ...state.tickets };
       const statuses = { ...state.statuses };
 
+      // Bestehende Tage bleiben; Import setzt/aktualisiert nur die Keys aus der Datei.
       for (const [key, count] of Object.entries(result.tickets)) {
         tickets[key] = count;
         statuses[key] = "tickets";
@@ -478,6 +480,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
       const openTickets = { ...state.openTickets };
       const openStatuses = { ...state.openStatuses };
 
+      // Historische Tage bleiben; heutiger Import wird nur angefügt/aktualisiert.
       for (const [key, count] of Object.entries(result.tickets)) {
         openTickets[key] = count;
         openStatuses[key] = "tickets";
@@ -558,6 +561,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
     (result: TicketImportResult) => {
       const tourTickets = { ...state.tourTickets };
 
+      // Bestehende Tour-Tage bleiben; Import setzt nur die Keys aus der Datei.
       for (const [key, count] of Object.entries(result.tickets)) {
         tourTickets[key] = count;
       }

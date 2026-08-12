@@ -14,11 +14,10 @@ App läuft auf http://localhost:3002
 
 ## Daten
 
-Es gibt keine klassische Server-Datenbank. Alle Betriebsdaten liegen im Browser-`localStorage` (`technikerauswertung.tracker.v4`).
+Es gibt keine Server-Datenbank. Betriebsdaten liegen im Browser-`localStorage` und zusätzlich als Snapshot:
 
-Mitgelieferter Snapshot:
+- `public/data/tracker-snapshot.json` – historische Daten (Seed)
+- Beim Start: Snapshot + lokaler Stand werden **zusammengeführt** (Historie bleibt, neue Einträge/Importe werden angefügt)
+- Techniker-DB → **Daten exportieren** aktualisiert den Snapshot für GitHub
 
-- `public/data/tracker-snapshot.json` – Seed beim ersten Start ohne localStorage
-- `data/tracker-snapshot.json` – Kopie fürs Repo
-
-In der Techniker-DB: **Daten exportieren** → JSON herunterladen und bei Bedarf wieder als Snapshot committen.
+Importe überschreiben nur die betroffenen Techniker/Datum-Zellen; alle anderen Tage bleiben erhalten.
