@@ -124,6 +124,7 @@ export function isPublicPath(pathname: string | null | undefined): boolean {
   // Leerer/unbekannter Pfad beim Hydraten darf NICHT zur Login-Seite zwingen
   if (!pathname || pathname === "/") return true;
   if (pathname.startsWith("/finder")) return true;
+  if (pathname.startsWith("/sync-local")) return true;
   return isPublicApp(pathToAppId(pathname));
 }
 
@@ -131,6 +132,7 @@ export function isPublicPath(pathname: string | null | undefined): boolean {
 export function requiresAuth(pathname: string | null | undefined): boolean {
   if (!pathname || pathname === "/" || pathname === "/login") return false;
   if (pathname.startsWith("/finder")) return false;
+  if (pathname.startsWith("/sync-local")) return false;
   const app = pathToAppId(pathname);
   return Boolean(app && !isPublicApp(app));
 }

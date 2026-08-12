@@ -5,6 +5,7 @@ import { useEditAccess } from "@/components/EditAccessProvider";
 import { loadMeetingStore, saveMeetingStore } from "@/lib/meetings/storage";
 import {
   loadMeetingTechnicians,
+  saveMeetingTechnicians,
   type MeetingTechnician,
 } from "@/lib/meetings/technicians";
 import {
@@ -64,16 +65,59 @@ export function MeetingWorkspace({ kind }: MeetingWorkspaceProps) {
   storeRef.current = store;
 
   useEffect(() => {
-    const loaded = loadMeetingStore(kind);
-    setStore(loaded);
-    setTechnicians(loadMeetingTechnicians().technicians);
-    setReady(true);
+    let cancelled = false;
+
+    async function hydrate() {
+      let loaded = loadMeetingStore(kind);
+      let techs = loadMeetingTechnicians().technicians;
+      try {
+        const res = await fetch("/api/backup", { cache: "no-store" });
+        if (res.ok) {
+          const data = await res.json();
+          const serverStore =
+            kind === "techniker" ? data.meetingsTechniker : data.meetingsRessourcen;
+          if (
+            serverStore?.protocols?.length > (loaded.protocols?.length ?? 0)
+          ) {
+            loaded = { ...serverStore, kind };
+            saveMeetingStore(loaded);
+          }
+          if (
+            Array.isArray(data.meetingsTechnicians?.technicians) &&
+            data.meetingsTechnicians.technicians.length > techs.length
+          ) {
+            techs = data.meetingsTechnicians.technicians;
+            saveMeetingTechnicians(data.meetingsTechnicians);
+          }
+        }
+      } catch {
+        /* ignore */
+      }
+      if (cancelled) return;
+      setStore(loaded);
+      setTechnicians(techs);
+      setReady(true);
+    }
+
+    void hydrate();
+    return () => {
+      cancelled = true;
+    };
   }, [kind]);
 
   useEffect(() => {
     if (!ready) return;
     saveMeetingStore(store);
-  }, [ready, store]);
+    const body =
+      kind === "techniker"
+        ? { meetingsTechniker: store, source: "meetings-persist" }
+        : { meetingsRessourcen: store, source: "meetings-persist" };
+    void fetch("/api/backup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    }).catch(() => undefined);
+  }, [ready, store, kind]);
 
   useEffect(() => {
     if (!ready) return;

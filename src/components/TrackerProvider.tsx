@@ -102,11 +102,22 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
       const year = Number(entryDate.slice(0, 4));
 
       const snapshot = await loadTrackerSnapshotFromPublic();
+      let server: TrackerState | null = null;
+      try {
+        const res = await fetch("/api/backup", { cache: "no-store" });
+        if (res.ok) {
+          const data = (await res.json()) as { tracker?: TrackerState | null };
+          server = data.tracker ?? null;
+        }
+      } catch {
+        /* ignore */
+      }
       const local = hasTrackerInStorage() ? loadTrackerFromStorage() : null;
-      const wiped = isTrackerLikelyWiped(local, snapshot);
+      const base = mergeTrackerStates(snapshot, server);
+      const wiped = isTrackerLikelyWiped(local, base);
       const loaded = wiped
-        ? recoverTrackerFromSnapshot(local, snapshot)
-        : mergeTrackerStates(snapshot, local);
+        ? recoverTrackerFromSnapshot(local, base)
+        : mergeTrackerStates(base, local);
 
       if (cancelled) return;
 
@@ -118,6 +129,13 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
       saveTrackerToStorage(next);
       setSelectedDateState(entryDate);
       setReady(true);
+
+      // Serverdateien aktualisieren (für GitHub/Deploy)
+      void fetch("/api/backup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tracker: next, source: "tracker-hydrate" }),
+      }).catch(() => undefined);
     }
 
     void hydrate();
@@ -131,6 +149,11 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
       setState(next);
       saveTrackerToStorage(next);
     });
+    void fetch("/api/backup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ tracker: next, source: "tracker-persist" }),
+    }).catch(() => undefined);
   }, []);
 
   const exportTrackerData = useCallback(() => {

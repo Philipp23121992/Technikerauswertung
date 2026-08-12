@@ -6,6 +6,7 @@ import { AuthProvider, useAuth } from "./AuthProvider";
 import { AuswertungChrome } from "./AuswertungChrome";
 import { DatasetProvider } from "./DatasetProvider";
 import { EditAccessProvider } from "./EditAccessProvider";
+import { LocalDataSync } from "./LocalDataSync";
 import { MeetingsChrome } from "./MeetingsChrome";
 import { Sidebar } from "./Sidebar";
 import { TrackerProvider } from "./TrackerProvider";
@@ -47,7 +48,8 @@ function ShellFrame({ children }: { children: React.ReactNode }) {
     (Boolean(user) ||
       pathname === "/" ||
       pathname === "" ||
-      pathname.startsWith("/finder"));
+      pathname.startsWith("/finder") ||
+      pathname.startsWith("/sync-local"));
 
   if (!showShell) {
     return <>{children}</>;
@@ -57,6 +59,7 @@ function ShellFrame({ children }: { children: React.ReactNode }) {
     <div className="shell">
       <Sidebar />
       <main className="shell-main">
+        <LocalDataSync />
         <AppContent>{children}</AppContent>
       </main>
     </div>
