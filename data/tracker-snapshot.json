@@ -1,0 +1,116 @@
+{
+  "exportedAt": "2026-08-12T07:15:33.609Z",
+  "storageKey": "technikerauswertung.tracker.v4",
+  "state": {
+    "year": 2026,
+    "technicians": [
+      {
+        "id": "t1",
+        "name": "Leonard Apel",
+        "role": "fieldservice"
+      },
+      {
+        "id": "t2",
+        "name": "Philip Arndt",
+        "role": "fieldservice"
+      },
+      {
+        "id": "t3",
+        "name": "Yoldas Ates",
+        "role": "fieldservice"
+      },
+      {
+        "id": "t4",
+        "name": "Stephan Fecke",
+        "role": "fieldservice"
+      },
+      {
+        "id": "t5",
+        "name": "Marc Gruneberg",
+        "role": "fieldservice"
+      },
+      {
+        "id": "t6",
+        "name": "Christian Jenke",
+        "role": "fieldservice"
+      },
+      {
+        "id": "t7",
+        "name": "Anja Kleindl",
+        "role": "fieldservice"
+      },
+      {
+        "id": "t8",
+        "name": "Burak Köseler",
+        "role": "fieldservice"
+      },
+      {
+        "id": "t9",
+        "name": "Vladimir Munteanu",
+        "role": "fieldservice"
+      },
+      {
+        "id": "t10",
+        "name": "Daniele Schweiger",
+        "role": "fieldservice"
+      },
+      {
+        "id": "t11",
+        "name": "Daniel Tancan",
+        "role": "fieldservice"
+      },
+      {
+        "id": "t12",
+        "name": "Waldemar Wairich",
+        "role": "fieldservice"
+      },
+      {
+        "id": "t13",
+        "name": "Chris Zimmermann",
+        "role": "fieldservice"
+      },
+      {
+        "id": "o1",
+        "name": "Volodymyr Habchak",
+        "role": "onsite"
+      },
+      {
+        "id": "o2",
+        "name": "medbo, Service",
+        "role": "onsite"
+      },
+      {
+        "id": "o3",
+        "name": "Patrick Kluger",
+        "role": "onsite"
+      },
+      {
+        "id": "o4",
+        "name": "Stefan Schmid",
+        "role": "onsite"
+      },
+      {
+        "id": "o5",
+        "name": "Michael Tauchen",
+        "role": "onsite"
+      },
+      {
+        "id": "o6",
+        "name": "Alexander Sogaro",
+        "role": "onsite"
+      },
+      {
+        "id": "o7",
+        "name": "Gregor Erdmann",
+        "role": "onsite"
+      }
+    ],
+    "tickets": {},
+    "statuses": {},
+    "notes": {},
+    "openTickets": {},
+    "openStatuses": {},
+    "openNotes": {},
+    "tourTickets": {}
+  }
+}
