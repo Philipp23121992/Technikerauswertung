@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "users": [
+    {
+      "id": "user-2eb0392b-712c-401c-8a43-bec837d34ea4",
+      "username": "admin",
+      "displayName": "philipp.heyser@acp.de",
+      "passwordHash": "2e3f148db7452cb743ed8a2377b82136e907d3d2339b3fb4928540391bf4b146",
+      "passwordSalt": "abd8d10fdd9aaffe52d4fcf67e5c55ad",
+      "apps": [
+        "finder",
+        "auswertung",
+        "sla",
+        "meetings",
+        "wissen",
+        "admin"
+      ],
+      "canEdit": true,
+      "active": true,
+      "createdAt": "2026-08-12T20:55:36.960Z",
+      "updatedAt": "2026-08-12T21:00:52.886Z"
+    },
+    {
+      "id": "user-a8cb278c-8127-4de4-a945-ad94d0806922",
+      "username": "max mustermann",
+      "displayName": "max mustermann",
+      "passwordHash": "d006ca2033a6a41d4803bec78ec5542dea5e4df207f81b361eff33c74ad0a176",
+      "passwordSalt": "4730803651c08d82ca8988833358d00f",
+      "apps": [
+        "finder"
+      ],
+      "canEdit": false,
+      "active": true,
+      "createdAt": "2026-08-12T20:57:23.593Z",
+      "updatedAt": "2026-08-12T20:58:41.682Z"
+    },
+    {
+      "id": "user-829140a4-596a-4ca1-8745-524cdc32308f",
+      "username": "fabian.eberhard@acp.de",
+      "displayName": "fabian.eberhard@acp.de",
+      "passwordHash": "d1f3ff35636aec2a7e6a54f3325b26d747be30936e72bd995a12fd32ea6d458a",
+      "passwordSalt": "d0a1de430b7e5f4db0a611cb93592c53",
+      "apps": [
+        "finder",
+        "auswertung",
+        "sla",
+        "meetings"
+      ],
+      "canEdit": true,
+      "active": true,
+      "createdAt": "2026-08-12T21:00:42.478Z",
+      "updatedAt": "2026-08-12T21:00:42.478Z"
+    },
+    {
+      "id": "user-93d60216-6ed6-43d4-ab85-65b4ed51ba1f",
+      "username": "christian.zimmermann@acp.de",
+      "displayName": "christian.zimmermann@acp.de",
+      "passwordHash": "e10fc026d433ab7f0ae8c287ad4e599c24dc8913acc04010883374b1be654fd5",
+      "passwordSalt": "bf1452fc9fedb345c27520d8088cf7af",
+      "apps": [
+        "finder",
+        "meetings"
+      ],
+      "canEdit": true,
+      "active": true,
+      "createdAt": "2026-08-12T21:01:33.960Z",
+      "updatedAt": "2026-08-12T21:01:33.960Z"
+    }
+  ]
+}

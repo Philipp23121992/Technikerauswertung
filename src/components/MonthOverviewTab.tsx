@@ -16,6 +16,7 @@ import {
   type TechnicianRole,
 } from "@/lib/tracker-types";
 import { useTracker } from "./TrackerProvider";
+import { useEditAccess } from "./EditAccessProvider";
 
 type MonthOverviewTabProps = {
   variant?: "gefahren" | "offen" | "touren";
@@ -47,6 +48,7 @@ export function MonthOverviewTab({
     getTourCount,
     setTourTicketCount,
   } = tracker;
+  const { canEdit } = useEditAccess();
 
   const readCount =
     variant === "offen" ? getOpenCount : variant === "touren" ? getTourCount : getCount;
@@ -192,6 +194,7 @@ export function MonthOverviewTab({
                                 step={1}
                                 value={count ?? ""}
                                 placeholder=""
+                                disabled={!canEdit}
                                 onChange={(event) => {
                                   const raw = event.target.value;
                                   writeCount(tech.id, date, raw === "" ? null : Number(raw));
@@ -234,6 +237,7 @@ export function MonthOverviewTab({
                               <select
                                 className="day-status-select"
                                 value={status}
+                                disabled={!canEdit}
                                 onChange={(event) =>
                                   writeStatus(tech.id, date, event.target.value as DayStatus)
                                 }
@@ -252,6 +256,7 @@ export function MonthOverviewTab({
                                 className="day-note-input"
                                 value={note}
                                 placeholder="Notiz..."
+                                disabled={!canEdit}
                                 onChange={(event) => writeNote(tech.id, date, event.target.value)}
                                 aria-label={`${tech.name} ${formatDayHeader(day)} Notiz`}
                               />
@@ -264,7 +269,7 @@ export function MonthOverviewTab({
                               step={1}
                               value={count ?? ""}
                               placeholder=""
-                              disabled={status !== "tickets"}
+                              disabled={!canEdit || status !== "tickets"}
                               onChange={(event) => {
                                 const raw = event.target.value;
                                 writeCount(tech.id, date, raw === "" ? null : Number(raw));

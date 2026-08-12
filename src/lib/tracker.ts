@@ -29,6 +29,7 @@ export function normalizeTechnician(raw: Partial<Technician> & { name?: string }
     id: raw.id,
     name: raw.name.trim(),
     role,
+    email: typeof raw.email === "string" ? raw.email.trim() : "",
   };
 }
 
@@ -348,6 +349,34 @@ export function mergeTrackerStates(
     openNotes: mergeMaps(left.openNotes, right.openNotes),
     tourTickets: mergeMaps(left.tourTickets, right.tourTickets),
   });
+}
+
+/** Erkennt stark geleerte lokale Daten (z. B. versehentliches Löschen der Technikerliste). */
+export function isTrackerLikelyWiped(
+  local: TrackerState | null | undefined,
+  snapshot: TrackerState | null | undefined,
+): boolean {
+  if (!local || !snapshot) return false;
+  const localTickets = Object.keys(local.tickets ?? {}).length;
+  const snapTickets = Object.keys(snapshot.tickets ?? {}).length;
+  const localTechs = local.technicians?.length ?? 0;
+  const snapTechs = snapshot.technicians?.length ?? 0;
+  if (snapTickets < 20 && snapTechs < 5) return false;
+  const ticketsWiped = snapTickets > 0 && localTickets < Math.max(10, snapTickets * 0.35);
+  const techsWiped = snapTechs > 0 && localTechs < Math.max(3, snapTechs * 0.5);
+  return ticketsWiped || techsWiped;
+}
+
+/**
+ * Stellt fehlende Techniker/Tickets aus dem Snapshot wieder her,
+ * ohne neuere lokale Einträge zu verwerfen.
+ */
+export function recoverTrackerFromSnapshot(
+  local: TrackerState | null | undefined,
+  snapshot: TrackerState | null | undefined,
+): TrackerState {
+  // Snapshot als Overlay: fehlende Keys/Techniker kommen zurück
+  return mergeTrackerStates(local, snapshot);
 }
 
 /** Auswertung startet ab diesem Datum (kein früherer Monat wählbar). */

@@ -13,6 +13,7 @@ import { DailyEntryTab } from "./DailyEntryTab";
 import { EvaluationTab } from "./EvaluationTab";
 import { ImportAnalysisReport } from "./ImportAnalysisReport";
 import { MonthOverviewTab } from "./MonthOverviewTab";
+import { useEditAccess } from "./EditAccessProvider";
 import { useTracker } from "./TrackerProvider";
 
 const TABS: { id: EntryTab; label: string; icon: "user" | "calendar" | "chart" }[] = [
@@ -66,6 +67,7 @@ export function EntryPage() {
     analyzeTicketImport,
     applyTicketImport,
   } = useTracker();
+  const { canEdit } = useEditAccess();
   const [tab, setTab] = useState<EntryTab>("monat");
   const [importMessage, setImportMessage] = useState<string | null>(null);
   const [importError, setImportError] = useState<string | null>(null);
@@ -77,6 +79,7 @@ export function EntryPage() {
   const years = availableYears(new Date().getFullYear());
 
   async function handleImportFiles(files: FileList | null) {
+    if (!canEdit) return;
     if (!files?.length) return;
     const file = files[0];
     setImportBusy(true);
@@ -167,7 +170,7 @@ export function EntryPage() {
           <button
             type="button"
             className="btn btn-import"
-            disabled={importBusy}
+            disabled={importBusy || !canEdit}
             onClick={() => importRef.current?.click()}
           >
             <svg viewBox="0 0 24 24" aria-hidden className="btn-icon">

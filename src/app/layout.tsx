@@ -14,8 +14,9 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  title: "Techniker-Auswertung",
-  description: "Erfassung und Auswertung gefahrener Tickets.",
+  title: "APM Servicetools",
+  description:
+    "Techniker Finder, Technikerauswertung, SLA Auswertung, Meetings und Wissensassistent.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

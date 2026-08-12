@@ -1,0 +1,931 @@
+{
+  "technicians": [
+    {
+      "id": "tec_4vckxkvnmsn7ewli",
+      "kind": "TECHNICIAN",
+      "name": "Ates Yoldas",
+      "company": "APM",
+      "plz": "22047",
+      "city": "Hamburg",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 53.5883357,
+      "lon": 10.0936236,
+      "active": true,
+      "createdAt": "2026-08-10T12:24:50.310Z",
+      "updatedAt": "2026-08-10T12:38:52.195Z"
+    },
+    {
+      "id": "tec_d7q3gvnzmsn7fllo",
+      "kind": "TECHNICIAN",
+      "name": "Tauchen Michael",
+      "company": "APM",
+      "plz": "22047",
+      "city": "Hamburg",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 53.5883357,
+      "lon": 10.0936236,
+      "active": true,
+      "createdAt": "2026-08-10T12:25:22.716Z",
+      "updatedAt": "2026-08-10T12:38:53.344Z"
+    },
+    {
+      "id": "tec_cj93fss7msn7g1p5",
+      "kind": "TECHNICIAN",
+      "name": "Arndt Philip",
+      "company": "APM",
+      "plz": "06917",
+      "city": "Jessen (Elster) Gerbisbach",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 51.7496,
+      "lon": 12.9489,
+      "active": true,
+      "createdAt": "2026-08-10T12:25:43.577Z",
+      "updatedAt": "2026-08-10T12:37:26.611Z"
+    },
+    {
+      "id": "tec_z1qt4jt0msn7gcht",
+      "kind": "TECHNICIAN",
+      "name": "Jenke Christian",
+      "company": "APM",
+      "plz": "91085",
+      "city": "Weisendorf",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 49.6167,
+      "lon": 10.8333,
+      "active": true,
+      "createdAt": "2026-08-10T12:25:57.569Z",
+      "updatedAt": "2026-08-10T12:37:26.611Z"
+    },
+    {
+      "id": "tec_mjoy2p1nmsn7gmrm",
+      "kind": "TECHNICIAN",
+      "name": "Fecke Stephan",
+      "company": "APM",
+      "plz": "52249",
+      "city": "Eschweiler",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 50.8237,
+      "lon": 6.2675,
+      "active": true,
+      "createdAt": "2026-08-10T12:26:10.882Z",
+      "updatedAt": "2026-08-10T12:37:26.611Z"
+    },
+    {
+      "id": "tec_xswbwn0umsn7h0nc",
+      "kind": "TECHNICIAN",
+      "name": "Munteanu Vladimir",
+      "company": "APM",
+      "plz": "86165",
+      "city": "Augsburg",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 48.3822,
+      "lon": 10.9337,
+      "active": true,
+      "createdAt": "2026-08-10T12:26:28.872Z",
+      "updatedAt": "2026-08-10T12:37:26.611Z"
+    },
+    {
+      "id": "tec_xs6x9ndjmsn7haa9",
+      "kind": "TECHNICIAN",
+      "name": "Gräler Martin",
+      "company": "APM",
+      "plz": "71735",
+      "city": "Eberdingen",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 48.8852,
+      "lon": 8.9962,
+      "active": true,
+      "createdAt": "2026-08-10T12:26:41.361Z",
+      "updatedAt": "2026-08-10T12:37:26.611Z"
+    },
+    {
+      "id": "tec_b0h501v6msn7hhqg",
+      "kind": "TECHNICIAN",
+      "name": "Kleindl Anja",
+      "company": "APM",
+      "plz": "71735",
+      "city": "Eberdingen",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 48.8852,
+      "lon": 8.9962,
+      "active": true,
+      "createdAt": "2026-08-10T12:26:51.016Z",
+      "updatedAt": "2026-08-10T12:37:26.611Z"
+    },
+    {
+      "id": "tec_rdhclrbxmsn7hqjf",
+      "kind": "TECHNICIAN",
+      "name": "Zimmermann Chris",
+      "company": "APM",
+      "plz": "36205",
+      "city": "Sontra",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 51.0667,
+      "lon": 9.9333,
+      "active": true,
+      "createdAt": "2026-08-10T12:27:02.427Z",
+      "updatedAt": "2026-08-10T12:37:26.611Z"
+    },
+    {
+      "id": "tec_wuuw3h0vmsn7i1lp",
+      "kind": "TECHNICIAN",
+      "name": "Wairich Waldemar",
+      "company": "APM",
+      "plz": "86165",
+      "city": "Augsburg",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 48.3822,
+      "lon": 10.9337,
+      "active": true,
+      "createdAt": "2026-08-10T12:27:16.765Z",
+      "updatedAt": "2026-08-10T12:37:26.611Z"
+    },
+    {
+      "id": "tec_6gnmhhg5msn7ibc1",
+      "kind": "TECHNICIAN",
+      "name": "Leonard Apel",
+      "company": "APM",
+      "plz": "58708",
+      "city": "Menden",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 51.4553,
+      "lon": 7.7764,
+      "active": true,
+      "createdAt": "2026-08-10T12:27:29.377Z",
+      "updatedAt": "2026-08-10T12:37:26.611Z"
+    },
+    {
+      "id": "tec_n1ao34qqmsn7iq96",
+      "kind": "TECHNICIAN",
+      "name": "Tancan Daniel",
+      "company": "APM",
+      "plz": "82256",
+      "city": "Fürstenfeldbruck",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 48.1825,
+      "lon": 11.2464,
+      "active": true,
+      "createdAt": "2026-08-10T12:27:48.714Z",
+      "updatedAt": "2026-08-10T12:37:26.611Z"
+    },
+    {
+      "id": "tec_8n4qj2tcmsn7j1my",
+      "kind": "TECHNICIAN",
+      "name": "Schweiger Daniele",
+      "company": "APM",
+      "plz": "74869",
+      "city": "Schwarzach",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 49.3767,
+      "lon": 8.9889,
+      "active": true,
+      "createdAt": "2026-08-10T12:28:03.466Z",
+      "updatedAt": "2026-08-10T12:37:26.611Z"
+    },
+    {
+      "id": "tec_lsz5fd33msn7jety",
+      "kind": "TECHNICIAN",
+      "name": "Gruneberg Marc",
+      "company": "APM",
+      "plz": "84478",
+      "city": "Waldkraiburg",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 48.2058,
+      "lon": 12.41,
+      "active": true,
+      "createdAt": "2026-08-10T12:28:20.566Z",
+      "updatedAt": "2026-08-10T12:37:26.611Z"
+    },
+    {
+      "id": "tec_p6dfacyamsn7ju6d",
+      "kind": "TECHNICIAN",
+      "name": "Köseler Burak",
+      "company": "APM",
+      "plz": "55130",
+      "city": "Mainz",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 49.9624344,
+      "lon": 8.3123728,
+      "active": true,
+      "createdAt": "2026-08-10T12:28:40.453Z",
+      "updatedAt": "2026-08-10T12:38:54.544Z"
+    }
+  ],
+  "partners": [
+    {
+      "id": "par_ob6zst10msn8230h",
+      "kind": "PARTNER",
+      "name": "Jahn Büroorganisation GmbH",
+      "company": "",
+      "plz": "09235",
+      "city": "Burkhardsdorf",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 50.7325287,
+      "lon": 12.9189394,
+      "active": true,
+      "createdAt": "2026-08-10T12:42:51.713Z",
+      "updatedAt": "2026-08-10T12:43:08.424Z"
+    },
+    {
+      "id": "par_ik6p888smsn82o0u",
+      "kind": "PARTNER",
+      "name": "Druckerservice Lucas",
+      "company": "",
+      "plz": "48465",
+      "city": "Schüttorf",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 52.3435965,
+      "lon": 7.2109099,
+      "active": true,
+      "createdAt": "2026-08-10T12:43:18.942Z",
+      "updatedAt": "2026-08-10T12:43:27.027Z"
+    },
+    {
+      "id": "par_7s4hoo4omsn834bu",
+      "kind": "PARTNER",
+      "name": "PrinterService Roj",
+      "company": "",
+      "plz": "30890",
+      "city": "Barsinghausen",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 52.3258131,
+      "lon": 9.4804693,
+      "active": true,
+      "createdAt": "2026-08-10T12:43:40.074Z",
+      "updatedAt": "2026-08-10T12:43:40.074Z"
+    },
+    {
+      "id": "par_8dzpjicxmsn83elu",
+      "kind": "PARTNER",
+      "name": "SB Büroaussatter GmbH",
+      "company": "",
+      "plz": "01454",
+      "city": "Radeberg",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 51.1400788,
+      "lon": 13.9134509,
+      "active": true,
+      "createdAt": "2026-08-10T12:43:53.394Z",
+      "updatedAt": "2026-08-10T12:43:53.394Z"
+    },
+    {
+      "id": "par_wv24oumjmsn83qw4",
+      "kind": "PARTNER",
+      "name": "WEDOW Bürotechnik",
+      "company": "",
+      "plz": "18507",
+      "city": "Grimmen",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 54.1190476,
+      "lon": 13.049652,
+      "active": true,
+      "createdAt": "2026-08-10T12:44:09.316Z",
+      "updatedAt": "2026-08-10T12:44:09.316Z"
+    },
+    {
+      "id": "par_yo75k0qfmsn84770",
+      "kind": "PARTNER",
+      "name": "Königsteiner Büroservice",
+      "company": "",
+      "plz": "61462",
+      "city": "Königsstein im Taunus",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 50.1925871,
+      "lon": 8.4618437,
+      "active": true,
+      "createdAt": "2026-08-10T12:44:30.444Z",
+      "updatedAt": "2026-08-10T12:44:30.444Z"
+    },
+    {
+      "id": "par_38hb9psemsn84n2r",
+      "kind": "PARTNER",
+      "name": "ASCLEAN / ASP-Solution",
+      "company": "",
+      "plz": "22047",
+      "city": "Wandsbek",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 53.5883357,
+      "lon": 10.0936236,
+      "active": true,
+      "createdAt": "2026-08-10T12:44:51.027Z",
+      "updatedAt": "2026-08-10T12:44:51.027Z"
+    },
+    {
+      "id": "par_3qrssob3msn85110",
+      "kind": "PARTNER",
+      "name": "Peter Wagner",
+      "company": "",
+      "plz": "41836",
+      "city": "Hückelhoven",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 51.0431876,
+      "lon": 6.2308005,
+      "active": true,
+      "createdAt": "2026-08-10T12:45:09.108Z",
+      "updatedAt": "2026-08-10T12:45:09.108Z"
+    },
+    {
+      "id": "par_n7ic7wjtmsn85brm",
+      "kind": "PARTNER",
+      "name": "Mittag & Grandt GmbH",
+      "company": "",
+      "plz": "53842",
+      "city": "Troisdorf",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 50.8419438,
+      "lon": 7.1561785,
+      "active": true,
+      "createdAt": "2026-08-10T12:45:23.026Z",
+      "updatedAt": "2026-08-10T12:45:23.026Z"
+    },
+    {
+      "id": "par_dlhl9utdmsn85la1",
+      "kind": "PARTNER",
+      "name": "Satory GmbH",
+      "company": "",
+      "plz": "63263",
+      "city": "Neu-Isenburg",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 50.0447426,
+      "lon": 8.6634054,
+      "active": true,
+      "createdAt": "2026-08-10T12:45:35.353Z",
+      "updatedAt": "2026-08-10T12:45:35.353Z"
+    },
+    {
+      "id": "par_hx04rkx4msn85u26",
+      "kind": "PARTNER",
+      "name": "Kartuschenkönig / Buschkamp",
+      "company": "",
+      "plz": "59425",
+      "city": "Unna",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 51.5532569,
+      "lon": 7.6975528,
+      "active": true,
+      "createdAt": "2026-08-10T12:45:46.734Z",
+      "updatedAt": "2026-08-10T12:45:46.734Z"
+    },
+    {
+      "id": "par_vpknvbkkmsn861qb",
+      "kind": "PARTNER",
+      "name": "Florian Wilk",
+      "company": "",
+      "plz": "59929",
+      "city": "Brilon",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 51.4080932,
+      "lon": 8.6039871,
+      "active": true,
+      "createdAt": "2026-08-10T12:45:56.675Z",
+      "updatedAt": "2026-08-10T12:45:56.675Z"
+    },
+    {
+      "id": "par_1jxdgssbmsn869l5",
+      "kind": "PARTNER",
+      "name": "Reinhold Jodeit",
+      "company": "",
+      "plz": "34253",
+      "city": "Lohfelden",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 51.2688069,
+      "lon": 9.553128,
+      "active": true,
+      "createdAt": "2026-08-10T12:46:06.857Z",
+      "updatedAt": "2026-08-10T12:46:06.857Z"
+    },
+    {
+      "id": "par_haeoi58ymsn86i8q",
+      "kind": "PARTNER",
+      "name": "Druckerservice Werner Krug",
+      "company": "",
+      "plz": "21075",
+      "city": "Harburg",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 53.461518,
+      "lon": 9.9333567,
+      "active": true,
+      "createdAt": "2026-08-10T12:46:18.074Z",
+      "updatedAt": "2026-08-10T12:46:34.348Z"
+    },
+    {
+      "id": "par_yn4s9x5smsn8743o",
+      "kind": "PARTNER",
+      "name": "Willms EDV Service",
+      "company": "",
+      "plz": "38102",
+      "city": "Braunschweig",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 52.2578588,
+      "lon": 10.536842,
+      "active": true,
+      "createdAt": "2026-08-10T12:46:46.404Z",
+      "updatedAt": "2026-08-10T12:46:46.404Z"
+    },
+    {
+      "id": "par_j3tw12vfmsn87cfe",
+      "kind": "PARTNER",
+      "name": "Rene Meyer",
+      "company": "",
+      "plz": "16348",
+      "city": "Wandlitz",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 52.7725325,
+      "lon": 13.5058801,
+      "active": true,
+      "createdAt": "2026-08-10T12:46:57.194Z",
+      "updatedAt": "2026-08-10T12:46:57.194Z"
+    },
+    {
+      "id": "par_2k9g526rmsn87sar",
+      "kind": "PARTNER",
+      "name": "Jiri Vokoun",
+      "company": "",
+      "plz": "71083",
+      "city": "Herrenberg-Kuppingen",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 48.5974832,
+      "lon": 8.8698438,
+      "active": true,
+      "createdAt": "2026-08-10T12:47:17.763Z",
+      "updatedAt": "2026-08-10T12:47:17.763Z"
+    },
+    {
+      "id": "par_mnd2oidmmsn8836o",
+      "kind": "PARTNER",
+      "name": "Kunze und Ritter",
+      "company": "",
+      "plz": "79114",
+      "city": "Freiburg im Breisgau",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 47.9995966,
+      "lon": 7.8098589,
+      "active": true,
+      "createdAt": "2026-08-10T12:47:31.872Z",
+      "updatedAt": "2026-08-10T12:47:31.872Z"
+    },
+    {
+      "id": "par_g0888pjwmsn88bnl",
+      "kind": "PARTNER",
+      "name": "Schön Bürosysteme GmbH",
+      "company": "",
+      "plz": "39116",
+      "city": "Magdeburg",
+      "street": "",
+      "phone": "",
+      "email": "",
+      "notes": "",
+      "lat": 52.0875229,
+      "lon": 11.5592483,
+      "active": true,
+      "createdAt": "2026-08-10T12:47:42.849Z",
+      "updatedAt": "2026-08-10T12:47:42.849Z"
+    }
+  ],
+  "plzCache": {
+    "10115": {
+      "lat": 52.532,
+      "lon": 13.384,
+      "city": "Berlin"
+    },
+    "16348": {
+      "lat": 52.7725325,
+      "lon": 13.5058801,
+      "city": "16348"
+    },
+    "18507": {
+      "lat": 54.1190476,
+      "lon": 13.049652,
+      "city": "18507"
+    },
+    "20095": {
+      "lat": 53.551,
+      "lon": 9.994,
+      "city": "Hamburg"
+    },
+    "21075": {
+      "lat": 53.461518,
+      "lon": 9.9333567,
+      "city": "21075"
+    },
+    "22047": {
+      "lat": 53.5883357,
+      "lon": 10.0936236,
+      "city": "22047"
+    },
+    "24103": {
+      "lat": 54.323,
+      "lon": 10.139,
+      "city": "Kiel"
+    },
+    "28195": {
+      "lat": 53.079,
+      "lon": 8.801,
+      "city": "Bremen"
+    },
+    "30159": {
+      "lat": 52.375,
+      "lon": 9.732,
+      "city": "Hannover"
+    },
+    "30890": {
+      "lat": 52.3258131,
+      "lon": 9.4804693,
+      "city": "30890"
+    },
+    "34253": {
+      "lat": 51.2688069,
+      "lon": 9.553128,
+      "city": "34253"
+    },
+    "35390": {
+      "lat": 50.587,
+      "lon": 8.675,
+      "city": "Gießen"
+    },
+    "36205": {
+      "lat": 51.0667,
+      "lon": 9.9333,
+      "city": "Sontra"
+    },
+    "37242": {
+      "lat": 51.270839,
+      "lon": 9.9500355,
+      "city": "37242"
+    },
+    "38102": {
+      "lat": 52.2578588,
+      "lon": 10.536842,
+      "city": "38102"
+    },
+    "38820": {
+      "lat": 51.8889581,
+      "lon": 11.042027,
+      "city": "38820"
+    },
+    "39116": {
+      "lat": 52.0875229,
+      "lon": 11.5592483,
+      "city": "39116"
+    },
+    "40213": {
+      "lat": 51.227,
+      "lon": 6.773,
+      "city": "Düsseldorf"
+    },
+    "41836": {
+      "lat": 51.0431876,
+      "lon": 6.2308005,
+      "city": "41836"
+    },
+    "44135": {
+      "lat": 51.514,
+      "lon": 7.466,
+      "city": "Dortmund"
+    },
+    "48465": {
+      "lat": 52.3435965,
+      "lon": 7.2109099,
+      "city": "48465"
+    },
+    "49074": {
+      "lat": 52.279,
+      "lon": 8.047,
+      "city": "Osnabrück"
+    },
+    "50667": {
+      "lat": 50.938,
+      "lon": 6.96,
+      "city": "Köln"
+    },
+    "52249": {
+      "lat": 50.8237,
+      "lon": 6.2675,
+      "city": "Eschweiler"
+    },
+    "53842": {
+      "lat": 50.8419438,
+      "lon": 7.1561785,
+      "city": "53842"
+    },
+    "55116": {
+      "lat": 49.999,
+      "lon": 8.273,
+      "city": "Mainz"
+    },
+    "55130": {
+      "lat": 49.9624344,
+      "lon": 8.3123728,
+      "city": "55130"
+    },
+    "57462": {
+      "lat": 51.0395968,
+      "lon": 7.8863866,
+      "city": "57462"
+    },
+    "58708": {
+      "lat": 51.4553,
+      "lon": 7.7764,
+      "city": "Menden"
+    },
+    "59425": {
+      "lat": 51.5532569,
+      "lon": 7.6975528,
+      "city": "59425"
+    },
+    "59929": {
+      "lat": 51.4080932,
+      "lon": 8.6039871,
+      "city": "59929"
+    },
+    "60311": {
+      "lat": 50.111,
+      "lon": 8.682,
+      "city": "Frankfurt am Main"
+    },
+    "61462": {
+      "lat": 50.1925871,
+      "lon": 8.4618437,
+      "city": "61462"
+    },
+    "63263": {
+      "lat": 50.0447426,
+      "lon": 8.6634054,
+      "city": "63263"
+    },
+    "66115": {
+      "lat": 49.278331,
+      "lon": 6.9677256,
+      "city": "66115"
+    },
+    "70173": {
+      "lat": 48.778,
+      "lon": 9.18,
+      "city": "Stuttgart"
+    },
+    "71083": {
+      "lat": 48.5974832,
+      "lon": 8.8698438,
+      "city": "71083"
+    },
+    "71735": {
+      "lat": 48.8852,
+      "lon": 8.9962,
+      "city": "Eberdingen"
+    },
+    "72070": {
+      "lat": 48.521,
+      "lon": 9.057,
+      "city": "Tübingen"
+    },
+    "74869": {
+      "lat": 49.3767,
+      "lon": 8.9889,
+      "city": "Schwarzach"
+    },
+    "76857": {
+      "lat": 49.2287055,
+      "lon": 7.9453799,
+      "city": "76857"
+    },
+    "79104": {
+      "lat": 47.999,
+      "lon": 7.842,
+      "city": "Freiburg"
+    },
+    "79114": {
+      "lat": 47.9995966,
+      "lon": 7.8098589,
+      "city": "79114"
+    },
+    "80331": {
+      "lat": 48.137,
+      "lon": 11.575,
+      "city": "München"
+    },
+    "82256": {
+      "lat": 48.1825,
+      "lon": 11.2464,
+      "city": "Fürstenfeldbruck"
+    },
+    "84478": {
+      "lat": 48.2058,
+      "lon": 12.41,
+      "city": "Waldkraiburg"
+    },
+    "85049": {
+      "lat": 48.765,
+      "lon": 11.424,
+      "city": "Ingolstadt"
+    },
+    "86150": {
+      "lat": 48.366,
+      "lon": 10.898,
+      "city": "Augsburg"
+    },
+    "86165": {
+      "lat": 48.3822,
+      "lon": 10.9337,
+      "city": "Augsburg"
+    },
+    "86343": {
+      "lat": 48.2607129,
+      "lon": 10.8853989,
+      "city": "86343"
+    },
+    "86551": {
+      "lat": 48.4453557,
+      "lon": 11.123593,
+      "city": "86551"
+    },
+    "87435": {
+      "lat": 47.727,
+      "lon": 10.314,
+      "city": "Kempten"
+    },
+    "87527": {
+      "lat": 47.5024638,
+      "lon": 10.292207,
+      "city": "87527"
+    },
+    "89584": {
+      "lat": 48.2806918,
+      "lon": 9.6696419,
+      "city": "89584"
+    },
+    "90402": {
+      "lat": 49.453,
+      "lon": 11.077,
+      "city": "Nürnberg"
+    },
+    "91085": {
+      "lat": 49.6167,
+      "lon": 10.8333,
+      "city": "Weisendorf"
+    },
+    "93047": {
+      "lat": 49.013,
+      "lon": 12.101,
+      "city": "Regensburg"
+    },
+    "94535": {
+      "lat": 48.709373,
+      "lon": 13.2559989,
+      "city": "94535"
+    },
+    "97070": {
+      "lat": 49.794,
+      "lon": 9.929,
+      "city": "Würzburg"
+    },
+    "99084": {
+      "lat": 50.978,
+      "lon": 11.029,
+      "city": "Erfurt"
+    },
+    "01067": {
+      "lat": 51.05,
+      "lon": 13.738,
+      "city": "Dresden"
+    },
+    "04109": {
+      "lat": 51.34,
+      "lon": 12.375,
+      "city": "Leipzig"
+    },
+    "06917": {
+      "lat": 51.7496,
+      "lon": 12.9489,
+      "city": "Jessen (Elster) Gerbisbach"
+    },
+    "09235": {
+      "lat": 50.7325287,
+      "lon": 12.9189394,
+      "city": "09235"
+    },
+    "01454": {
+      "lat": 51.1400788,
+      "lon": 13.9134509,
+      "city": "01454"
+    },
+    "06526": {
+      "lat": 51.5180163,
+      "lon": 11.250543,
+      "city": "06526"
+    },
+    "06108": {
+      "lat": 51.4872454,
+      "lon": 11.9615869,
+      "city": "06108"
+    },
+    "04626": {
+      "lat": 50.8965024,
+      "lon": 12.3075503,
+      "city": "04626"
+    },
+    "09661": {
+      "lat": 50.9930967,
+      "lon": 13.1345313,
+      "city": "09661"
+    }
+  }
+}

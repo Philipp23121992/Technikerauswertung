@@ -11,6 +11,7 @@ import type { TicketImportResult } from "@/lib/ticket-import";
 import { MONTH_LABELS } from "@/lib/tracker-types";
 import { ImportAnalysisReport } from "./ImportAnalysisReport";
 import { MonthOverviewTab } from "./MonthOverviewTab";
+import { useEditAccess } from "./EditAccessProvider";
 import { useTracker } from "./TrackerProvider";
 
 type PendingImport = {
@@ -29,6 +30,7 @@ export function TourenPage() {
     analyzeTourTicketImport,
     applyTourTicketImport,
   } = useTracker();
+  const { canEdit } = useEditAccess();
   const [importMessage, setImportMessage] = useState<string | null>(null);
   const [importError, setImportError] = useState<string | null>(null);
   const [importBusy, setImportBusy] = useState(false);
@@ -39,6 +41,7 @@ export function TourenPage() {
   const years = availableYears(new Date().getFullYear());
 
   async function handleImportFiles(files: FileList | null) {
+    if (!canEdit) return;
     if (!files?.length) return;
     const file = files[0];
     setImportBusy(true);
@@ -134,7 +137,7 @@ export function TourenPage() {
           <button
             type="button"
             className="btn btn-import"
-            disabled={importBusy}
+            disabled={importBusy || !canEdit}
             onClick={() => importRef.current?.click()}
           >
             <svg viewBox="0 0 24 24" aria-hidden className="btn-icon">
@@ -149,6 +152,7 @@ export function TourenPage() {
             ref={importRef}
             className="sr-only-date"
             type="file"
+            disabled={!canEdit}
             accept=".csv,text/csv,text/plain"
             onChange={(event) => handleImportFiles(event.target.files)}
           />

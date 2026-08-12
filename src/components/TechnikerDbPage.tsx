@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { ROLE_OPTIONS, type TechnicianRole } from "@/lib/tracker-types";
+import { useEditAccess } from "./EditAccessProvider";
 import { useTracker } from "./TrackerProvider";
 
 export function TechnikerDbPage() {
@@ -13,14 +14,18 @@ export function TechnikerDbPage() {
     setTechnicianRole,
     removeTechnician,
     exportTrackerData,
+    restoreTrackerFromSnapshot,
   } = useTracker();
+  const { canEdit } = useEditAccess();
   const [newName, setNewName] = useState("");
   const [newRole, setNewRole] = useState<TechnicianRole>("fieldservice");
   const [drafts, setDrafts] = useState<Record<string, string>>({});
   const [message, setMessage] = useState<string | null>(null);
+  const [restoring, setRestoring] = useState(false);
 
   function handleAdd(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (!canEdit) return;
     const trimmed = newName.trim();
     if (!trimmed) {
       setMessage("Bitte einen Namen eingeben.");
@@ -45,20 +50,42 @@ export function TechnikerDbPage() {
       <header className="section-header">
         <div>
           <h1>Techniker DB</h1>
-          <p>Techniker anlegen, Rollen setzen und entfernen</p>
+          <p>Techniker und Rollen für die Technikerauswertung (unabhängig von Meetings)</p>
         </div>
-        <button
-          type="button"
-          className="btn btn-secondary"
-          onClick={() => {
-            exportTrackerData();
-            setMessage(
-              "Datenexport gestartet – Datei als public/data/tracker-snapshot.json ablegen für GitHub.",
-            );
-          }}
-        >
-          Daten exportieren
-        </button>
+        <div className="toolbar-actions-row">
+          <button
+            type="button"
+            className="btn btn-secondary"
+            disabled={restoring}
+            onClick={async () => {
+              setRestoring(true);
+              try {
+                const ok = await restoreTrackerFromSnapshot();
+                setMessage(
+                  ok
+                    ? "Auswertung aus Snapshot wiederhergestellt."
+                    : "Wiederherstellung fehlgeschlagen – Snapshot nicht gefunden.",
+                );
+              } finally {
+                setRestoring(false);
+              }
+            }}
+          >
+            {restoring ? "Stelle wieder her…" : "Aus Snapshot wiederherstellen"}
+          </button>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => {
+              exportTrackerData();
+              setMessage(
+                "Datenexport gestartet – Datei als public/data/tracker-snapshot.json ablegen für GitHub.",
+              );
+            }}
+          >
+            Daten exportieren
+          </button>
+        </div>
       </header>
 
       <section className="content-card">
@@ -73,12 +100,14 @@ export function TechnikerDbPage() {
           <input
             className="add-tech-input"
             value={newName}
+            disabled={!canEdit}
             onChange={(event) => setNewName(event.target.value)}
             placeholder="Neuer Techniker"
           />
           <select
             className="status-select"
             value={newRole}
+            disabled={!canEdit}
             onChange={(event) => setNewRole(event.target.value as TechnicianRole)}
             aria-label="Rolle für neuen Techniker"
           >
@@ -88,7 +117,7 @@ export function TechnikerDbPage() {
               </option>
             ))}
           </select>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary" disabled={!canEdit}>
             Hinzufügen
           </button>
         </form>
@@ -119,6 +148,7 @@ export function TechnikerDbPage() {
                       <input
                         className="add-tech-input"
                         value={draft}
+                        disabled={!canEdit}
                         onChange={(event) =>
                           setDrafts((current) => ({
                             ...current,
@@ -132,6 +162,7 @@ export function TechnikerDbPage() {
                       <select
                         className="status-select"
                         value={tech.role}
+                        disabled={!canEdit}
                         onChange={(event) =>
                           setTechnicianRole(tech.id, event.target.value as TechnicianRole)
                         }
@@ -149,6 +180,7 @@ export function TechnikerDbPage() {
                         <button
                           type="button"
                           className="btn btn-date"
+                          disabled={!canEdit}
                           onClick={() => {
                             renameTechnician(tech.id, draft);
                             setDrafts((current) => {
@@ -164,6 +196,7 @@ export function TechnikerDbPage() {
                         <button
                           type="button"
                           className="btn btn-link-danger"
+                          disabled={!canEdit}
                           onClick={() => {
                             removeTechnician(tech.id);
                             setMessage(`„${tech.name}“ entfernt.`);

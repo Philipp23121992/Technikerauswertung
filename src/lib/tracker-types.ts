@@ -8,6 +8,8 @@ export type Technician = {
   id: string;
   name: string;
   role: TechnicianRole;
+  /** Für optionale Zusatzinfos; Auswertung nutzt die E-Mail nicht. */
+  email?: string;
 };
 
 export type DayStatus =

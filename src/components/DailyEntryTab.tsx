@@ -9,6 +9,7 @@ import {
   type TechnicianRole,
 } from "@/lib/tracker-types";
 import { ticketTone } from "@/lib/tracker";
+import { useEditAccess } from "./EditAccessProvider";
 import { useTracker } from "./TrackerProvider";
 
 type DailyEntryTabProps = {
@@ -26,6 +27,7 @@ export function DailyEntryTab({ onRefresh }: DailyEntryTabProps) {
     setStatus,
     setNote,
   } = useTracker();
+  const { canEdit } = useEditAccess();
   const [group, setGroup] = useState<TechnicianRole>("fieldservice");
 
   const visibleTechnicians = useMemo(
@@ -110,6 +112,7 @@ export function DailyEntryTab({ onRefresh }: DailyEntryTabProps) {
                         <select
                           className="status-select"
                           value={status}
+                          disabled={!canEdit}
                           onChange={(event) =>
                             setStatus(tech.id, selectedDate, event.target.value as DayStatus)
                           }
@@ -127,6 +130,7 @@ export function DailyEntryTab({ onRefresh }: DailyEntryTabProps) {
                         <input
                           className="note-input"
                           value={note}
+                          disabled={!canEdit}
                           placeholder={
                             status === "projekt" ? "Projekt eintragen…" : "Vertretung eintragen…"
                           }
@@ -145,7 +149,7 @@ export function DailyEntryTab({ onRefresh }: DailyEntryTabProps) {
                         step={1}
                         value={count ?? ""}
                         placeholder=""
-                        disabled={status !== "tickets"}
+                        disabled={!canEdit || status !== "tickets"}
                         onChange={(event) => {
                           const raw = event.target.value;
                           setTicketCount(

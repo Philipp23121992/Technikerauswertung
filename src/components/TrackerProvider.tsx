@@ -17,6 +17,8 @@ import {
   loadTrackerFromStorage,
   loadTrackerSnapshotFromPublic,
   mergeTrackerStates,
+  isTrackerLikelyWiped,
+  recoverTrackerFromSnapshot,
   nextWorkday,
   previousWorkday,
   saveTrackerToStorage,
@@ -42,6 +44,7 @@ import {
   type TrackerState,
 } from "@/lib/tracker-types";
 import type { ImportedDataset } from "@/lib/types";
+import { useEditAccess } from "./EditAccessProvider";
 
 type TrackerContextValue = {
   ready: boolean;
@@ -54,9 +57,10 @@ type TrackerContextValue = {
   setTicketCount: (technicianId: string, date: string, count: number | null) => void;
   setStatus: (technicianId: string, date: string, status: DayStatus) => void;
   setNote: (technicianId: string, date: string, note: string) => void;
-  addTechnician: (name: string, role?: TechnicianRole) => void;
+  addTechnician: (name: string, role?: TechnicianRole, email?: string) => void;
   renameTechnician: (id: string, name: string) => void;
   setTechnicianRole: (id: string, role: TechnicianRole) => void;
+  setTechnicianEmail: (id: string, email: string) => void;
   removeTechnician: (id: string) => void;
   applyTicketImport: (result: TicketImportResult) => void;
   analyzeTicketImport: (dataset: ImportedDataset) => TicketImportResult;
@@ -77,11 +81,13 @@ type TrackerContextValue = {
   getTourCount: (technicianId: string, date: string) => number | null;
   refresh: () => void;
   exportTrackerData: () => void;
+  restoreTrackerFromSnapshot: () => Promise<boolean>;
 };
 
 const TrackerContext = createContext<TrackerContextValue | null>(null);
 
 export function TrackerProvider({ children }: { children: React.ReactNode }) {
+  const { canEdit } = useEditAccess();
   const [state, setState] = useState<TrackerState>(() => createDefaultTracker());
   const [selectedDate, setSelectedDateState] = useState(() =>
     clampToEvaluationStart(toDateInputValue(previousWorkday())),
@@ -97,7 +103,10 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
 
       const snapshot = await loadTrackerSnapshotFromPublic();
       const local = hasTrackerInStorage() ? loadTrackerFromStorage() : null;
-      const loaded = mergeTrackerStates(snapshot, local);
+      const wiped = isTrackerLikelyWiped(local, snapshot);
+      const loaded = wiped
+        ? recoverTrackerFromSnapshot(local, snapshot)
+        : mergeTrackerStates(snapshot, local);
 
       if (cancelled) return;
 
@@ -127,6 +136,15 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
   const exportTrackerData = useCallback(() => {
     downloadTrackerSnapshot(state);
   }, [state]);
+
+  const restoreTrackerFromSnapshot = useCallback(async () => {
+    const snapshot = await loadTrackerSnapshotFromPublic();
+    if (!snapshot) return false;
+    const local = hasTrackerInStorage() ? loadTrackerFromStorage() : null;
+    const recovered = recoverTrackerFromSnapshot(local, snapshot);
+    persist(recovered);
+    return true;
+  }, [persist]);
 
   const setYear = useCallback(
     (year: number) => {
@@ -179,6 +197,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
 
   const setTicketCount = useCallback(
     (technicianId: string, date: string, count: number | null) => {
+      if (!canEdit) return;
       const key = ticketKey(technicianId, date);
       const tickets = { ...state.tickets };
       const statuses = { ...state.statuses };
@@ -194,11 +213,12 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
 
       persist({ ...state, tickets, statuses });
     },
-    [persist, state],
+    [canEdit, persist, state],
   );
 
   const setStatus = useCallback(
     (technicianId: string, date: string, status: DayStatus) => {
+      if (!canEdit) return;
       const key = ticketKey(technicianId, date);
       const statuses = { ...state.statuses };
       const notes = { ...state.notes };
@@ -215,11 +235,12 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
 
       persist({ ...state, statuses, notes, tickets });
     },
-    [persist, state],
+    [canEdit, persist, state],
   );
 
   const setNote = useCallback(
     (technicianId: string, date: string, note: string) => {
+      if (!canEdit) return;
       const key = ticketKey(technicianId, date);
       const notes = { ...state.notes };
       const trimmed = note.trim();
@@ -227,11 +248,12 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
       else notes[key] = note;
       persist({ ...state, notes });
     },
-    [persist, state],
+    [canEdit, persist, state],
   );
 
   const addTechnician = useCallback(
-    (name: string, role: TechnicianRole = "fieldservice") => {
+    (name: string, role: TechnicianRole = "fieldservice", email = "") => {
+      if (!canEdit) return;
       const trimmed = name.trim();
       if (!trimmed) return;
       if (state.technicians.some((tech) => tech.name.toLowerCase() === trimmed.toLowerCase())) {
@@ -241,15 +263,21 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
         ...state,
         technicians: [
           ...state.technicians,
-          { id: crypto.randomUUID(), name: trimmed, role },
+          {
+            id: crypto.randomUUID(),
+            name: trimmed,
+            role,
+            email: email.trim(),
+          },
         ],
       });
     },
-    [persist, state],
+    [canEdit, persist, state],
   );
 
   const renameTechnician = useCallback(
     (id: string, name: string) => {
+      if (!canEdit) return;
       const trimmed = name.trim();
       if (!trimmed) return;
       if (
@@ -266,11 +294,12 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
         ),
       });
     },
-    [persist, state],
+    [canEdit, persist, state],
   );
 
   const setTechnicianRole = useCallback(
     (id: string, role: TechnicianRole) => {
+      if (!canEdit) return;
       persist({
         ...state,
         technicians: state.technicians.map((tech) =>
@@ -278,11 +307,25 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
         ),
       });
     },
-    [persist, state],
+    [canEdit, persist, state],
+  );
+
+  const setTechnicianEmail = useCallback(
+    (id: string, email: string) => {
+      if (!canEdit) return;
+      persist({
+        ...state,
+        technicians: state.technicians.map((tech) =>
+          tech.id === id ? { ...tech, email: email.trim() } : tech,
+        ),
+      });
+    },
+    [canEdit, persist, state],
   );
 
   const removeTechnician = useCallback(
     (id: string) => {
+      if (!canEdit) return;
       const tickets = { ...state.tickets };
       const statuses = { ...state.statuses };
       const notes = { ...state.notes };
@@ -323,7 +366,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
         tourTickets,
       });
     },
-    [persist, state],
+    [canEdit, persist, state],
   );
 
   const analyzeTicketImport = useCallback(
@@ -333,6 +376,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
 
   const applyTicketImport = useCallback(
     (result: TicketImportResult) => {
+      if (!canEdit) return;
       let technicians = [...state.technicians];
 
       if (
@@ -377,7 +421,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
         statuses,
       });
     },
-    [persist, state],
+    [canEdit, persist, state],
   );
 
   const getCount = useCallback(
@@ -397,6 +441,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
 
   const setOpenTicketCount = useCallback(
     (technicianId: string, date: string, count: number | null) => {
+      if (!canEdit) return;
       const key = ticketKey(technicianId, date);
       const openTickets = { ...state.openTickets };
       const openStatuses = { ...state.openStatuses };
@@ -412,11 +457,12 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
 
       persist({ ...state, openTickets, openStatuses });
     },
-    [persist, state],
+    [canEdit, persist, state],
   );
 
   const setOpenStatus = useCallback(
     (technicianId: string, date: string, status: DayStatus) => {
+      if (!canEdit) return;
       const key = ticketKey(technicianId, date);
       const openStatuses = { ...state.openStatuses };
       const openNotes = { ...state.openNotes };
@@ -433,11 +479,12 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
 
       persist({ ...state, openStatuses, openNotes, openTickets });
     },
-    [persist, state],
+    [canEdit, persist, state],
   );
 
   const setOpenNote = useCallback(
     (technicianId: string, date: string, note: string) => {
+      if (!canEdit) return;
       const key = ticketKey(technicianId, date);
       const openNotes = { ...state.openNotes };
       const trimmed = note.trim();
@@ -445,7 +492,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
       else openNotes[key] = note;
       persist({ ...state, openNotes });
     },
-    [persist, state],
+    [canEdit, persist, state],
   );
 
   const analyzeOpenTicketImport = useCallback(
@@ -461,6 +508,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
 
   const applyOpenTicketImport = useCallback(
     (result: TicketImportResult) => {
+      if (!canEdit) return;
       let technicians = [...state.technicians];
 
       if (
@@ -507,7 +555,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
         openStatuses,
       });
     },
-    [persist, state],
+    [canEdit, persist, state],
   );
 
   const getOpenCount = useCallback(
@@ -530,6 +578,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
 
   const setTourTicketCount = useCallback(
     (technicianId: string, date: string, count: number | null) => {
+      if (!canEdit) return;
       const key = ticketKey(technicianId, date);
       const tourTickets = { ...state.tourTickets };
 
@@ -541,7 +590,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
 
       persist({ ...state, tourTickets });
     },
-    [persist, state],
+    [canEdit, persist, state],
   );
 
   const analyzeTourTicketImport = useCallback(
@@ -559,6 +608,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
 
   const applyTourTicketImport = useCallback(
     (result: TicketImportResult) => {
+      if (!canEdit) return;
       const tourTickets = { ...state.tourTickets };
 
       // Bestehende Tour-Tage bleiben; Import setzt nur die Keys aus der Datei.
@@ -585,7 +635,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
         tourTickets,
       });
     },
-    [persist, state],
+    [canEdit, persist, state],
   );
 
   const getTourCount = useCallback(
@@ -614,6 +664,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
       addTechnician,
       renameTechnician,
       setTechnicianRole,
+      setTechnicianEmail,
       removeTechnician,
       applyTicketImport,
       analyzeTicketImport,
@@ -634,6 +685,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
       getTourCount,
       refresh,
       exportTrackerData,
+      restoreTrackerFromSnapshot,
     }),
     [
       ready,
@@ -649,6 +701,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
       addTechnician,
       renameTechnician,
       setTechnicianRole,
+      setTechnicianEmail,
       removeTechnician,
       applyTicketImport,
       analyzeTicketImport,
@@ -669,6 +722,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
       getTourCount,
       refresh,
       exportTrackerData,
+      restoreTrackerFromSnapshot,
     ],
   );
 
