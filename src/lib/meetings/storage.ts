@@ -67,6 +67,8 @@ export function loadMeetingStore(kind: MeetingKind): MeetingStoreState {
         selectedId && protocols.some((item) => item.id === selectedId)
           ? selectedId
           : protocols[0]?.id ?? null,
+      savedAt:
+        typeof parsed.savedAt === "string" ? parsed.savedAt : undefined,
     };
   } catch {
     return createEmptyStore(kind);
@@ -75,5 +77,16 @@ export function loadMeetingStore(kind: MeetingKind): MeetingStoreState {
 
 export function saveMeetingStore(state: MeetingStoreState): void {
   if (typeof window === "undefined") return;
-  window.localStorage.setItem(meetingStorageKey(state.kind), JSON.stringify(state));
+  const withStamp: MeetingStoreState = {
+    ...state,
+    savedAt: state.savedAt ?? new Date().toISOString(),
+  };
+  window.localStorage.setItem(
+    meetingStorageKey(state.kind),
+    JSON.stringify(withStamp),
+  );
+}
+
+export function stampMeetingStore(state: MeetingStoreState): MeetingStoreState {
+  return { ...state, savedAt: new Date().toISOString() };
 }

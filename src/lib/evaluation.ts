@@ -3,6 +3,21 @@ import { PARTNER_TECH_ID } from "./ticket-import";
 import type { DayStatus, Technician } from "./tracker-types";
 import { ROLE_OPTIONS } from "./tracker-types";
 
+const MONTH_SHORT_DE = [
+  "Jan",
+  "Feb",
+  "Mär",
+  "Apr",
+  "Mai",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Okt",
+  "Nov",
+  "Dez",
+] as const;
+
 export type EvalRangeMode = "current" | "previous";
 
 export type TechEvaluation = {
@@ -144,6 +159,131 @@ export function formatAverage(value: number): string {
   });
 }
 
+export type TechnicianMonthRow = {
+  year: number;
+  monthIndex: number;
+  monthLabel: string;
+  monthShort: string;
+  tickets: number;
+  evaluatedDays: number;
+  average: number;
+  hasData: boolean;
+  inRange: boolean;
+};
+
+export type TechnicianMonthHistory = {
+  technician: Technician;
+  year: number;
+  months: TechnicianMonthRow[];
+  monthsWithData: number;
+  yearTickets: number;
+  yearAverage: number;
+  bestMonth: TechnicianMonthRow | null;
+};
+
+function evaluateTechnicianMonth(
+  technicianId: string,
+  year: number,
+  monthIndex: number,
+  getCount: (technicianId: string, date: string) => number | null,
+  getStatus: (technicianId: string, date: string) => DayStatus,
+): { tickets: number; evaluatedDays: number; average: number } {
+  const workdays = daysInMonth(year, monthIndex).filter((day) => !isWeekend(day));
+  let tickets = 0;
+  let evaluatedDays = 0;
+
+  for (const day of workdays) {
+    const date = toDateInputValue(day);
+    const status = getStatus(technicianId, date);
+    const count = getCount(technicianId, date);
+    if (!isEvaluatedTicketDay(status, count) || count === null) continue;
+    tickets += count;
+    evaluatedDays += 1;
+  }
+
+  return {
+    tickets,
+    evaluatedDays,
+    average: evaluatedDays > 0 ? tickets / evaluatedDays : 0,
+  };
+}
+
+/** Monatsreihe eines Technikers für das gewählte Jahr (nur freigegebene Monate). */
+export function buildTechnicianMonthHistory(
+  technician: Technician,
+  year: number,
+  getCount: (technicianId: string, date: string) => number | null,
+  getStatus: (technicianId: string, date: string) => DayStatus,
+): TechnicianMonthHistory {
+  const months: TechnicianMonthRow[] = [];
+
+  for (let monthIndex = 0; monthIndex < 12; monthIndex += 1) {
+    const inRange = isMonthInEvaluationRange(year, monthIndex);
+    const monthLabel = new Intl.DateTimeFormat("de-DE", {
+      month: "long",
+      year: "numeric",
+    }).format(new Date(year, monthIndex, 1));
+
+    if (!inRange) {
+      months.push({
+        year,
+        monthIndex,
+        monthLabel,
+        monthShort: MONTH_SHORT_DE[monthIndex],
+        tickets: 0,
+        evaluatedDays: 0,
+        average: 0,
+        hasData: false,
+        inRange: false,
+      });
+      continue;
+    }
+
+    const stats = evaluateTechnicianMonth(
+      technician.id,
+      year,
+      monthIndex,
+      getCount,
+      getStatus,
+    );
+
+    months.push({
+      year,
+      monthIndex,
+      monthLabel,
+      monthShort: MONTH_SHORT_DE[monthIndex],
+      tickets: stats.tickets,
+      evaluatedDays: stats.evaluatedDays,
+      average: stats.average,
+      hasData: stats.evaluatedDays > 0,
+      inRange: true,
+    });
+  }
+
+  const monthsWithData = months.filter((item) => item.hasData);
+  const yearTickets = monthsWithData.reduce((sum, item) => sum + item.tickets, 0);
+  const yearAverage =
+    monthsWithData.length > 0
+      ? monthsWithData.reduce((sum, item) => sum + item.average, 0) / monthsWithData.length
+      : 0;
+  const bestMonth =
+    monthsWithData.length > 0
+      ? monthsWithData.reduce((best, item) =>
+          item.average > best.average ? item : best,
+        )
+      : null;
+
+  return {
+    technician,
+    year,
+    months,
+    monthsWithData: monthsWithData.length,
+    yearTickets,
+    yearAverage,
+    bestMonth,
+  };
+}
+
 export type OpenDayTotal = {
   date: string;
   day: number;
@@ -254,21 +394,6 @@ export type PhilippKpi = {
   bestMonth: PhilippMonthKpi | null;
   quarters: PhilippQuarterKpi[];
 };
-
-const MONTH_SHORT_DE = [
-  "Jan",
-  "Feb",
-  "Mär",
-  "Apr",
-  "Mai",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Okt",
-  "Nov",
-  "Dez",
-] as const;
 
 /** Monats-Gesamt-Ø Fieldservice + Quartalsmittel der Monats-Ø. */
 export function buildPhilippKpi(

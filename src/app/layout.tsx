@@ -16,7 +16,7 @@ const syne = Syne({
 export const metadata: Metadata = {
   title: "APM Servicetools",
   description:
-    "Techniker Finder, Technikerauswertung, SLA Auswertung, Meetings und Wissensassistent.",
+    "Techniker Finder, Technikerauswertung, Disposition, SLA Auswertung, Meetings, Wissensassistent und Verwaltung.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -34,15 +34,13 @@ export function LocalDataSync() {
           exportedAt: new Date().toISOString(),
           tracker: readJsonLocal(TRACKER_STORAGE_KEY) ??
             readJsonLocal("technikerauswertung.tracker.v3"),
-          meetingsTechniker: readJsonLocal(meetingStorageKey("techniker")),
-          meetingsRessourcen: readJsonLocal(meetingStorageKey("ressourcen")),
+          // Meetings speichert nur die Meeting-UI (sonst überschreibt Autosync
+          // gelöschte/ersetzte Protokolle wieder mit alten localStorage-Demos).
           meetingsTechnicians: readJsonLocal(MEETINGS_TECHNICIANS_KEY),
         };
 
         const hasAnything =
           Boolean(payload.tracker) ||
-          Boolean(payload.meetingsTechniker) ||
-          Boolean(payload.meetingsRessourcen) ||
           Boolean(payload.meetingsTechnicians);
 
         if (!hasAnything) {

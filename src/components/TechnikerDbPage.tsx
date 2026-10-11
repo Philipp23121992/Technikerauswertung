@@ -1,17 +1,57 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { ROLE_OPTIONS, type TechnicianRole } from "@/lib/tracker-types";
+import { ROLE_OPTIONS, type Technician, type TechnicianRole } from "@/lib/tracker-types";
 import { useEditAccess } from "./EditAccessProvider";
 import { useTracker } from "./TrackerProvider";
+
+type AddrDraft = {
+  street: string;
+  plz: string;
+  city: string;
+  endStreet: string;
+  endPlz: string;
+  endCity: string;
+};
+
+function addrFrom(tech: Technician): AddrDraft {
+  return {
+    street: tech.street ?? "",
+    plz: tech.plz ?? "",
+    city: tech.city ?? "",
+    endStreet: tech.endStreet ?? "",
+    endPlz: tech.endPlz ?? "",
+    endCity: tech.endCity ?? "",
+  };
+}
+
+async function syncDispositionHome(tech: Technician, addr: AddrDraft, name: string) {
+  if (!addr.plz && !addr.street) return;
+  await fetch("/api/disposition", {
+    method: "PATCH",
+    credentials: "same-origin",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      home: {
+        technicianId: tech.id,
+        technicianName: name,
+        street: addr.street,
+        plz: addr.plz,
+        city: addr.city,
+        endStreet: addr.endStreet,
+        endPlz: addr.endPlz,
+        endCity: addr.endCity,
+      },
+    }),
+  });
+}
 
 export function TechnikerDbPage() {
   const {
     ready,
     technicians,
     addTechnician,
-    renameTechnician,
-    setTechnicianRole,
+    updateTechnician,
     removeTechnician,
     exportTrackerData,
     restoreTrackerFromSnapshot,
@@ -19,9 +59,18 @@ export function TechnikerDbPage() {
   const { canEdit } = useEditAccess();
   const [newName, setNewName] = useState("");
   const [newRole, setNewRole] = useState<TechnicianRole>("fieldservice");
-  const [drafts, setDrafts] = useState<Record<string, string>>({});
+  const [nameDrafts, setNameDrafts] = useState<Record<string, string>>({});
+  const [roleDrafts, setRoleDrafts] = useState<Record<string, TechnicianRole>>({});
+  const [addrDrafts, setAddrDrafts] = useState<Record<string, AddrDraft>>({});
   const [message, setMessage] = useState<string | null>(null);
   const [restoring, setRestoring] = useState(false);
+
+  function patchAddr(id: string, tech: Technician, patch: Partial<AddrDraft>) {
+    setAddrDrafts((current) => ({
+      ...current,
+      [id]: { ...addrFrom(tech), ...current[id], ...patch },
+    }));
+  }
 
   function handleAdd(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -50,7 +99,10 @@ export function TechnikerDbPage() {
       <header className="section-header">
         <div>
           <h1>Techniker DB</h1>
-          <p>Techniker und Rollen für die Technikerauswertung (unabhängig von Meetings)</p>
+          <p>
+            Techniker, Rollen und Standortadressen für die Technikerauswertung (Start- und Endpunkt
+            der Dispositionstour)
+          </p>
         </div>
         <div className="toolbar-actions-row">
           <button
@@ -129,28 +181,32 @@ export function TechnikerDbPage() {
         ) : null}
 
         <div className="tracker-table-wrap" style={{ marginTop: "1rem" }}>
-          <table className="tracker-table">
+          <table className="tracker-table tech-db-table">
             <thead>
               <tr>
                 <th>#</th>
                 <th>Name</th>
                 <th>Rolle</th>
+                <th>Start / Standort</th>
+                <th>Endpunkt</th>
                 <th>Aktion</th>
               </tr>
             </thead>
             <tbody>
               {technicians.map((tech, index) => {
-                const draft = drafts[tech.id] ?? tech.name;
+                const nameDraft = nameDrafts[tech.id] ?? tech.name;
+                const roleDraft = roleDrafts[tech.id] ?? tech.role;
+                const addr = addrDrafts[tech.id] ?? addrFrom(tech);
                 return (
                   <tr key={tech.id}>
                     <td>{index + 1}</td>
                     <td>
                       <input
                         className="add-tech-input"
-                        value={draft}
+                        value={nameDraft}
                         disabled={!canEdit}
                         onChange={(event) =>
-                          setDrafts((current) => ({
+                          setNameDrafts((current) => ({
                             ...current,
                             [tech.id]: event.target.value,
                           }))
@@ -161,10 +217,13 @@ export function TechnikerDbPage() {
                     <td>
                       <select
                         className="status-select"
-                        value={tech.role}
+                        value={roleDraft}
                         disabled={!canEdit}
                         onChange={(event) =>
-                          setTechnicianRole(tech.id, event.target.value as TechnicianRole)
+                          setRoleDrafts((current) => ({
+                            ...current,
+                            [tech.id]: event.target.value as TechnicianRole,
+                          }))
                         }
                         aria-label={`Rolle ${tech.name}`}
                       >
@@ -176,19 +235,113 @@ export function TechnikerDbPage() {
                       </select>
                     </td>
                     <td>
+                      <div className="tech-addr-cell">
+                        <input
+                          className="add-tech-input"
+                          value={addr.street}
+                          disabled={!canEdit}
+                          placeholder="Straße"
+                          aria-label={`Startstraße ${tech.name}`}
+                          onChange={(event) => patchAddr(tech.id, tech, { street: event.target.value })}
+                        />
+                        <div className="tech-addr-city">
+                          <input
+                            className="add-tech-input"
+                            value={addr.plz}
+                            disabled={!canEdit}
+                            placeholder="PLZ"
+                            inputMode="numeric"
+                            aria-label={`Start-PLZ ${tech.name}`}
+                            onChange={(event) =>
+                              patchAddr(tech.id, tech, {
+                                plz: event.target.value.replace(/\D/g, "").slice(0, 5),
+                              })
+                            }
+                          />
+                          <input
+                            className="add-tech-input"
+                            value={addr.city}
+                            disabled={!canEdit}
+                            placeholder="Ort"
+                            aria-label={`Startort ${tech.name}`}
+                            onChange={(event) => patchAddr(tech.id, tech, { city: event.target.value })}
+                          />
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="tech-addr-cell">
+                        <input
+                          className="add-tech-input"
+                          value={addr.endStreet}
+                          disabled={!canEdit}
+                          placeholder="wie Standort"
+                          aria-label={`Endstraße ${tech.name}`}
+                          onChange={(event) =>
+                            patchAddr(tech.id, tech, { endStreet: event.target.value })
+                          }
+                        />
+                        <div className="tech-addr-city">
+                          <input
+                            className="add-tech-input"
+                            value={addr.endPlz}
+                            disabled={!canEdit}
+                            placeholder="PLZ"
+                            inputMode="numeric"
+                            aria-label={`End-PLZ ${tech.name}`}
+                            onChange={(event) =>
+                              patchAddr(tech.id, tech, {
+                                endPlz: event.target.value.replace(/\D/g, "").slice(0, 5),
+                              })
+                            }
+                          />
+                          <input
+                            className="add-tech-input"
+                            value={addr.endCity}
+                            disabled={!canEdit}
+                            placeholder="Ort"
+                            aria-label={`Endort ${tech.name}`}
+                            onChange={(event) =>
+                              patchAddr(tech.id, tech, { endCity: event.target.value })
+                            }
+                          />
+                        </div>
+                      </div>
+                    </td>
+                    <td>
                       <div className="toolbar-actions-row">
                         <button
                           type="button"
                           className="btn btn-date"
                           disabled={!canEdit}
                           onClick={() => {
-                            renameTechnician(tech.id, draft);
-                            setDrafts((current) => {
+                            updateTechnician(tech.id, {
+                              name: nameDraft,
+                              role: roleDraft,
+                              street: addr.street,
+                              plz: addr.plz,
+                              city: addr.city,
+                              endStreet: addr.endStreet,
+                              endPlz: addr.endPlz,
+                              endCity: addr.endCity,
+                            });
+                            void syncDispositionHome(tech, addr, nameDraft.trim() || tech.name);
+                            setNameDrafts((current) => {
                               const next = { ...current };
                               delete next[tech.id];
                               return next;
                             });
-                            setMessage(`„${draft.trim()}“ gespeichert.`);
+                            setRoleDrafts((current) => {
+                              const next = { ...current };
+                              delete next[tech.id];
+                              return next;
+                            });
+                            setAddrDrafts((current) => {
+                              const next = { ...current };
+                              delete next[tech.id];
+                              return next;
+                            });
+                            setMessage(`„${nameDraft.trim()}“ gespeichert.`);
                           }}
                         >
                           Speichern

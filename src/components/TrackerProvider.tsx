@@ -7,13 +7,16 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import {
   clampToEvaluationStart,
+  clearPendingTrackerBackup,
   isMonthInEvaluationRange,
   EVALUATION_START,
   hasTrackerInStorage,
+  loadPendingTrackerBackup,
   loadTrackerFromStorage,
   loadTrackerSnapshotFromPublic,
   mergeTrackerStates,
@@ -21,6 +24,7 @@ import {
   recoverTrackerFromSnapshot,
   nextWorkday,
   previousWorkday,
+  savePendingTrackerBackup,
   saveTrackerToStorage,
   toDateInputValue,
   createDefaultTracker,
@@ -44,6 +48,7 @@ import {
   type TrackerState,
 } from "@/lib/tracker-types";
 import type { ImportedDataset } from "@/lib/types";
+import { createId } from "@/lib/id";
 import { useEditAccess } from "./EditAccessProvider";
 
 type TrackerContextValue = {
@@ -60,6 +65,20 @@ type TrackerContextValue = {
   addTechnician: (name: string, role?: TechnicianRole, email?: string) => void;
   renameTechnician: (id: string, name: string) => void;
   setTechnicianRole: (id: string, role: TechnicianRole) => void;
+  updateTechnician: (
+    id: string,
+    patch: {
+      name?: string;
+      role?: TechnicianRole;
+      email?: string;
+      street?: string;
+      plz?: string;
+      city?: string;
+      endStreet?: string;
+      endPlz?: string;
+      endCity?: string;
+    },
+  ) => void;
   setTechnicianEmail: (id: string, email: string) => void;
   removeTechnician: (id: string) => void;
   applyTicketImport: (result: TicketImportResult) => void;
@@ -89,10 +108,28 @@ const TrackerContext = createContext<TrackerContextValue | null>(null);
 export function TrackerProvider({ children }: { children: React.ReactNode }) {
   const { canEdit } = useEditAccess();
   const [state, setState] = useState<TrackerState>(() => createDefaultTracker());
+  const stateRef = useRef(state);
+  stateRef.current = state;
   const [selectedDate, setSelectedDateState] = useState(() =>
     clampToEvaluationStart(toDateInputValue(previousWorkday())),
   );
   const [ready, setReady] = useState(false);
+
+  const flushBackup = useCallback(async (next: TrackerState, source: string) => {
+    savePendingTrackerBackup(next, source);
+    try {
+      const res = await fetch("/api/backup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tracker: next, source }),
+      });
+      if (!res.ok) return false;
+      clearPendingTrackerBackup();
+      return true;
+    } catch {
+      return false;
+    }
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -130,31 +167,65 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
       setSelectedDateState(entryDate);
       setReady(true);
 
-      // Serverdateien aktualisieren (für GitHub/Deploy)
-      void fetch("/api/backup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ tracker: next, source: "tracker-hydrate" }),
-      }).catch(() => undefined);
+      const pending = loadPendingTrackerBackup();
+      if (pending?.tracker) {
+        void flushBackup(pending.tracker, pending.source);
+      } else {
+        void flushBackup(next, "tracker-hydrate");
+      }
     }
 
     void hydrate();
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [flushBackup]);
 
   const persist = useCallback((next: TrackerState) => {
+    // Sofort aktualisieren, damit Folgeaktionen (z. B. Rolle + Speichern) nicht
+    // mit einem veralteten State die Änderungen überschreiben.
+    stateRef.current = next;
+    saveTrackerToStorage(next);
     startTransition(() => {
       setState(next);
-      saveTrackerToStorage(next);
     });
-    void fetch("/api/backup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ tracker: next, source: "tracker-persist" }),
-    }).catch(() => undefined);
-  }, []);
+    void flushBackup(next, "tracker-persist");
+  }, [flushBackup]);
+
+  const updateFromLatest = useCallback(
+    (updater: (prev: TrackerState) => TrackerState) => {
+      persist(updater(stateRef.current));
+    },
+    [persist],
+  );
+
+  useEffect(() => {
+    if (!ready) return;
+
+    const retryPending = () => {
+      const pending = loadPendingTrackerBackup();
+      if (pending?.tracker) {
+        void flushBackup(pending.tracker, pending.source);
+      }
+    };
+
+    const onOnline = () => retryPending();
+    const onVisible = () => {
+      if (document.visibilityState === "visible") retryPending();
+    };
+
+    const timer = window.setInterval(retryPending, 30_000);
+    window.addEventListener("online", onOnline);
+    document.addEventListener("visibilitychange", onVisible);
+
+    retryPending();
+
+    return () => {
+      window.clearInterval(timer);
+      window.removeEventListener("online", onOnline);
+      document.removeEventListener("visibilitychange", onVisible);
+    };
+  }, [flushBackup, ready]);
 
   const exportTrackerData = useCallback(() => {
     downloadTrackerSnapshot(state);
@@ -279,23 +350,25 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
       if (!canEdit) return;
       const trimmed = name.trim();
       if (!trimmed) return;
-      if (state.technicians.some((tech) => tech.name.toLowerCase() === trimmed.toLowerCase())) {
-        return;
-      }
-      persist({
-        ...state,
-        technicians: [
-          ...state.technicians,
-          {
-            id: crypto.randomUUID(),
-            name: trimmed,
-            role,
-            email: email.trim(),
-          },
-        ],
+      updateFromLatest((prev) => {
+        if (prev.technicians.some((tech) => tech.name.toLowerCase() === trimmed.toLowerCase())) {
+          return prev;
+        }
+        return {
+          ...prev,
+          technicians: [
+            ...prev.technicians,
+            {
+              id: createId("tech"),
+              name: trimmed,
+              role,
+              email: email.trim(),
+            },
+          ],
+        };
       });
     },
-    [canEdit, persist, state],
+    [canEdit, updateFromLatest],
   );
 
   const renameTechnician = useCallback(
@@ -303,93 +376,147 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
       if (!canEdit) return;
       const trimmed = name.trim();
       if (!trimmed) return;
-      if (
-        state.technicians.some(
-          (tech) => tech.id !== id && tech.name.toLowerCase() === trimmed.toLowerCase(),
-        )
-      ) {
-        return;
-      }
-      persist({
-        ...state,
-        technicians: state.technicians.map((tech) =>
-          tech.id === id ? { ...tech, name: trimmed } : tech,
-        ),
+      updateFromLatest((prev) => {
+        if (
+          prev.technicians.some(
+            (tech) => tech.id !== id && tech.name.toLowerCase() === trimmed.toLowerCase(),
+          )
+        ) {
+          return prev;
+        }
+        return {
+          ...prev,
+          technicians: prev.technicians.map((tech) =>
+            tech.id === id ? { ...tech, name: trimmed } : tech,
+          ),
+        };
       });
     },
-    [canEdit, persist, state],
+    [canEdit, updateFromLatest],
   );
 
   const setTechnicianRole = useCallback(
     (id: string, role: TechnicianRole) => {
       if (!canEdit) return;
-      persist({
-        ...state,
-        technicians: state.technicians.map((tech) =>
+      updateFromLatest((prev) => ({
+        ...prev,
+        technicians: prev.technicians.map((tech) =>
           tech.id === id ? { ...tech, role } : tech,
         ),
+      }));
+    },
+    [canEdit, updateFromLatest],
+  );
+
+  const updateTechnician = useCallback(
+    (
+      id: string,
+      patch: {
+        name?: string;
+        role?: TechnicianRole;
+        email?: string;
+        street?: string;
+        plz?: string;
+        city?: string;
+        endStreet?: string;
+        endPlz?: string;
+        endCity?: string;
+      },
+    ) => {
+      if (!canEdit) return;
+      const trimmedName = patch.name?.trim();
+      if (patch.name !== undefined && !trimmedName) return;
+      updateFromLatest((prev) => {
+        if (
+          trimmedName &&
+          prev.technicians.some(
+            (tech) => tech.id !== id && tech.name.toLowerCase() === trimmedName.toLowerCase(),
+          )
+        ) {
+          return prev;
+        }
+        return {
+          ...prev,
+          technicians: prev.technicians.map((tech) => {
+            if (tech.id !== id) return tech;
+            return {
+              ...tech,
+              ...(trimmedName ? { name: trimmedName } : {}),
+              ...(patch.role ? { role: patch.role } : {}),
+              ...(patch.email !== undefined ? { email: patch.email.trim() } : {}),
+              ...(patch.street !== undefined ? { street: patch.street.trim() } : {}),
+              ...(patch.plz !== undefined ? { plz: patch.plz.replace(/\D/g, "").slice(0, 5) } : {}),
+              ...(patch.city !== undefined ? { city: patch.city.trim() } : {}),
+              ...(patch.endStreet !== undefined ? { endStreet: patch.endStreet.trim() } : {}),
+              ...(patch.endPlz !== undefined ? { endPlz: patch.endPlz.replace(/\D/g, "").slice(0, 5) } : {}),
+              ...(patch.endCity !== undefined ? { endCity: patch.endCity.trim() } : {}),
+            };
+          }),
+        };
       });
     },
-    [canEdit, persist, state],
+    [canEdit, updateFromLatest],
   );
 
   const setTechnicianEmail = useCallback(
     (id: string, email: string) => {
       if (!canEdit) return;
-      persist({
-        ...state,
-        technicians: state.technicians.map((tech) =>
+      updateFromLatest((prev) => ({
+        ...prev,
+        technicians: prev.technicians.map((tech) =>
           tech.id === id ? { ...tech, email: email.trim() } : tech,
         ),
-      });
+      }));
     },
-    [canEdit, persist, state],
+    [canEdit, updateFromLatest],
   );
 
   const removeTechnician = useCallback(
     (id: string) => {
       if (!canEdit) return;
-      const tickets = { ...state.tickets };
-      const statuses = { ...state.statuses };
-      const notes = { ...state.notes };
-      const openTickets = { ...state.openTickets };
-      const openStatuses = { ...state.openStatuses };
-      const openNotes = { ...state.openNotes };
-      const tourTickets = { ...state.tourTickets };
-      for (const key of Object.keys(tickets)) {
-        if (key.startsWith(`${id}|`)) delete tickets[key];
-      }
-      for (const key of Object.keys(statuses)) {
-        if (key.startsWith(`${id}|`)) delete statuses[key];
-      }
-      for (const key of Object.keys(notes)) {
-        if (key.startsWith(`${id}|`)) delete notes[key];
-      }
-      for (const key of Object.keys(openTickets)) {
-        if (key.startsWith(`${id}|`)) delete openTickets[key];
-      }
-      for (const key of Object.keys(openStatuses)) {
-        if (key.startsWith(`${id}|`)) delete openStatuses[key];
-      }
-      for (const key of Object.keys(openNotes)) {
-        if (key.startsWith(`${id}|`)) delete openNotes[key];
-      }
-      for (const key of Object.keys(tourTickets)) {
-        if (key.startsWith(`${id}|`)) delete tourTickets[key];
-      }
-      persist({
-        ...state,
-        technicians: state.technicians.filter((tech) => tech.id !== id),
-        tickets,
-        statuses,
-        notes,
-        openTickets,
-        openStatuses,
-        openNotes,
-        tourTickets,
+      updateFromLatest((prev) => {
+        const tickets = { ...prev.tickets };
+        const statuses = { ...prev.statuses };
+        const notes = { ...prev.notes };
+        const openTickets = { ...prev.openTickets };
+        const openStatuses = { ...prev.openStatuses };
+        const openNotes = { ...prev.openNotes };
+        const tourTickets = { ...prev.tourTickets };
+        for (const key of Object.keys(tickets)) {
+          if (key.startsWith(`${id}|`)) delete tickets[key];
+        }
+        for (const key of Object.keys(statuses)) {
+          if (key.startsWith(`${id}|`)) delete statuses[key];
+        }
+        for (const key of Object.keys(notes)) {
+          if (key.startsWith(`${id}|`)) delete notes[key];
+        }
+        for (const key of Object.keys(openTickets)) {
+          if (key.startsWith(`${id}|`)) delete openTickets[key];
+        }
+        for (const key of Object.keys(openStatuses)) {
+          if (key.startsWith(`${id}|`)) delete openStatuses[key];
+        }
+        for (const key of Object.keys(openNotes)) {
+          if (key.startsWith(`${id}|`)) delete openNotes[key];
+        }
+        for (const key of Object.keys(tourTickets)) {
+          if (key.startsWith(`${id}|`)) delete tourTickets[key];
+        }
+        return {
+          ...prev,
+          technicians: prev.technicians.filter((tech) => tech.id !== id),
+          tickets,
+          statuses,
+          notes,
+          openTickets,
+          openStatuses,
+          openNotes,
+          tourTickets,
+        };
       });
     },
-    [canEdit, persist, state],
+    [canEdit, updateFromLatest],
   );
 
   const analyzeTicketImport = useCallback(
@@ -687,6 +814,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
       addTechnician,
       renameTechnician,
       setTechnicianRole,
+      updateTechnician,
       setTechnicianEmail,
       removeTechnician,
       applyTicketImport,
@@ -724,6 +852,7 @@ export function TrackerProvider({ children }: { children: React.ReactNode }) {
       addTechnician,
       renameTechnician,
       setTechnicianRole,
+      updateTechnician,
       setTechnicianEmail,
       removeTechnician,
       applyTicketImport,

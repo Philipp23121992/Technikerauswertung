@@ -2,8 +2,12 @@ import { promises as fs } from "fs";
 import path from "path";
 import { TRACKER_STORAGE_KEY, parseTrackerState } from "@/lib/tracker";
 import type { TrackerState } from "@/lib/tracker-types";
+import { readUrlaubeDb } from "@/lib/urlaube/db";
+import type { UrlaubeDb } from "@/lib/urlaube/types";
 import {
   createEmptyStore,
+  meetingStoreFreshness,
+  pickNewerMeetingStore,
   type MeetingKind,
   type MeetingStoreState,
 } from "@/lib/meetings/types";
@@ -40,6 +44,7 @@ export type LocalBackupPayload = {
 export type LocalBackupState = {
   exportedAt: string;
   tracker: TrackerState | null;
+  urlaube: UrlaubeDb;
   meetingsTechniker: MeetingStoreState;
   meetingsRessourcen: MeetingStoreState;
   meetingsTechnicians: MeetingTechniciansState;
@@ -76,6 +81,7 @@ function normalizeMeetingStore(
       typeof parsed.selectedId === "string" || parsed.selectedId === null
         ? parsed.selectedId
         : null,
+    savedAt: typeof parsed.savedAt === "string" ? parsed.savedAt : undefined,
   };
 }
 
@@ -93,51 +99,109 @@ function normalizeTechnicians(raw: unknown): MeetingTechniciansState {
   };
 }
 
-function ticketCount(state: TrackerState | null | undefined): number {
-  return Object.keys(state?.tickets ?? {}).length;
+function mergeRecordMaps<T>(
+  a: Record<string, T> | undefined,
+  b: Record<string, T> | undefined,
+): Record<string, T> {
+  return { ...(a ?? {}), ...(b ?? {}) };
 }
 
-function protocolCount(state: MeetingStoreState | null | undefined): number {
-  return state?.protocols?.length ?? 0;
+function mergeTrackerPreferringRicher(
+  a: TrackerState | null,
+  b: TrackerState | null,
+): TrackerState | null {
+  if (!a) return b;
+  if (!b) return a;
+
+  // Techniker-Listen mergen (Union nach ID, b überschreibt gleiche IDs)
+  const byId = new Map<string, (typeof a.technicians)[number]>();
+  for (const tech of a.technicians ?? []) byId.set(tech.id, tech);
+  for (const tech of b.technicians ?? []) byId.set(tech.id, tech);
+
+  return {
+    year: b.year || a.year,
+    technicians: [...byId.values()],
+    // Maps mergen statt „Gewinner nimmt alles“ – sonst gehen Offene-/Tour-Importe verloren
+    tickets: mergeRecordMaps(a.tickets, b.tickets),
+    statuses: mergeRecordMaps(a.statuses, b.statuses),
+    notes: mergeRecordMaps(a.notes, b.notes),
+    openTickets: mergeRecordMaps(a.openTickets, b.openTickets),
+    openStatuses: mergeRecordMaps(a.openStatuses, b.openStatuses),
+    openNotes: mergeRecordMaps(a.openNotes, b.openNotes),
+    tourTickets: mergeRecordMaps(a.tourTickets, b.tourTickets),
+  };
 }
 
 function pickRicherTracker(
   a: TrackerState | null,
   b: TrackerState | null,
 ): TrackerState | null {
-  if (!a) return b;
-  if (!b) return a;
-  const aScore =
-    ticketCount(a) * 10 +
-    (a.technicians?.length ?? 0) +
-    Object.keys(a.openTickets ?? {}).length +
-    Object.keys(a.tourTickets ?? {}).length;
-  const bScore =
-    ticketCount(b) * 10 +
-    (b.technicians?.length ?? 0) +
-    Object.keys(b.openTickets ?? {}).length +
-    Object.keys(b.tourTickets ?? {}).length;
-  return bScore > aScore ? b : a;
+  return mergeTrackerPreferringRicher(a, b);
 }
 
-function pickRicherMeetings(
-  a: MeetingStoreState,
-  b: MeetingStoreState,
+/**
+ * Meetings: eingehende Speicherung gewinnt, wenn sie neuer ist oder
+ * explizit aus der Meeting-UI kommt (sonst bleiben alte Demos ewig).
+ */
+function resolveIncomingMeetings(
+  kind: MeetingKind,
+  current: MeetingStoreState,
+  incomingRaw: unknown,
+  source: string | undefined,
 ): MeetingStoreState {
-  if (protocolCount(b) > protocolCount(a)) return b;
-  if (protocolCount(b) < protocolCount(a)) return a;
-  // gleiche Anzahl: mehr Agenda/Text gewinnt grob
-  const score = (s: MeetingStoreState) =>
-    s.protocols.reduce(
-      (sum, p) =>
-        sum +
-        p.agenda.length +
-        p.participants.length +
-        p.decisions.length +
-        (p.notes?.length ?? 0),
-      0,
-    );
-  return score(b) > score(a) ? b : a;
+  if (incomingRaw === undefined) return current;
+  const incoming = normalizeMeetingStore(kind, incomingRaw);
+  // Explizite Meeting-Persistenz: Client ist Quelle der Wahrheit
+  if (source === "meetings-persist") {
+    // Leeren Store ohne neueren savedAt nicht über vorhandene Meetings legen
+    // (schützt vor versehentlichem Wipe beim Hydrate mit leerem localStorage)
+    if (
+      incoming.protocols.length === 0 &&
+      current.protocols.length > 0 &&
+      meetingStoreFreshness(incoming) <= meetingStoreFreshness(current)
+    ) {
+      return current;
+    }
+    return mergeAgendaReminders(current, {
+      ...incoming,
+      kind,
+      savedAt: incoming.savedAt ?? new Date().toISOString(),
+    });
+  }
+  // Autosync / sonstige Backups: neuere Version nach savedAt
+  return mergeAgendaReminders(
+    current,
+    pickNewerMeetingStore(current, { ...incoming, kind }, "b"),
+  );
+}
+
+/** Server-gesendete Erinnerungen nicht durch älteren Client-Stand löschen. */
+function mergeAgendaReminders(
+  current: MeetingStoreState,
+  incoming: MeetingStoreState,
+): MeetingStoreState {
+  const sentAt = new Map<string, string>();
+  for (const store of [current, incoming]) {
+    for (const protocol of store.protocols) {
+      for (const item of protocol.agenda) {
+        if (item.reminderSentAt) {
+          sentAt.set(`${protocol.id}:${item.id}`, item.reminderSentAt);
+        }
+      }
+    }
+  }
+  if (sentAt.size === 0) return incoming;
+  return {
+    ...incoming,
+    protocols: incoming.protocols.map((protocol) => ({
+      ...protocol,
+      agenda: protocol.agenda.map((item) => ({
+        ...item,
+        reminderSentAt:
+          item.reminderSentAt || sentAt.get(`${protocol.id}:${item.id}`) || null,
+      })),
+    })),
+  };
 }
 
 export async function readLocalBackup(): Promise<LocalBackupState> {
@@ -168,10 +232,12 @@ export async function readLocalBackup(): Promise<LocalBackupState> {
   const meetingsTechnicians = normalizeTechnicians(
     await readJson(MEETINGS_TECHNICIANS_PATH),
   );
+  const urlaube = await readUrlaubeDb();
 
   return {
     exportedAt: new Date().toISOString(),
     tracker: pickRicherTracker(trackerFromDb, trackerFromSnap),
+    urlaube,
     meetingsTechniker,
     meetingsRessourcen,
     meetingsTechnicians,
@@ -192,19 +258,25 @@ export async function mergeAndWriteLocalBackup(
   );
 
   const nextTracker = pickRicherTracker(current.tracker, incomingTracker);
-  const nextTechMeetings = pickRicherMeetings(
+  const nextTechMeetings = resolveIncomingMeetings(
+    "techniker",
     current.meetingsTechniker,
-    normalizeMeetingStore("techniker", incoming.meetingsTechniker),
+    incoming.meetingsTechniker,
+    incoming.source,
   );
-  const nextResMeetings = pickRicherMeetings(
+  const nextResMeetings = resolveIncomingMeetings(
+    "ressourcen",
     current.meetingsRessourcen,
-    normalizeMeetingStore("ressourcen", incoming.meetingsRessourcen),
+    incoming.meetingsRessourcen,
+    incoming.source,
   );
   const incomingTechs = normalizeTechnicians(incoming.meetingsTechnicians);
   const nextTechnicians =
-    incomingTechs.technicians.length > current.meetingsTechnicians.technicians.length
-      ? incomingTechs
-      : current.meetingsTechnicians;
+    incoming.meetingsTechnicians === undefined
+      ? current.meetingsTechnicians
+      : incomingTechs.technicians.length >= current.meetingsTechnicians.technicians.length
+        ? incomingTechs
+        : current.meetingsTechnicians;
 
   const exportedAt = new Date().toISOString();
 
@@ -227,6 +299,7 @@ export async function mergeAndWriteLocalBackup(
   return {
     exportedAt,
     tracker: nextTracker,
+    urlaube: current.urlaube,
     meetingsTechniker: nextTechMeetings,
     meetingsRessourcen: nextResMeetings,
     meetingsTechnicians: nextTechnicians,

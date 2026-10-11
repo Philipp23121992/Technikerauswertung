@@ -1,4 +1,5 @@
 import Papa from "papaparse";
+import { createId } from "./id";
 import type { CsvRow, ImportedDataset } from "./types";
 
 function detectDelimiter(sample: string): string {
@@ -33,6 +34,25 @@ function uniqueHeaders(headers: string[]): string[] {
   });
 }
 
+function decodeCsvBytes(bytes: Uint8Array): string {
+  if (bytes.length >= 2 && bytes[0] === 0x50 && bytes[1] === 0x4b) {
+    throw new Error(
+      "Das ist eine Excel-Datei (.xlsx). Bitte in Excel unter „Speichern unter“ als CSV (Trennzeichen-getrennt) exportieren.",
+    );
+  }
+  if (bytes.length >= 2 && bytes[0] === 0xff && bytes[1] === 0xfe) {
+    return new TextDecoder("utf-16le").decode(bytes);
+  }
+  if (bytes.length >= 2 && bytes[0] === 0xfe && bytes[1] === 0xff) {
+    return new TextDecoder("utf-16be").decode(bytes);
+  }
+  try {
+    return new TextDecoder("utf-8", { fatal: true }).decode(bytes);
+  } catch {
+    return new TextDecoder("windows-1252").decode(bytes);
+  }
+}
+
 export function parseCsvText(text: string, fileName: string): ImportedDataset {
   const delimiter = detectDelimiter(text);
 
@@ -42,15 +62,6 @@ export function parseCsvText(text: string, fileName: string): ImportedDataset {
     skipEmptyLines: "greedy",
     transformHeader: (header, index) => normalizeHeader(header, index),
   });
-
-  if (parsed.errors.length > 0) {
-    const first = parsed.errors[0];
-    throw new Error(
-      first?.message
-        ? `CSV konnte nicht gelesen werden: ${first.message}`
-        : "CSV konnte nicht gelesen werden.",
-    );
-  }
 
   const rawHeaders =
     parsed.meta.fields?.map((header, index) => normalizeHeader(header, index)) ?? [];
@@ -72,11 +83,16 @@ export function parseCsvText(text: string, fileName: string): ImportedDataset {
     .filter((row) => Object.values(row).some((value) => value.length > 0));
 
   if (rows.length === 0) {
-    throw new Error("Die Datei enthält keine Datenzeilen.");
+    const firstError = parsed.errors[0]?.message;
+    throw new Error(
+      firstError
+        ? `CSV konnte nicht gelesen werden: ${firstError}`
+        : "Die Datei enthält keine Datenzeilen.",
+    );
   }
 
   return {
-    id: crypto.randomUUID(),
+    id: createId("csv"),
     fileName,
     importedAt: new Date().toISOString(),
     headers,
@@ -86,8 +102,9 @@ export function parseCsvText(text: string, fileName: string): ImportedDataset {
 }
 
 export async function parseCsvFile(file: File): Promise<ImportedDataset> {
-  const text = await file.text();
-  return parseCsvText(text, file.name);
+  const buffer = await file.arrayBuffer();
+  const bytes = new Uint8Array(buffer);
+  return parseCsvText(decodeCsvBytes(bytes), file.name);
 }
 
 export function toCsv(headers: string[], rows: CsvRow[], delimiter = ";"): string {

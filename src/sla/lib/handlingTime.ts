@@ -1,4 +1,4 @@
-import { cell } from './csv'
+import { cell, extractTicketNumber } from './csv'
 import { minutesBetween } from './dates'
 import { matchTechnician } from './match'
 import type {
@@ -44,7 +44,10 @@ export function buildTimeTicketsFromRows(
     const technicianKey = cell(row, mapping.technician)
     const createdAt = cell(row, mapping.createdAt) || null
     const resolvedAt = cell(row, mapping.resolvedAt) || null
-    const externalId = cell(row, mapping.ticketId) || `ROW-${index + 1}`
+    const externalId =
+      extractTicketNumber(cell(row, mapping.ticketId)) ||
+      extractTicketNumber(cell(row, mapping.subject)) ||
+      `ROW-${index + 1}`
     const tech = resolveTechnician(technicianKey, technicians)
 
     return {

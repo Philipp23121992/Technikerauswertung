@@ -33,8 +33,24 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
-# local SMTP credentials (never commit)
+# Lexmark extractor log
+/data/lexmark-application.log
+/public/pdfjs/
+
+# SMTP credentials
 /data/smtp-config.json
+
+# Mailverwaltung OAuth secrets/tokens
+/data/mailverwaltung-secrets.json
+/data/mailverwaltung-tokens.json
+/data/mailverwaltung-files/
+
+# project attachments (binary)
+/data/projekte-files/
+/data/hp-rechnungen-files/
+/data/partner-rechnungen-files/
+/data/kostenvoranschlaege-files/
+/data/technikerverwaltung-files/
 
 # vercel
 .vercel

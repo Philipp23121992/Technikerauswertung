@@ -1,7 +1,7 @@
 import { useEditAccess } from '@/components/EditAccessProvider'
 import { useEffect, useMemo, useState, type DragEvent, Fragment } from 'react'
 import { CheckCircle2, ChevronDown, ChevronRight, Clock3, FileUp } from 'lucide-react'
-import { guessColumnMapping, parseCsvFile } from '../lib/csv'
+import { extractTicketNumber, guessColumnMapping, parseCsvFile } from '../lib/csv'
 import { formatMinutes } from '../lib/dates'
 import { computeTimeStats } from '../lib/handlingTime'
 import {
@@ -25,7 +25,7 @@ const MAPPING_FIELDS: { key: keyof ColumnMapping; label: string; hint: string }[
   { key: 'resolvedAt', label: 'Gelöst am', hint: 'Ende Bearbeitungszeit' },
   { key: 'customer', label: 'Kunde / Firma', hint: 'Optional (Anzeige + Untermenü)' },
   { key: 'service', label: 'Service', hint: 'Optional – Aufschlüsselung im Untermenü' },
-  { key: 'ticketId', label: 'Ticket-ID', hint: 'Optional' },
+  { key: 'ticketId', label: 'Ticketnummer', hint: 'z. B. 2026-100123' },
   { key: 'subject', label: 'Betreff', hint: 'Optional' },
 ]
 
@@ -112,7 +112,7 @@ export function HandlingTimePage() {
       setFileName(file.name)
       setHeaders(parsed.headers)
       setRows(parsed.rows)
-      setMapping(guessColumnMapping(parsed.headers))
+      setMapping(guessColumnMapping(parsed.headers, parsed.rows))
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Import fehlgeschlagen.')
       setFileName('')
@@ -595,7 +595,7 @@ export function HandlingTimePage() {
                 <thead>
                   <tr>
                     <th>Techniker</th>
-                    <th>Ticket</th>
+                    <th>Ticketnummer</th>
                     <th>Kunde</th>
                     <th>Service</th>
                     <th>Betreff</th>
@@ -610,7 +610,7 @@ export function HandlingTimePage() {
                       <td>{ticket.technicianName}</td>
                       <td>
                         <span className="mono">
-                          {ticket.externalId || '—'}
+                          {extractTicketNumber(ticket.externalId) || '—'}
                         </span>
                       </td>
                       <td>{ticket.customerKey || '—'}</td>

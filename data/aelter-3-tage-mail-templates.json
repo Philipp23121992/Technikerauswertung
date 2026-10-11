@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "templates": [
+    {
+      "tab": "zielOverdue",
+      "subject": "Tickets mit überfälligem Zieltermin ({{ticketCount}})",
+      "body": "Hallo {{technicianName}},\n\nfolgende offene Tickets haben einen überschrittenen Zieltermin:\n\n{{ticketList}}\n\nBitte Zieltermine prüfen und warum sie nicht eingehalten wurden.\n\nViele Grüße\nPHILIPP HEYSER\nTechnischer Leiter\n\nACP Print & Mobility GmbH\nAulzhausener Straße 19, D-86165 Augsburg\nT +49 821 789 83 822\nM +49 171 696 32 67\nphilipp.heyser@acp.de\nprint-mobility.acp.de\n\n \n"
+    },
+    {
+      "tab": "ersatzteile",
+      "subject": "Ersatzteile angekommen – Tickets ({{ticketCount}})",
+      "body": "Hallo {{technicianName}},\n\nfür folgende Tickets sind Ersatzteile angekommen:\n\n{{ticketList}}\n\nBitte Terminierung / Bearbeitung veranlassen.\n\nViele Grüße\nPHILIPP HEYSER\nTechnischer Leiter\n\nACP Print & Mobility GmbH\nAulzhausener Straße 19, D-86165 Augsburg\nT +49 821 789 83 822\nM +49 171 696 32 67\nphilipp.heyser@acp.de\nprint-mobility.acp.de\n\n \n"
+    },
+    {
+      "tab": "termineFehlen",
+      "subject": "Fehlende Wunsch- und Zieltermine ({{ticketCount}})",
+      "body": "Hallo {{technicianName}},\n\nbei folgenden Tickets fehlen Wunsch- oder Zieltermin:\n\n{{ticketList}}\n\nBitte Termine im System pflegen!\n\nViele Grüße\nPHILIPP HEYSER\nTechnischer Leiter\n\nACP Print & Mobility GmbH\nAulzhausener Straße 19, D-86165 Augsburg\nT +49 821 789 83 822\nM +49 171 696 32 67\nphilipp.heyser@acp.de\nprint-mobility.acp.de\n\n \n"
+    }
+  ]
+}

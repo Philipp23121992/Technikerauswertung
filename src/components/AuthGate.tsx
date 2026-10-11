@@ -10,19 +10,21 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() ?? "";
   const router = useRouter();
   const isLogin = pathname === "/login";
+  const isOutlookConnect = pathname.startsWith("/mailverwaltung/verbinden");
   const mustAuth = requiresAuth(pathname);
+  const fallbackHome = homeHref && homeHref !== "/login" ? homeHref : "/";
 
   useEffect(() => {
     if (!ready) return;
+    if (pathname.startsWith("/api/") || isOutlookConnect) return;
 
-    // Gäste landen standardmäßig im öffentlichen Finder, nicht auf Login
     if (!user && (pathname === "/" || pathname === "")) {
-      router.replace("/finder");
+      router.replace("/login");
       return;
     }
 
     if (user && isLogin) {
-      router.replace(homeHref === "/login" ? "/finder" : homeHref);
+      router.replace(fallbackHome);
       return;
     }
 
@@ -34,10 +36,14 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
     if (user && !isLogin) {
       const app = pathToAppId(pathname);
       if (app && !isPublicApp(app) && !hasApp(app)) {
-        router.replace(homeHref === "/login" ? "/finder" : homeHref);
+        router.replace(fallbackHome);
       }
     }
-  }, [ready, user, isLogin, mustAuth, pathname, hasApp, homeHref, router]);
+  }, [ready, user, isLogin, isOutlookConnect, mustAuth, pathname, hasApp, fallbackHome, router]);
+
+  if (isOutlookConnect) {
+    return <>{children}</>;
+  }
 
   if (!ready) {
     return (
@@ -54,12 +60,11 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
     return <>{children}</>;
   }
 
-  // Während Redirect von / → /finder kurz nichts erzwingen
   if (!user && (pathname === "/" || pathname === "")) {
     return (
       <div className="login-page">
         <div className="login-card">
-          <p>Techniker Finder wird geladen…</p>
+          <p>Weiterleitung zur Anmeldung…</p>
         </div>
       </div>
     );

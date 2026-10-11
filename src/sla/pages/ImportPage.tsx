@@ -13,7 +13,7 @@ const MAPPING_FIELDS: { key: keyof ColumnMapping; label: string; hint: string }[
   { key: 'technician', label: 'Techniker', hint: 'ohne Match → Partner' },
   { key: 'createdAt', label: 'Erstellt am', hint: 'Start für Arbeitstage' },
   { key: 'resolvedAt', label: 'Gelöst am', hint: 'Ende + Monatsauswertung' },
-  { key: 'ticketId', label: 'Ticket-ID', hint: 'Optional' },
+  { key: 'ticketId', label: 'Ticketnummer', hint: 'z. B. 2026-100123' },
   { key: 'priority', label: 'Priorität', hint: 'Optional' },
   { key: 'status', label: 'Status', hint: 'Optional' },
   { key: 'subject', label: 'Betreff', hint: 'Optional' },
@@ -54,7 +54,7 @@ export function ImportPage() {
       setFileName(file.name)
       setHeaders(parsed.headers)
       setRows(parsed.rows)
-      setMapping(guessColumnMapping(parsed.headers))
+      setMapping(guessColumnMapping(parsed.headers, parsed.rows))
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Import fehlgeschlagen.')
       setFileName('')

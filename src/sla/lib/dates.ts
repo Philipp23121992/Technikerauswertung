@@ -15,6 +15,20 @@ const DATE_FORMATS = [
   'MM/dd/yyyy HH:mm',
 ]
 
+export function isSameCalendarDay(
+  startValue: string | null | undefined,
+  endValue: string | null | undefined,
+): boolean {
+  const start = parseFlexibleDate(startValue ?? null)
+  const end = parseFlexibleDate(endValue ?? null)
+  if (!start || !end) return false
+  return (
+    start.getFullYear() === end.getFullYear() &&
+    start.getMonth() === end.getMonth() &&
+    start.getDate() === end.getDate()
+  )
+}
+
 export function parseFlexibleDate(value: string | null | undefined): Date | null {
   if (!value) return null
   const trimmed = value.trim()

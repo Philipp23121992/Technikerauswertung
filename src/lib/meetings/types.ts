@@ -49,6 +49,8 @@ export type MeetingStoreState = {
   kind: MeetingKind;
   protocols: MeetingProtocol[];
   selectedId: string | null;
+  /** ISO-Zeitpunkt der letzten lokalen/Server-Speicherung (für Sync) */
+  savedAt?: string;
 };
 
 export function meetingStorageKey(kind: MeetingKind): string {
@@ -133,6 +135,34 @@ export function createEmptyStore(kind: MeetingKind): MeetingStoreState {
     protocols: [],
     selectedId: null,
   };
+}
+
+/** Frische eines Meeting-Stores für Sync (savedAt, sonst max. updatedAt). */
+export function meetingStoreFreshness(state: MeetingStoreState | null | undefined): number {
+  if (!state) return 0;
+  if (typeof state.savedAt === "string") {
+    const t = Date.parse(state.savedAt);
+    if (Number.isFinite(t)) return t;
+  }
+  let max = 0;
+  for (const protocol of state.protocols ?? []) {
+    const t = Date.parse(protocol.updatedAt || protocol.createdAt || "");
+    if (Number.isFinite(t) && t > max) max = t;
+  }
+  return max;
+}
+
+/** Neuere Version gewinnt; bei Gleichstand `preferred`. */
+export function pickNewerMeetingStore(
+  a: MeetingStoreState,
+  b: MeetingStoreState,
+  preferred: "a" | "b" = "b",
+): MeetingStoreState {
+  const fa = meetingStoreFreshness(a);
+  const fb = meetingStoreFreshness(b);
+  if (fb > fa) return { ...b, kind: a.kind || b.kind };
+  if (fa > fb) return { ...a, kind: a.kind || b.kind };
+  return preferred === "b" ? { ...b, kind: a.kind || b.kind } : { ...a, kind: a.kind || b.kind };
 }
 
 export function statusLabel(status: ProtocolStatus): string {

@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { parseCsvFile } from "@/lib/csv";
 import {
   availableYears,
+  EVALUATION_START,
   formatDisplayDate,
   isMonthInEvaluationRange,
 } from "@/lib/tracker";
@@ -174,7 +175,7 @@ export function TourenPage() {
             ref={dateRef}
             className="sr-only-date"
             type="date"
-            min="2026-07-01"
+            min={EVALUATION_START}
             value={selectedDate}
             onChange={(event) => setSelectedDate(event.target.value)}
             aria-label="Datum wählen"

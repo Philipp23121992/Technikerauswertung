@@ -9,7 +9,10 @@ import {
   YAxis,
 } from 'recharts'
 import Link from 'next/link'
+import { ChevronDown, ChevronRight, Download } from 'lucide-react'
+import { extractTicketNumber } from '../lib/csv'
 import { formatPercent } from '../lib/dates'
+import { downloadSlaStatsCsv } from '../lib/export'
 import {
   availableYearsFromTickets,
   defaultPeriodFilter,
@@ -20,9 +23,220 @@ import {
   type PeriodFilter,
   type PeriodMode,
 } from '../lib/period'
-import { computeStats } from '../lib/sla'
-import { isVisibleInSlaTechnicianView } from '../lib/technicianVisibility'
+import { computeStats, partnerDisplayName } from '../lib/sla'
 import { useAppStore } from '../store/useAppStore'
+import type { TechnicianVolumeStats, Ticket } from '../types'
+
+function formatTicketDate(value: string | null): string {
+  if (!value) return '—'
+  const date = new Date(value)
+  if (Number.isNaN(date.getTime())) return value
+  return date.toLocaleString('de-DE', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  })
+}
+
+function personRowKey(row: TechnicianVolumeStats): string {
+  return row.isPartner
+    ? `partner:${row.technicianName}`
+    : `tech:${row.technicianId ?? row.technicianName}`
+}
+
+function ticketsForPerson(
+  tickets: Ticket[],
+  row: TechnicianVolumeStats,
+): Ticket[] {
+  return tickets.filter((ticket) => {
+    if (row.isPartner) {
+      return ticket.isPartner && partnerDisplayName(ticket) === row.technicianName
+    }
+    if (ticket.isPartner) return false
+    if (row.technicianId && ticket.technicianId) {
+      return ticket.technicianId === row.technicianId
+    }
+    return ticket.technicianName === row.technicianName
+  })
+}
+
+function SlaCountCells({
+  total,
+  met,
+  sameDay,
+  breached,
+  metPercent,
+}: {
+  total: number
+  met: number
+  sameDay: number
+  breached: number
+  metPercent: number | null
+}) {
+  return (
+    <>
+      <td>{total}</td>
+      <td>
+        <span className="badge badge-ok">{met}</span>
+      </td>
+      <td>{sameDay}</td>
+      <td>
+        <span className="badge badge-bad">{breached}</span>
+      </td>
+      <td>
+        <span className="badge badge-ok">{formatPercent(metPercent)}</span>
+      </td>
+    </>
+  )
+}
+
+function TicketDetailTable({ tickets }: { tickets: Ticket[] }) {
+  if (!tickets.length) {
+    return <div className="empty">Keine Tickets.</div>
+  }
+
+  return (
+    <table className="data review-table">
+      <thead>
+        <tr>
+          <th>Ticketnummer</th>
+          <th>Kunde</th>
+          <th>Betreff</th>
+          <th>Erstellt</th>
+          <th>Gelöst</th>
+          <th>SLA</th>
+        </tr>
+      </thead>
+      <tbody>
+        {tickets.map((ticket) => (
+          <tr key={ticket.id}>
+            <td>
+              <span className="mono">
+                {extractTicketNumber(ticket.externalId) || '—'}
+              </span>
+            </td>
+            <td>{ticket.customerName || ticket.customerKey || '—'}</td>
+            <td>{ticket.subject || '—'}</td>
+            <td>{formatTicketDate(ticket.createdAt)}</td>
+            <td>{formatTicketDate(ticket.resolvedAt)}</td>
+            <td>
+              {ticket.slaMet === true ? (
+                <span className="badge badge-ok">in SLA</span>
+              ) : ticket.slaMet === false ? (
+                <span className="badge badge-bad">außerhalb</span>
+              ) : (
+                <span className="badge badge-muted">n/a</span>
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  )
+}
+
+function PersonRows({
+  rows,
+  tickets,
+  expandedKey,
+  onToggle,
+  emptyLabel,
+}: {
+  rows: TechnicianVolumeStats[]
+  tickets: Ticket[]
+  expandedKey: string | null
+  onToggle: (key: string) => void
+  emptyLabel: string
+}) {
+  if (!rows.length) {
+    return (
+      <tr className="tech-sla-child">
+        <td colSpan={6}>
+          <div className="empty">{emptyLabel}</div>
+        </td>
+      </tr>
+    )
+  }
+
+  return (
+    <>
+      {rows.map((row) => {
+        const key = personRowKey(row)
+        const expanded = expandedKey === key
+        const personTickets = expanded ? ticketsForPerson(tickets, row) : []
+        return (
+          <PersonBlock
+            key={key}
+            row={row}
+            expanded={expanded}
+            tickets={personTickets}
+            onToggle={() => onToggle(key)}
+          />
+        )
+      })}
+    </>
+  )
+}
+
+function PersonBlock({
+  row,
+  expanded,
+  tickets,
+  onToggle,
+}: {
+  row: TechnicianVolumeStats
+  expanded: boolean
+  tickets: Ticket[]
+  onToggle: () => void
+}) {
+  return (
+    <>
+      <tr
+        className="tech-row-clickable tech-sla-child"
+        role="button"
+        tabIndex={0}
+        onClick={onToggle}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault()
+            onToggle()
+          }
+        }}
+      >
+        <td>
+          <span className="tech-expand-label">
+            {expanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+            <strong>{row.technicianName}</strong>
+          </span>
+          <div>
+            <span className="badge badge-muted">
+              {expanded ? 'Tickets ausblenden' : 'Tickets anzeigen'}
+            </span>
+          </div>
+        </td>
+        <SlaCountCells
+          total={row.total}
+          met={row.met}
+          sameDay={row.sameDay}
+          breached={row.breached}
+          metPercent={row.metPercent}
+        />
+      </tr>
+      {expanded ? (
+        <tr className="tech-row-details">
+          <td colSpan={6}>
+            <div className="tech-customer-panel">
+              <div className="section-subtitle">Tickets von {row.technicianName}</div>
+              <TicketDetailTable tickets={tickets} />
+            </div>
+          </td>
+        </tr>
+      ) : null}
+    </>
+  )
+}
 
 export function DashboardPage() {
   const tickets = useAppStore((state) => state.tickets)
@@ -34,6 +248,9 @@ export function DashboardPage() {
     defaultPeriodFilter(years),
   )
   const [customerId, setCustomerId] = useState('all')
+  const [techniciansExpanded, setTechniciansExpanded] = useState(false)
+  const [partnersExpanded, setPartnersExpanded] = useState(false)
+  const [expandedPersonKey, setExpandedPersonKey] = useState<string | null>(null)
 
   useEffect(() => {
     setPeriod((current) => {
@@ -71,18 +288,23 @@ export function DashboardPage() {
         : (customers.find((customer) => customer.id === customerId)?.name ??
           'Kunde')
 
+  const ownTechnicians = stats.byTechnician
+  const partnerRows = stats.byPartner
+
   const technicianSummary = useMemo(() => {
-    const rows = stats.byTechnician.filter((row) => !row.isPartner)
-    const total = rows.reduce((sum, row) => sum + row.total, 0)
-    const evaluated = rows.reduce((sum, row) => sum + row.evaluated, 0)
-    const met = rows.reduce((sum, row) => sum + row.met, 0)
-    const breached = rows.reduce((sum, row) => sum + row.breached, 0)
+    const total = ownTechnicians.reduce((sum, row) => sum + row.total, 0)
+    const evaluated = ownTechnicians.reduce((sum, row) => sum + row.evaluated, 0)
+    const met = ownTechnicians.reduce((sum, row) => sum + row.met, 0)
+    const sameDay = ownTechnicians.reduce((sum, row) => sum + row.sameDay, 0)
+    const breached = ownTechnicians.reduce((sum, row) => sum + row.breached, 0)
     return {
       total,
+      met,
+      sameDay,
+      breached,
       metPercent: evaluated ? (met / evaluated) * 100 : null,
-      breachedPercent: evaluated ? (breached / evaluated) * 100 : null,
     }
-  }, [stats.byTechnician])
+  }, [ownTechnicians])
 
   const monthChart = stats.byMonth.map((item) => ({
     name: item.label.replace(/^\w/, (c) => c.toUpperCase()),
@@ -90,33 +312,26 @@ export function DashboardPage() {
   }))
 
   const ticketAssignments = useMemo(() => {
-    return [...filteredTickets]
-      .filter(isVisibleInSlaTechnicianView)
-      .sort((a, b) => {
-        const techCmp = a.technicianName.localeCompare(b.technicianName, 'de')
-        if (techCmp !== 0) return techCmp
-        const resolvedA = a.resolvedAt ?? ''
-        const resolvedB = b.resolvedAt ?? ''
-        if (resolvedA !== resolvedB) return resolvedA.localeCompare(resolvedB)
-        return a.externalId.localeCompare(b.externalId, 'de')
-      })
+    return [...filteredTickets].sort((a, b) => {
+      const groupCmp = Number(a.isPartner) - Number(b.isPartner)
+      if (groupCmp !== 0) return groupCmp
+      const nameA = a.isPartner ? partnerDisplayName(a) : a.technicianName
+      const nameB = b.isPartner ? partnerDisplayName(b) : b.technicianName
+      const techCmp = nameA.localeCompare(nameB, 'de')
+      if (techCmp !== 0) return techCmp
+      const resolvedA = a.resolvedAt ?? ''
+      const resolvedB = b.resolvedAt ?? ''
+      if (resolvedA !== resolvedB) return resolvedA.localeCompare(resolvedB)
+      return a.externalId.localeCompare(b.externalId, 'de')
+    })
   }, [filteredTickets])
 
   function updatePeriod(patch: Partial<PeriodFilter>) {
     setPeriod((current) => ({ ...current, ...patch }))
   }
 
-  function formatTicketDate(value: string | null): string {
-    if (!value) return '—'
-    const date = new Date(value)
-    if (Number.isNaN(date.getTime())) return value
-    return date.toLocaleString('de-DE', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    })
+  function togglePerson(key: string) {
+    setExpandedPersonKey((current) => (current === key ? null : key))
   }
 
   return (
@@ -130,6 +345,15 @@ export function DashboardPage() {
           </p>
         </div>
         <div className="toolbar">
+          <button
+            type="button"
+            className="btn btn-secondary"
+            disabled={!filteredTickets.length}
+            onClick={() => downloadSlaStatsCsv(stats, period)}
+          >
+            <Download size={16} />
+            Export
+          </button>
           <Link className="btn btn-secondary" href="/sla/import">
             CSV importieren
           </Link>
@@ -363,19 +587,29 @@ export function DashboardPage() {
               <section className="panel">
                 <div className="panel-header">
                   <h3>SLA-Auswertung</h3>
+                  <button
+                    type="button"
+                    className="btn btn-ghost"
+                    onClick={() => downloadSlaStatsCsv(stats, period)}
+                  >
+                    <Download size={16} />
+                    CSV Export
+                  </button>
                 </div>
                 <div className="panel-body stack">
                   <div>
                     <h4 className="section-subtitle">Kunden</h4>
                     <div className="table-wrap">
                       {stats.byCustomer.length ? (
-                        <table className="data">
+                        <table className="data sla-wide">
                           <thead>
                             <tr>
                               <th>Kunde</th>
                               <th>Anzahl Tickets</th>
-                              <th>% in SLA</th>
-                              <th>% außerhalb SLA</th>
+                              <th>Innerhalb SLA</th>
+                              <th>Selber Tag</th>
+                              <th>außerhalb SLA</th>
+                              <th>SLA in %</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -393,17 +627,13 @@ export function DashboardPage() {
                                     </div>
                                   )}
                                 </td>
-                                <td>{row.total}</td>
-                                <td>
-                                  <span className="badge badge-ok">
-                                    {formatPercent(row.metPercent)}
-                                  </span>
-                                </td>
-                                <td>
-                                  <span className="badge badge-bad">
-                                    {formatPercent(row.breachedPercent)}
-                                  </span>
-                                </td>
+                                <SlaCountCells
+                                  total={row.total}
+                                  met={row.met}
+                                  sameDay={row.sameDay}
+                                  breached={row.breached}
+                                  metPercent={row.metPercent}
+                                />
                               </tr>
                             ))}
                           </tbody>
@@ -417,56 +647,112 @@ export function DashboardPage() {
                   <div>
                     <h4 className="section-subtitle">Techniker & Partner</h4>
                     <div className="table-wrap">
-                      <table className="data">
+                      <table className="data sla-wide">
                         <thead>
                           <tr>
                             <th>Bearbeiter</th>
                             <th>Anzahl Tickets</th>
-                            <th>% in SLA</th>
-                            <th>% außerhalb SLA</th>
+                            <th>Innerhalb SLA</th>
+                            <th>Selber Tag</th>
+                            <th>außerhalb SLA</th>
+                            <th>SLA in %</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
+                          <tr
+                            className="tech-row-clickable"
+                            role="button"
+                            tabIndex={0}
+                            onClick={() =>
+                              setTechniciansExpanded((open) => !open)
+                            }
+                            onKeyDown={(event) => {
+                              if (event.key === 'Enter' || event.key === ' ') {
+                                event.preventDefault()
+                                setTechniciansExpanded((open) => !open)
+                              }
+                            }}
+                          >
                             <td>
-                              Techniker
+                              <span className="tech-expand-label">
+                                {techniciansExpanded ? (
+                                  <ChevronDown size={16} />
+                                ) : (
+                                  <ChevronRight size={16} />
+                                )}
+                                <strong>Techniker</strong>
+                              </span>
                               <div>
                                 <span className="badge badge-ok">eigene</span>
+                                <span className="badge badge-muted">
+                                  {ownTechnicians.length} Techniker · anklicken
+                                </span>
                               </div>
                             </td>
-                            <td>{technicianSummary.total}</td>
-                            <td>
-                              <span className="badge badge-ok">
-                                {formatPercent(technicianSummary.metPercent)}
-                              </span>
-                            </td>
-                            <td>
-                              <span className="badge badge-bad">
-                                {formatPercent(technicianSummary.breachedPercent)}
-                              </span>
-                            </td>
+                            <SlaCountCells
+                              total={technicianSummary.total}
+                              met={technicianSummary.met}
+                              sameDay={technicianSummary.sameDay}
+                              breached={technicianSummary.breached}
+                              metPercent={technicianSummary.metPercent}
+                            />
                           </tr>
-                          <tr>
+                          {techniciansExpanded ? (
+                            <PersonRows
+                              rows={ownTechnicians}
+                              tickets={filteredTickets}
+                              expandedKey={expandedPersonKey}
+                              onToggle={togglePerson}
+                              emptyLabel="Keine eigenen Techniker im Zeitraum."
+                            />
+                          ) : null}
+                          <tr
+                            className="tech-row-clickable"
+                            role="button"
+                            tabIndex={0}
+                            onClick={() => setPartnersExpanded((open) => !open)}
+                            onKeyDown={(event) => {
+                              if (event.key === 'Enter' || event.key === ' ') {
+                                event.preventDefault()
+                                setPartnersExpanded((open) => !open)
+                              }
+                            }}
+                          >
                             <td>
-                              Partner
+                              <span className="tech-expand-label">
+                                {partnersExpanded ? (
+                                  <ChevronDown size={16} />
+                                ) : (
+                                  <ChevronRight size={16} />
+                                )}
+                                <strong>Partner</strong>
+                              </span>
                               <div>
                                 <span className="badge badge-warn">
                                   nicht zuordenbar
                                 </span>
+                                <span className="badge badge-muted">
+                                  {partnerRows.length} Partner · anklicken
+                                </span>
                               </div>
                             </td>
-                            <td>{stats.partner.total}</td>
-                            <td>
-                              <span className="badge badge-ok">
-                                {formatPercent(stats.partner.metPercent)}
-                              </span>
-                            </td>
-                            <td>
-                              <span className="badge badge-bad">
-                                {formatPercent(stats.partner.breachedPercent)}
-                              </span>
-                            </td>
+                            <SlaCountCells
+                              total={stats.partner.total}
+                              met={stats.partner.met}
+                              sameDay={stats.partner.sameDay}
+                              breached={stats.partner.breached}
+                              metPercent={stats.partner.metPercent}
+                            />
                           </tr>
+                          {partnersExpanded ? (
+                            <PersonRows
+                              rows={partnerRows}
+                              tickets={filteredTickets}
+                              expandedKey={expandedPersonKey}
+                              onToggle={togglePerson}
+                              emptyLabel="Keine Partner-Tickets im Zeitraum."
+                            />
+                          ) : null}
                         </tbody>
                       </table>
                     </div>
@@ -476,7 +762,7 @@ export function DashboardPage() {
 
               <section className="panel">
                 <div className="panel-header">
-                  <h3>Techniker → Tickets</h3>
+                  <h3>Techniker & Partner → Tickets</h3>
                   <span className="badge badge-muted">
                     {customerLabel} · {ticketAssignments.length} Tickets
                   </span>
@@ -486,8 +772,8 @@ export function DashboardPage() {
                     <table className="data review-table">
                       <thead>
                         <tr>
-                          <th>Techniker</th>
-                          <th>Ticket</th>
+                          <th>Bearbeiter</th>
+                          <th>Ticketnummer</th>
                           <th>Kunde</th>
                           <th>Betreff</th>
                           <th>Erstellt</th>
@@ -499,7 +785,9 @@ export function DashboardPage() {
                         {ticketAssignments.map((ticket) => (
                           <tr key={ticket.id}>
                             <td>
-                              {ticket.technicianName}
+                              {ticket.isPartner
+                                ? partnerDisplayName(ticket)
+                                : ticket.technicianName}
                               {ticket.isPartner && (
                                 <div>
                                   <span className="badge badge-warn">Partner</span>
@@ -507,7 +795,9 @@ export function DashboardPage() {
                               )}
                             </td>
                             <td>
-                              <span className="mono">{ticket.externalId || '—'}</span>
+                              <span className="mono">
+                                {extractTicketNumber(ticket.externalId) || '—'}
+                              </span>
                             </td>
                             <td>{ticket.customerName || ticket.customerKey || '—'}</td>
                             <td>{ticket.subject || '—'}</td>

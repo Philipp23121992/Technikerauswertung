@@ -1,0 +1,3886 @@
+{
+  "version": 1,
+  "settings": {
+    "staleHours": 8,
+    "escalateCritical": true,
+    "copyToOneDrive": false,
+    "tenantId": "common",
+    "clientId": "",
+    "redirectUri": ""
+  },
+  "mailboxes": [
+    {
+      "id": "mbx-philipp",
+      "displayName": "Philipp Heyser",
+      "email": "philipp.heyser@acp.de",
+      "connected": false,
+      "lastSyncAt": "2026-10-11T17:39:15.297Z",
+      "lastError": null,
+      "syncEnabled": true,
+      "createdAt": "2026-09-12T16:26:24.205Z",
+      "provider": "none",
+      "imapHost": "",
+      "imapPort": 993,
+      "imapSecure": true,
+      "imapUser": "philipp.heyser@acp.de",
+      "hasImapPassword": false
+    },
+    {
+      "id": "mbx-service",
+      "displayName": "Service ACP",
+      "email": "service@acp.de",
+      "connected": false,
+      "lastSyncAt": "2026-10-11T17:39:15.308Z",
+      "lastError": null,
+      "syncEnabled": true,
+      "createdAt": "2026-09-12T16:26:24.205Z",
+      "provider": "none",
+      "imapHost": "",
+      "imapPort": 993,
+      "imapSecure": true,
+      "imapUser": "service@acp.de",
+      "hasImapPassword": false
+    }
+  ],
+  "senders": [
+    {
+      "id": "snd-leitung",
+      "mailboxId": "mbx-philipp",
+      "email": "leitung@acp.de",
+      "displayName": "ACP Leitung",
+      "role": "chef",
+      "createdAt": "2026-09-14T08:26:24.206Z"
+    },
+    {
+      "id": "snd-kunde",
+      "mailboxId": "mbx-philipp",
+      "email": "einkauf@rudolph-holding.de",
+      "displayName": "Rudolph Holding Einkauf",
+      "role": "lieferant",
+      "createdAt": "2026-09-17T16:26:24.206Z"
+    },
+    {
+      "id": "snd-hp",
+      "mailboxId": "mbx-philipp",
+      "email": "noreply@hp.com",
+      "displayName": "HP Warranty",
+      "role": "system",
+      "createdAt": "2026-09-19T08:26:24.206Z"
+    },
+    {
+      "id": "snd-finanzamt",
+      "mailboxId": "mbx-service",
+      "email": "poststelle@finanzamt.bund.de",
+      "displayName": "Finanzamt",
+      "role": "behoerde",
+      "createdAt": "2026-09-21T10:26:24.207Z"
+    },
+    {
+      "id": "snd-lieferant",
+      "mailboxId": "mbx-service",
+      "email": "invoice@distrelec.com",
+      "displayName": "Distrelec Rechnungen",
+      "role": "lieferant",
+      "createdAt": "2026-09-21T00:26:24.207Z"
+    }
+  ],
+  "messages": [
+    {
+      "id": "msg-1e270ed8-8a25-4d34-b48b-1d725ffb0f74",
+      "mailboxId": "mbx-philipp",
+      "senderId": "snd-leitung",
+      "graphId": null,
+      "graphConversationId": null,
+      "fromEmail": "leitung@acp.de",
+      "fromName": "ACP Leitung",
+      "to": [
+        "philipp.heyser@acp.de"
+      ],
+      "subject": "Sofort: Eskalation Kunde Rudolph",
+      "preview": "Bitte heute noch Rückmeldung. Der Kunde droht mit Eskalation an die Geschäftsführung.",
+      "bodyText": "Bitte heute noch Rückmeldung. Der Kunde droht mit Eskalation an die Geschäftsführung.",
+      "receivedAt": "2026-09-22T14:26:24.207Z",
+      "isRead": false,
+      "hasAttachments": false,
+      "status": "neu",
+      "priority": "kritisch",
+      "priorityReason": "Absenderrolle chef, kritische Schlüsselwörter",
+      "archived": false,
+      "archivedAt": null,
+      "outlookFolder": "inbox",
+      "flaggedCritical": true,
+      "escalatedAt": "2026-09-22T14:26:24.207Z",
+      "staleWarnedAt": "2026-09-23T07:25:30.372Z",
+      "createdAt": "2026-09-22T14:26:24.207Z",
+      "updatedAt": "2026-09-23T07:25:30.372Z"
+    },
+    {
+      "id": "msg-ca6d468a-0875-435e-8cbd-eea8b3949abe",
+      "mailboxId": "mbx-philipp",
+      "senderId": "snd-kunde",
+      "graphId": null,
+      "graphConversationId": null,
+      "fromEmail": "einkauf@rudolph-holding.de",
+      "fromName": "Rudolph Holding Einkauf",
+      "to": [
+        "philipp.heyser@acp.de"
+      ],
+      "subject": "KV TVDAU1292412 – Freigabe und Frist",
+      "preview": "Der Kostenvoranschlag muss bis Freitag bestätigt werden. Anhang: Angebot.",
+      "bodyText": "Der Kostenvoranschlag muss bis Freitag bestätigt werden. Anhang: Angebot.",
+      "receivedAt": "2026-09-22T11:26:24.208Z",
+      "isRead": false,
+      "hasAttachments": true,
+      "status": "neu",
+      "priority": "hoch",
+      "priorityReason": "Absenderrolle lieferant, Dringlichkeit im Text, Anhang vorhanden",
+      "archived": false,
+      "archivedAt": null,
+      "outlookFolder": "inbox",
+      "flaggedCritical": false,
+      "escalatedAt": null,
+      "staleWarnedAt": "2026-09-23T07:25:30.372Z",
+      "createdAt": "2026-09-22T11:26:24.208Z",
+      "updatedAt": "2026-09-23T07:25:30.372Z"
+    },
+    {
+      "id": "msg-321db50b-ac48-4c32-99d9-7d01d15a0b78",
+      "mailboxId": "mbx-philipp",
+      "senderId": "snd-kunde",
+      "graphId": null,
+      "graphConversationId": null,
+      "fromEmail": "einkauf@rudolph-holding.de",
+      "fromName": "Rudolph Holding Einkauf",
+      "to": [
+        "philipp.heyser@acp.de"
+      ],
+      "subject": "Danke für den Einsatz letzte Woche",
+      "preview": "Nur zur Kenntnis: der Einsatz in Sontra ist abgeschlossen.",
+      "bodyText": "Nur zur Kenntnis: der Einsatz in Sontra ist abgeschlossen.",
+      "receivedAt": "2026-09-21T10:26:24.208Z",
+      "isRead": true,
+      "hasAttachments": false,
+      "status": "erledigt",
+      "priority": "normal",
+      "priorityReason": "Absenderrolle lieferant, Info-/Newsletter-Charakter",
+      "archived": true,
+      "archivedAt": "2026-09-21T11:26:24.208Z",
+      "outlookFolder": "archive",
+      "flaggedCritical": false,
+      "escalatedAt": null,
+      "staleWarnedAt": null,
+      "createdAt": "2026-09-21T10:26:24.208Z",
+      "updatedAt": "2026-09-21T10:26:24.208Z"
+    },
+    {
+      "id": "msg-fc6f0338-5e85-4aed-b055-6ef542dce904",
+      "mailboxId": "mbx-philipp",
+      "senderId": "snd-hp",
+      "graphId": null,
+      "graphConversationId": null,
+      "fromEmail": "noreply@hp.com",
+      "fromName": "HP Warranty",
+      "to": [
+        "philipp.heyser@acp.de"
+      ],
+      "subject": "Ihre Garantiebestätigung",
+      "preview": "Automatische Bestätigung. Keine Antwort nötig.",
+      "bodyText": "Automatische Bestätigung. Keine Antwort nötig.",
+      "receivedAt": "2026-09-22T06:26:24.208Z",
+      "isRead": false,
+      "hasAttachments": true,
+      "status": "neu",
+      "priority": "normal",
+      "priorityReason": "Anhang vorhanden",
+      "archived": false,
+      "archivedAt": null,
+      "outlookFolder": "inbox",
+      "flaggedCritical": false,
+      "escalatedAt": null,
+      "staleWarnedAt": "2026-09-22T16:29:47.906Z",
+      "createdAt": "2026-09-22T06:26:24.208Z",
+      "updatedAt": "2026-09-22T16:29:47.906Z"
+    },
+    {
+      "id": "msg-731275f2-ca1a-41fa-ac2a-9a2806d05e45",
+      "mailboxId": "mbx-service",
+      "senderId": "snd-finanzamt",
+      "graphId": null,
+      "graphConversationId": null,
+      "fromEmail": "poststelle@finanzamt.bund.de",
+      "fromName": "Finanzamt",
+      "to": [
+        "service@acp.de"
+      ],
+      "subject": "Bescheid – Frist 14 Tage",
+      "preview": "Bitte den beigefügten Bescheid prüfen. Frist 14 Tage.",
+      "bodyText": "Bitte den beigefügten Bescheid prüfen. Frist 14 Tage.",
+      "receivedAt": "2026-09-22T10:26:24.209Z",
+      "isRead": false,
+      "hasAttachments": true,
+      "status": "neu",
+      "priority": "kritisch",
+      "priorityReason": "Absenderrolle behoerde, Dringlichkeit im Text, Anhang vorhanden",
+      "archived": false,
+      "archivedAt": null,
+      "outlookFolder": "inbox",
+      "flaggedCritical": true,
+      "escalatedAt": "2026-09-22T10:26:24.209Z",
+      "staleWarnedAt": "2026-09-22T18:29:57.883Z",
+      "createdAt": "2026-09-22T10:26:24.209Z",
+      "updatedAt": "2026-09-22T18:29:57.883Z"
+    },
+    {
+      "id": "msg-d40bdca3-616f-4723-8428-e69b48bf2687",
+      "mailboxId": "mbx-service",
+      "senderId": "snd-lieferant",
+      "graphId": null,
+      "graphConversationId": null,
+      "fromEmail": "invoice@distrelec.com",
+      "fromName": "Distrelec",
+      "to": [
+        "service@acp.de"
+      ],
+      "subject": "Rechnung 2026-88421",
+      "preview": "Anbei die Rechnung über Ersatzteile.",
+      "bodyText": "Anbei die Rechnung über Ersatzteile.",
+      "receivedAt": "2026-09-22T12:26:24.209Z",
+      "isRead": false,
+      "hasAttachments": true,
+      "status": "neu",
+      "priority": "hoch",
+      "priorityReason": "Absenderrolle lieferant, geschäftskritischer Anhang",
+      "archived": false,
+      "archivedAt": null,
+      "outlookFolder": "inbox",
+      "flaggedCritical": false,
+      "escalatedAt": null,
+      "staleWarnedAt": "2026-09-23T07:25:30.389Z",
+      "createdAt": "2026-09-22T12:26:24.209Z",
+      "updatedAt": "2026-09-23T07:25:30.389Z"
+    },
+    {
+      "id": "msg-aac0ec19-e89f-4bf8-bbe7-11773ce9c8e3",
+      "mailboxId": "mbx-service",
+      "senderId": "snd-lieferant",
+      "graphId": null,
+      "graphConversationId": null,
+      "fromEmail": "invoice@distrelec.com",
+      "fromName": "Distrelec",
+      "to": [
+        "service@acp.de"
+      ],
+      "subject": "Lieferschein und Fotos Wareneingang",
+      "preview": "Fotos der Lieferung im Anhang.",
+      "bodyText": "Fotos der Lieferung im Anhang.",
+      "receivedAt": "2026-09-21T22:26:24.209Z",
+      "isRead": true,
+      "hasAttachments": true,
+      "status": "in-bearbeitung",
+      "priority": "hoch",
+      "priorityReason": "Absenderrolle lieferant, geschäftskritischer Anhang",
+      "archived": false,
+      "archivedAt": null,
+      "outlookFolder": "inbox",
+      "flaggedCritical": false,
+      "escalatedAt": null,
+      "staleWarnedAt": "2026-09-22T16:26:24.231Z",
+      "createdAt": "2026-09-21T22:26:24.209Z",
+      "updatedAt": "2026-09-22T16:26:24.231Z"
+    }
+  ],
+  "files": [
+    {
+      "id": "mfile-8f0edeef-d044-42b2-90b4-49b4c97afe3f",
+      "mailboxId": "mbx-philipp",
+      "messageId": "msg-ca6d468a-0875-435e-8cbd-eea8b3949abe",
+      "senderId": "snd-kunde",
+      "senderEmail": "einkauf@rudolph-holding.de",
+      "name": "KV-TVDAU1292412.pdf",
+      "mimeType": "application/pdf",
+      "size": 50280,
+      "category": "sonstiges",
+      "important": false,
+      "storedName": null,
+      "receivedAt": "2026-09-22T11:26:24.208Z",
+      "graphAttachmentId": null
+    },
+    {
+      "id": "mfile-8332c7cb-b312-4e16-b738-91c4061978c7",
+      "mailboxId": "mbx-philipp",
+      "messageId": "msg-fc6f0338-5e85-4aed-b055-6ef542dce904",
+      "senderId": "snd-hp",
+      "senderEmail": "noreply@hp.com",
+      "name": "garantie-bericht.pdf",
+      "mimeType": "application/pdf",
+      "size": 50400,
+      "category": "bericht",
+      "important": true,
+      "storedName": null,
+      "receivedAt": "2026-09-22T06:26:24.208Z",
+      "graphAttachmentId": null
+    },
+    {
+      "id": "mfile-f3594a5d-fd6a-45c7-8fa7-912b267588d9",
+      "mailboxId": "mbx-service",
+      "messageId": "msg-731275f2-ca1a-41fa-ac2a-9a2806d05e45",
+      "senderId": "snd-finanzamt",
+      "senderEmail": "poststelle@finanzamt.bund.de",
+      "name": "bescheid-formular.pdf",
+      "mimeType": "application/pdf",
+      "size": 50520,
+      "category": "formular",
+      "important": true,
+      "storedName": null,
+      "receivedAt": "2026-09-22T10:26:24.209Z",
+      "graphAttachmentId": null
+    },
+    {
+      "id": "mfile-b149af0c-dc46-4b21-9275-50720c39b803",
+      "mailboxId": "mbx-service",
+      "messageId": "msg-d40bdca3-616f-4723-8428-e69b48bf2687",
+      "senderId": "snd-lieferant",
+      "senderEmail": "invoice@distrelec.com",
+      "name": "Rechnung-2026-88421.pdf",
+      "mimeType": "application/pdf",
+      "size": 50760,
+      "category": "rechnung",
+      "important": true,
+      "storedName": null,
+      "receivedAt": "2026-09-22T12:26:24.209Z",
+      "graphAttachmentId": null
+    },
+    {
+      "id": "mfile-13b364b9-9144-4a9e-8019-f33359c6fd27",
+      "mailboxId": "mbx-service",
+      "messageId": "msg-aac0ec19-e89f-4bf8-bbe7-11773ce9c8e3",
+      "senderId": "snd-lieferant",
+      "senderEmail": "invoice@distrelec.com",
+      "name": "wareneingang.jpg",
+      "mimeType": "image/jpeg",
+      "size": 49920,
+      "category": "bild",
+      "important": false,
+      "storedName": null,
+      "receivedAt": "2026-09-21T22:26:24.209Z",
+      "graphAttachmentId": null
+    },
+    {
+      "id": "mfile-ed19df43-eb81-467e-af36-8173ec1afc85",
+      "mailboxId": "mbx-service",
+      "messageId": "msg-aac0ec19-e89f-4bf8-bbe7-11773ce9c8e3",
+      "senderId": "snd-lieferant",
+      "senderEmail": "invoice@distrelec.com",
+      "name": "vertrag-rahmen.docx",
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 50280,
+      "category": "vertrag",
+      "important": true,
+      "storedName": null,
+      "receivedAt": "2026-09-21T22:26:24.209Z",
+      "graphAttachmentId": null
+    }
+  ],
+  "logs": [
+    {
+      "id": "mlog-2d0e0072-2356-4ab9-9914-a44264a74eec",
+      "at": "2026-10-08T17:09:18.709Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-21b42925-6287-43cd-b6dc-19d3cbc396fd",
+      "at": "2026-10-08T17:09:18.723Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-097d3f65-6fe4-4d6d-a752-4360227955fb",
+      "at": "2026-10-08T17:14:18.704Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-1daf2228-587a-482b-b775-c2e7c05a2ad8",
+      "at": "2026-10-08T17:14:18.727Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-aa8d9899-f307-4f52-b823-3d8c2e575767",
+      "at": "2026-10-08T17:19:18.714Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-d25039df-ea69-4105-a9cf-5f5d44f0efe3",
+      "at": "2026-10-08T17:19:18.736Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0ce6d0b0-68c1-452a-a658-b879d591ebd0",
+      "at": "2026-10-08T17:24:18.702Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e5a3009a-a400-4785-a3fd-83e5025ff219",
+      "at": "2026-10-08T17:24:18.715Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-cda2ab07-fece-4d47-9ccf-3a0029d33622",
+      "at": "2026-10-08T17:29:18.726Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0f4780e1-8ecb-4051-8d4b-cd500902a0e0",
+      "at": "2026-10-08T17:29:18.754Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-59246d0e-c565-4f22-85c5-fc182428a0a2",
+      "at": "2026-10-08T17:34:18.687Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-fe88020d-0100-45a5-a367-be6476d7020d",
+      "at": "2026-10-08T17:34:18.710Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-b2ac6f95-5957-42a5-a8ed-ca9ccb16d168",
+      "at": "2026-10-08T17:39:18.713Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-a4f24405-12d5-4e1d-9ab8-b083b8d179ff",
+      "at": "2026-10-08T17:39:18.729Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-3dd683ab-d262-4138-8f81-2e2f5d81b172",
+      "at": "2026-10-08T17:44:18.696Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-3678aa79-ff2a-497b-b9cd-5df9e62ab759",
+      "at": "2026-10-08T17:44:18.734Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2f3080ed-5144-41b7-be4f-aa538b06f956",
+      "at": "2026-10-08T17:49:18.687Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-1569accb-7edc-40b0-9801-16d4b3e6c11f",
+      "at": "2026-10-08T17:49:18.704Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-1ab2dd61-978d-46d7-8428-f85eca8a6b6f",
+      "at": "2026-10-08T17:54:18.717Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-22cee4ec-f117-450f-ab76-320e766aafdc",
+      "at": "2026-10-08T17:54:18.733Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0cb93c9c-2f02-41a5-9f62-b2e2a0c26bd7",
+      "at": "2026-10-08T17:59:18.705Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-b40d67a5-186e-4c6a-9429-9a5219e2ac52",
+      "at": "2026-10-08T17:59:18.729Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-b53d4152-f0a1-4ea4-b940-69b22261312a",
+      "at": "2026-10-08T18:04:18.697Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-87e836f7-17d0-4210-9eac-acaeb1da3dca",
+      "at": "2026-10-08T18:04:18.716Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-217b811c-b529-4396-960f-210683d5702a",
+      "at": "2026-10-08T18:09:18.711Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0715ac95-4471-4290-8f87-4a74f10e833c",
+      "at": "2026-10-08T18:09:18.725Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-02f0c9c8-1cae-4afc-9134-7362b510a057",
+      "at": "2026-10-08T18:14:18.691Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-acf1c4d8-231d-4248-83dd-e39594c7499d",
+      "at": "2026-10-08T18:14:18.732Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-bebcf574-ae05-478e-ad9f-f3540e4ffc49",
+      "at": "2026-10-08T18:19:18.691Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-d5cff4a0-3a51-46b4-a945-519eaf990174",
+      "at": "2026-10-08T18:19:18.706Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e5f3a3e0-c8b5-4c6a-ab77-c0f9e85fae06",
+      "at": "2026-10-08T18:24:18.707Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2fe77aa8-c99e-40a9-95a0-45db4cc07b60",
+      "at": "2026-10-08T18:24:18.720Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e62705cb-1464-4220-84aa-82c70d0cd6fb",
+      "at": "2026-10-08T18:29:18.686Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-5e19ea6d-faa7-4585-b6cd-acfc029933b9",
+      "at": "2026-10-08T18:29:18.715Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0702497a-b667-48be-9b54-6c330a04dd88",
+      "at": "2026-10-08T18:34:18.699Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-43e7278b-4968-4b72-92d8-6c2550c34c11",
+      "at": "2026-10-08T18:34:18.715Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-b1b41599-3990-43b4-883f-c5b05d24beeb",
+      "at": "2026-10-08T18:39:18.693Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-dba3f29b-936f-4b9c-b116-ed887f110481",
+      "at": "2026-10-08T18:39:18.706Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-6d7b9d96-9c61-4507-8a96-539893dc92b5",
+      "at": "2026-10-08T18:44:18.699Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e748cba8-727a-4085-aa8f-597d34ae034e",
+      "at": "2026-10-08T18:44:18.740Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-6c674e5a-e1aa-43e5-8d7d-a66c275c7b79",
+      "at": "2026-10-08T18:49:18.704Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2664462c-3f0c-4fd6-b45a-6829db43c05f",
+      "at": "2026-10-08T18:49:18.719Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-39a17566-b39c-43b3-b842-04a2e945b9d6",
+      "at": "2026-10-08T18:54:18.701Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c89bf44a-2361-4b41-98c6-ee39b80fac9a",
+      "at": "2026-10-08T18:54:18.716Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-6c6c21c9-c652-4541-b445-3138e5920866",
+      "at": "2026-10-08T18:59:18.706Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-8cc2d64f-8002-4c6e-97ca-7d4138d1deda",
+      "at": "2026-10-08T18:59:18.727Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-3cebc9a3-ffd9-4bb7-873d-4e39ea2349cd",
+      "at": "2026-10-08T19:04:18.694Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-1cecd4a8-a506-4180-b806-46655c30285b",
+      "at": "2026-10-08T19:04:18.709Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c0dba97d-2fb1-466e-bfc5-d9fa3a9b4833",
+      "at": "2026-10-08T19:09:18.693Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0abd8d25-c602-4c98-bde4-281dd1968a11",
+      "at": "2026-10-08T19:09:18.705Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-a6fad287-03ee-405d-b4a2-5cf36c677f2c",
+      "at": "2026-10-08T19:14:18.704Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-d3852708-1812-45c5-b83e-2d75911e8617",
+      "at": "2026-10-08T19:14:18.751Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-718a0102-1d2a-46b5-82af-341d84a14d20",
+      "at": "2026-10-08T19:19:18.707Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-58141a6e-f9a9-4ff7-8059-b9f1a1e6bf4d",
+      "at": "2026-10-08T19:19:18.722Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2cdb9629-b628-4a2b-8c43-a9514c69576f",
+      "at": "2026-10-08T19:24:18.701Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-de0d077e-8884-4b18-a921-296390aa7e91",
+      "at": "2026-10-08T19:24:18.717Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-51d78839-7ec2-441e-866b-9d69f9befa1d",
+      "at": "2026-10-08T19:29:18.705Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e6bbe3e0-0bb3-4894-936a-eae2bbf392ce",
+      "at": "2026-10-08T19:29:18.736Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-7f8d3ccc-ab9d-4ec7-8f4e-c199025e47e3",
+      "at": "2026-10-08T19:34:18.713Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-bbce21ac-0bf4-4996-ba49-c0650ad05070",
+      "at": "2026-10-08T19:34:18.729Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-749c7bb5-724d-4991-9e2c-9f34a8278811",
+      "at": "2026-10-08T19:39:18.687Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-514a0912-9290-432b-b6f3-8085f50f9764",
+      "at": "2026-10-08T19:39:18.702Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-62cd3b7e-1d8f-45e6-8962-5bd7c8907832",
+      "at": "2026-10-08T19:44:18.722Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-f91b7437-6a0f-4c25-b723-7c3b7b1e19f4",
+      "at": "2026-10-08T19:44:18.744Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e1c62fc8-16d3-47d1-ba6d-3307a1592cf4",
+      "at": "2026-10-08T19:49:18.696Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-daf4a93c-0a8a-42db-bd1a-f820abb52efd",
+      "at": "2026-10-08T19:49:18.714Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-55da15f2-cf25-4ee1-a6bb-833eb139f0d6",
+      "at": "2026-10-08T19:54:18.709Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-ccd121b3-437e-431b-b3a8-cef215c0ba41",
+      "at": "2026-10-08T19:54:18.723Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-baa28946-eabd-4ce8-aa47-422b0b36b906",
+      "at": "2026-10-08T19:59:18.710Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-988c7243-f87e-417f-bb12-ebbc2454914c",
+      "at": "2026-10-08T19:59:18.755Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-975e6d9d-ccdf-4c28-8c52-0032c08ff5da",
+      "at": "2026-10-08T20:04:18.704Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-56ef7870-a12d-4e15-b7e3-f9afbd474143",
+      "at": "2026-10-08T20:04:18.722Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-f16f671d-6503-4cd5-b0fe-a21f07c84a75",
+      "at": "2026-10-08T20:09:18.706Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-649e1399-9e15-4024-80c6-82e5b6f4dfbc",
+      "at": "2026-10-08T20:09:18.720Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-baa0ab3d-1fcb-4218-96ba-eb93dbe4ff64",
+      "at": "2026-10-08T20:14:18.717Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-ce5e3095-39a1-494a-bd59-edc134d7fb99",
+      "at": "2026-10-08T20:14:18.773Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-5f6efafb-39ff-40e5-b2e5-0affd4646dff",
+      "at": "2026-10-08T20:19:18.688Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e391c474-2029-44fc-b7f4-ea2d6fc90d35",
+      "at": "2026-10-08T20:19:18.704Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-6945a3a6-5161-460d-b02f-736ff42dafdc",
+      "at": "2026-10-08T20:24:18.677Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-d8980a91-bfae-40e7-a218-31290e7a5192",
+      "at": "2026-10-08T20:24:18.688Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-48ad6a50-96d6-4334-bdf3-33eb558163de",
+      "at": "2026-10-08T20:29:18.701Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-71c8ff9d-90a9-4a04-8a7b-68a417538cbc",
+      "at": "2026-10-08T20:29:18.721Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-a8488a3a-ef74-46d2-b4a5-bca7852d8728",
+      "at": "2026-10-08T20:34:18.707Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-4a3e6baa-9852-4599-9567-a61d2c585cd4",
+      "at": "2026-10-08T20:34:18.722Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2c8b0292-09f9-4116-97a6-d508d2c2482f",
+      "at": "2026-10-08T20:39:18.696Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-454a4e17-e9fd-42f6-8a56-67cae4db21db",
+      "at": "2026-10-08T20:39:18.710Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-5bd4960c-ae68-42c7-9db6-19b6ecd664d3",
+      "at": "2026-10-08T20:44:18.691Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-88fc9a6e-8048-4040-9b50-39f74306b1a2",
+      "at": "2026-10-08T20:44:18.729Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e6aace14-c929-4899-80cf-47303fc8e82a",
+      "at": "2026-10-08T20:49:18.709Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c3ff4c43-3684-48e9-9acd-1f4b268bf09c",
+      "at": "2026-10-08T20:49:18.728Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-8942ebcd-b9ec-4e70-9953-4cdc5c45cb7a",
+      "at": "2026-10-08T20:54:18.694Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-876d7c34-752d-4028-947e-364c58f97714",
+      "at": "2026-10-08T20:54:18.711Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-7c9d8acf-6a12-450d-a55e-10eee491637f",
+      "at": "2026-10-08T20:59:18.717Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c95d33a7-29f9-4e8f-b089-c256995f3d60",
+      "at": "2026-10-08T20:59:18.760Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2db2e006-ca7f-458c-a22e-38458ef0c640",
+      "at": "2026-10-08T21:04:18.697Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-759ed8ea-7e90-48ca-95fd-f49ea6a2c3cb",
+      "at": "2026-10-08T21:04:18.709Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-f837cd90-15d4-4433-a091-a8bc9e5b2600",
+      "at": "2026-10-08T21:09:18.686Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-cb4872cc-c1c5-41cf-8d16-e3b9122bbb17",
+      "at": "2026-10-08T21:09:18.698Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-70f3df4d-7ffa-4aab-ac47-e53f9a611ae7",
+      "at": "2026-10-08T21:14:18.709Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-3fc60c47-e194-491d-90fa-0adeba0b677c",
+      "at": "2026-10-08T21:14:18.752Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2b38b9fd-3808-40cd-9c7b-bc97e1b76e9f",
+      "at": "2026-10-08T21:19:18.696Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-f672836e-c75b-4e90-8170-2f5feedd775e",
+      "at": "2026-10-08T21:19:18.710Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-b276c6fa-98b9-4e99-91eb-2af3dc740f46",
+      "at": "2026-10-08T21:24:18.689Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-f4f57fc1-c2fa-49fe-989e-d629d1aec6c0",
+      "at": "2026-10-08T21:24:18.705Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-d15800e3-5660-4c9d-9107-68848178a4d2",
+      "at": "2026-10-08T21:29:18.696Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-19a6b6d4-c0de-40a6-a6e3-2cb6d0da7c9e",
+      "at": "2026-10-08T21:29:18.725Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-1ac20084-77f7-4e7c-b53c-ac8cab90378b",
+      "at": "2026-10-08T21:34:18.721Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-99ccc398-d122-49d3-9063-b26cda40ce48",
+      "at": "2026-10-08T21:34:18.738Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-f67f725d-3d62-48b4-aaf8-51da36144835",
+      "at": "2026-10-08T21:39:18.689Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c546176b-0f62-4976-b426-fb0f57454178",
+      "at": "2026-10-08T21:39:18.705Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-5157fb75-b11e-4995-bf2c-5e8793e10cc9",
+      "at": "2026-10-08T21:44:18.709Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-d8349e28-17db-4fdf-9972-46406fb85daf",
+      "at": "2026-10-08T21:44:18.754Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e06f37b6-4311-4adc-b3cc-3ffada417633",
+      "at": "2026-10-08T21:49:18.696Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-6d786868-b083-4693-81a5-a057ea7c7b50",
+      "at": "2026-10-08T21:49:18.713Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-4aaa4c62-1cad-4a45-afb9-3f92bf0bf1b6",
+      "at": "2026-10-08T21:54:18.694Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-fcb1a4a7-0a52-4b35-a4ee-85fa4968b241",
+      "at": "2026-10-08T21:54:18.706Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e3fd7899-b4d0-4dda-abf0-f87a04fcd705",
+      "at": "2026-10-08T21:59:18.696Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c7d2596e-11b0-405d-82eb-9976d5957c2c",
+      "at": "2026-10-08T21:59:18.736Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0074dd22-776a-4f64-9250-3834a5be065e",
+      "at": "2026-10-08T22:04:18.689Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-fc3e1e02-f07c-4a7c-ab08-79d656f7965d",
+      "at": "2026-10-08T22:04:18.704Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-8bdd7cb1-1571-43a2-aaf8-bd2c7f1ac5c1",
+      "at": "2026-10-08T22:09:18.729Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0a20e7a3-f1ca-41b4-9818-ea8bb1644167",
+      "at": "2026-10-08T22:09:18.743Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-74156641-c2b6-4601-9696-d72dbd5127f1",
+      "at": "2026-10-08T22:14:18.695Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-cd59dbb1-c3ea-4299-9723-ecd4a8001310",
+      "at": "2026-10-08T22:14:18.720Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-da69d253-b2d3-4994-b580-07e28013748d",
+      "at": "2026-10-08T22:19:18.716Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2788d7d1-beb9-4466-8d3b-60e51047fab8",
+      "at": "2026-10-08T22:19:18.733Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0bdc8c37-58b4-4ae3-953a-fbb3e36f6981",
+      "at": "2026-10-08T22:24:18.713Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-11b51a74-7f87-467a-ae31-379417c3bbf4",
+      "at": "2026-10-08T22:24:18.725Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-de6616fb-3e8e-448a-bfab-bf9a69405010",
+      "at": "2026-10-08T22:29:18.715Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-5e85365e-8bf5-4f7c-b229-6007c7375d27",
+      "at": "2026-10-08T22:29:18.760Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-f8192339-57df-4d2b-8cdb-6d268549346d",
+      "at": "2026-10-08T22:34:18.690Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-17ab05e2-dd38-4f02-8d64-dadc5663ee16",
+      "at": "2026-10-08T22:34:18.705Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-5c807425-77fb-41c1-aa37-ff992cb470b7",
+      "at": "2026-10-08T22:39:18.697Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0dc63e87-c84f-429c-9ce6-1d85629be9a9",
+      "at": "2026-10-08T22:39:18.712Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-8d85d059-9c28-475f-9cf8-a7aadca69450",
+      "at": "2026-10-08T22:44:18.682Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-6f23d500-4fea-46a8-80ac-95c8b599dbe4",
+      "at": "2026-10-08T22:44:18.713Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2fb19029-90ca-4833-aad3-7db25c199119",
+      "at": "2026-10-08T22:49:18.701Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-58d2e2f5-e850-4f36-95f6-97a02cde12ed",
+      "at": "2026-10-08T22:49:18.716Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-a3207dec-a1d2-440f-96dd-8049bc7ae7f5",
+      "at": "2026-10-08T22:54:18.717Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-21de953f-7e56-4bf5-9f9b-2c46a717dbde",
+      "at": "2026-10-08T22:54:18.732Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-56598f03-b5e6-449e-b496-fd9bbb059917",
+      "at": "2026-10-08T22:59:18.697Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0581027a-4c28-4ced-bbdb-1ff17a15583a",
+      "at": "2026-10-08T22:59:18.732Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2fb8c0f8-aeb4-4731-83d4-210f19f24b80",
+      "at": "2026-10-08T23:04:18.704Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2143e684-35fe-4a67-a958-13ffcdf9d216",
+      "at": "2026-10-08T23:04:18.721Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-70ceda92-1349-42ff-8a4d-5ff8c5d47ead",
+      "at": "2026-10-08T23:09:18.694Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-90c89666-7482-4f80-8ab6-634bb6343e81",
+      "at": "2026-10-08T23:09:18.707Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-92682631-5c35-4f0e-bd89-cdc83472da09",
+      "at": "2026-10-08T23:14:18.713Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-01ff4bda-4651-4336-aa57-7d7cc211c863",
+      "at": "2026-10-08T23:14:18.753Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-43763848-7e7e-4716-ba5c-0d83bb2c5cbe",
+      "at": "2026-10-08T23:19:18.688Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-92ae6dc2-81df-4bac-a399-c6526430bdc0",
+      "at": "2026-10-08T23:19:18.702Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e213b20b-1cea-4355-8e97-6a4100614287",
+      "at": "2026-10-08T23:24:18.705Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2c49c2a8-4b35-4cea-92d4-61908ad4b7e7",
+      "at": "2026-10-08T23:24:18.718Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-58a68333-4e03-48e6-83d1-cb03abd47639",
+      "at": "2026-10-08T23:29:18.714Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-636ed84d-e215-479d-a37e-8e6fa0b11e68",
+      "at": "2026-10-08T23:29:18.733Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-595b3013-f1ce-40b8-b9cb-f01a76d5d196",
+      "at": "2026-10-08T23:34:18.726Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-fb722d13-527e-4ad1-bfab-b12c7376d4de",
+      "at": "2026-10-08T23:34:18.741Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-be7f0691-a0a8-4e48-834a-838b09c98cd7",
+      "at": "2026-10-08T23:39:18.690Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-098a30c6-2be5-44ac-b6a6-2fa8a2ed980c",
+      "at": "2026-10-08T23:39:18.704Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-db416791-4751-4c22-9137-2dcb658ada7b",
+      "at": "2026-10-08T23:44:18.701Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-8372f3ed-29bd-49f1-9fe8-19e7f7c1e7a4",
+      "at": "2026-10-08T23:44:18.725Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-f10b8209-7b19-400e-bdbb-a00c0d99ee88",
+      "at": "2026-10-08T23:49:18.692Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-6bc4634e-d2f5-43b2-b8e8-abde6a4eed3d",
+      "at": "2026-10-08T23:49:18.707Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-ca0cafaa-e1c0-4026-813f-d185ddc9aa98",
+      "at": "2026-10-08T23:54:18.689Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-b4325e5f-5458-4789-b12a-9d5c6632aca6",
+      "at": "2026-10-08T23:54:18.704Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-224e1203-4987-4525-b4b3-52be9403f168",
+      "at": "2026-10-08T23:59:18.719Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-a5e5d72a-4b9d-4853-8eb9-c91da8178f49",
+      "at": "2026-10-08T23:59:18.743Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-17fef853-cd13-462a-8298-45da44970954",
+      "at": "2026-10-09T00:04:18.700Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-9a68b716-703f-41f7-9852-3f040ed23586",
+      "at": "2026-10-09T00:04:18.713Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e30bac4d-34ed-467b-8a92-61c8b3e0647d",
+      "at": "2026-10-09T00:09:18.700Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-7dc40324-1cf7-4315-abbe-1fd9f814f2ba",
+      "at": "2026-10-09T00:09:18.714Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c8bd6a97-6dbb-45a5-8764-20d39b50ad90",
+      "at": "2026-10-09T00:14:18.705Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-292c7e1e-026b-49a8-8bf8-9633e0398cd0",
+      "at": "2026-10-09T00:14:18.730Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-ece485aa-32f9-4620-ae71-52d0557602cb",
+      "at": "2026-10-09T00:19:18.690Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0deff67b-f569-4327-b1a3-e7d6b1b96a22",
+      "at": "2026-10-09T00:19:18.706Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0856867e-de6b-4c9b-af1b-c944da076e16",
+      "at": "2026-10-09T00:24:18.711Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-a8b7bb78-eb00-4271-85ff-e9467be5c95f",
+      "at": "2026-10-09T00:24:18.725Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-ee2fc95a-58ca-4912-9c19-047b96f8cc82",
+      "at": "2026-10-09T00:29:18.719Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-d7ee3122-ad87-433d-9935-2a281492ced2",
+      "at": "2026-10-09T00:29:18.738Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-28a62dac-721f-42ac-b179-dc90fca4c380",
+      "at": "2026-10-09T00:34:18.720Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-bae784ed-2e43-4685-b733-afa534bf678b",
+      "at": "2026-10-09T00:34:18.735Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-4c38fff3-8688-4a9d-8f90-a5ec226d9405",
+      "at": "2026-10-09T00:39:18.698Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-baf1d418-05ef-44b9-b13c-6feffe732d3b",
+      "at": "2026-10-09T00:39:18.712Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-cbb5e852-4de3-4fcd-9c55-7afe9660c5ea",
+      "at": "2026-10-09T00:44:18.707Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-9932acdc-79e0-49f7-88d9-d72a596614d9",
+      "at": "2026-10-09T00:44:18.731Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-93156388-5725-4696-ac93-44b54a075228",
+      "at": "2026-10-09T00:49:18.704Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-718d772e-5eeb-4d50-94e7-f2a705691936",
+      "at": "2026-10-09T00:49:18.718Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-4fa2ebb9-af61-48e1-98ad-4faf596bc412",
+      "at": "2026-10-09T00:54:18.688Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-33ef1b0e-4bb6-4222-b260-5fcb87adacb6",
+      "at": "2026-10-09T00:54:18.701Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-61d3d785-6fd9-42ba-93f3-b32e490c6655",
+      "at": "2026-10-09T00:59:18.705Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-b55bb2d6-1326-4619-b1b5-1c4d1e6f18a1",
+      "at": "2026-10-09T00:59:18.729Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-8e519e3f-d13b-46ad-ad71-2dcae20f6ef8",
+      "at": "2026-10-09T01:04:18.723Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-832a0ca1-e8af-43de-80cd-74d2724750bb",
+      "at": "2026-10-09T01:04:18.735Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-9777a83c-b107-4fd0-8459-7ee97ccd4265",
+      "at": "2026-10-09T01:09:18.698Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-9efee809-1611-49e0-84f2-b9e953659879",
+      "at": "2026-10-09T01:09:18.716Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-262f40fc-ffbc-4338-99c7-77584891704c",
+      "at": "2026-10-09T01:14:18.706Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-7fcf0447-cfbb-47ab-8cf9-4da6d5dc49ed",
+      "at": "2026-10-09T01:14:18.750Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c59ad0da-20e4-454d-88e4-7a899239189f",
+      "at": "2026-10-09T01:19:18.706Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-a317818b-145c-4f0a-b732-b4b234476a99",
+      "at": "2026-10-09T01:19:18.723Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-033eff33-db8a-41e1-a67d-d564ff9e00d8",
+      "at": "2026-10-09T01:24:18.700Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-743b536f-4088-4cee-9499-69edc6d603c4",
+      "at": "2026-10-09T01:24:18.714Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-3095a044-1577-45bf-9f6f-316cae9bb2bf",
+      "at": "2026-10-09T01:29:18.702Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c1f4a9ad-3fde-4cec-828e-24f54c5d9f2c",
+      "at": "2026-10-09T01:29:18.746Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0dd2f070-8ded-4cc4-aeda-b861c180e01f",
+      "at": "2026-10-09T01:34:18.702Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-5c10a9c3-65b8-4cc0-bfff-a70c88d19e14",
+      "at": "2026-10-09T01:34:18.717Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-83c94fb5-0c20-49db-a1c6-d46322665494",
+      "at": "2026-10-09T01:39:18.704Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-677c9009-03a7-4e05-b7ac-f3e4a29a1792",
+      "at": "2026-10-09T01:39:18.716Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-ad13cffa-9f62-42e1-a8b6-0955eacf3a9f",
+      "at": "2026-10-09T01:44:18.722Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-6b46fae7-2b1b-427a-8063-7826b79d6785",
+      "at": "2026-10-09T01:44:18.774Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-3ad76b44-eee9-409f-8d6a-cd6c3f201d43",
+      "at": "2026-10-09T01:49:18.704Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-00ecbf68-02d6-4286-be25-d2a92aa3573d",
+      "at": "2026-10-09T01:49:18.719Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-381f26eb-1077-40c1-81a1-8c0f75bb804c",
+      "at": "2026-10-09T01:54:18.706Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-8d9fbe8e-71cd-439e-b48e-3845ab8e6b13",
+      "at": "2026-10-09T01:54:18.721Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-a09792fb-d1a7-451f-b29a-c543afe2c3ab",
+      "at": "2026-10-09T01:59:18.704Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-4a64067d-3040-4712-aebf-c6f7f23ba77a",
+      "at": "2026-10-09T01:59:18.744Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-de752d9b-2ec5-4012-a98b-b80e1ed724ad",
+      "at": "2026-10-09T02:04:18.719Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-59c03e1b-2566-49e4-85be-690dac408e7a",
+      "at": "2026-10-09T02:04:18.736Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-bb8edb0c-dd7c-46b4-a490-d9e9012b4bdd",
+      "at": "2026-10-09T02:09:18.730Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-3ff64eb1-1ab3-49fa-8d14-dd1d4bff612f",
+      "at": "2026-10-09T02:09:18.747Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-932c6648-67a6-4fca-bb2b-8fb6933f40c7",
+      "at": "2026-10-09T02:14:18.732Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-3e79a531-ff2a-4d66-8c62-4617537a2d99",
+      "at": "2026-10-09T02:14:18.781Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-6b6ed3ab-01c3-4422-8de1-94c4abb954d1",
+      "at": "2026-10-09T02:19:18.719Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-a9ecc48d-71b9-4cdf-bd17-00e359891f8b",
+      "at": "2026-10-09T02:19:18.733Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e595deb2-cc81-4e33-bb6c-46714833bb21",
+      "at": "2026-10-09T02:24:18.716Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2d00d209-d6bd-4dc5-bf1d-6fada3114cac",
+      "at": "2026-10-09T02:24:18.729Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-ca0e9e55-e823-4f5d-be93-707866a5823d",
+      "at": "2026-10-09T02:29:18.717Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-6a317315-5c9f-4f5c-a921-a6d30ae63c6f",
+      "at": "2026-10-09T02:29:18.761Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-42f063b2-7af2-41d1-bc7a-dad5b32384a1",
+      "at": "2026-10-09T02:34:18.706Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-6f011c41-4889-4f6c-addd-bb3afc134aed",
+      "at": "2026-10-09T02:34:18.722Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-b06c5e9f-611f-4a63-881a-8d0a810c1ff0",
+      "at": "2026-10-09T02:39:18.696Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-3e93458e-e8cd-4662-86c6-1c723e9cec9a",
+      "at": "2026-10-09T02:39:18.711Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-d96746d9-ea1b-47ba-b140-7402b6eaac8a",
+      "at": "2026-10-09T02:44:18.718Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-f7345515-dfba-4fec-91ba-176a02a3ab18",
+      "at": "2026-10-09T02:44:18.757Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-5be48bd0-6367-4ac1-940a-e0822a554ad9",
+      "at": "2026-10-09T02:49:18.695Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-f7894f07-7d7f-4d2b-883a-90a957d1daf9",
+      "at": "2026-10-09T02:49:18.711Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-4f531c9c-c09c-49e6-b48e-f7a191e6d3fe",
+      "at": "2026-10-09T02:54:18.700Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-b75a9465-bfd5-4caf-add2-80ccede3c773",
+      "at": "2026-10-09T02:54:18.714Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-9cc0b395-9d50-49b0-b3eb-4638bb25f3e7",
+      "at": "2026-10-09T02:59:18.720Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-23b9f400-bf8a-4f4b-aa71-b1a3eb95c5b3",
+      "at": "2026-10-09T02:59:18.749Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-32293a0d-2e93-4e0d-ab1c-c8524a7fe807",
+      "at": "2026-10-09T03:04:18.712Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-fd0c7e06-f948-4b9b-b90b-64efa6c979be",
+      "at": "2026-10-09T03:04:18.731Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2fae6730-c02f-4e1a-b524-5426c077dd62",
+      "at": "2026-10-09T03:09:18.701Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-ca26c46d-4b13-4540-9bf5-6d3385dc59da",
+      "at": "2026-10-09T03:09:18.716Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-3269bf48-3147-4aec-82ab-74d61740979e",
+      "at": "2026-10-09T03:14:18.701Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-6be81b64-9a3a-4506-a2f2-7808346a2464",
+      "at": "2026-10-09T03:14:18.742Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-8cd07794-e42f-4f79-a62b-4643214ec412",
+      "at": "2026-10-09T03:19:18.710Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-6cc317f9-28e9-4712-b628-73baec7d400a",
+      "at": "2026-10-09T03:19:18.726Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-1c33d32b-8bc9-4f05-a4a7-1a20b95eb7f6",
+      "at": "2026-10-09T03:24:18.708Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2b4bfeb8-13e0-4829-8548-f55a94aee2f8",
+      "at": "2026-10-09T03:24:18.724Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e2e23a45-8d8a-4a83-8bca-bb153641112c",
+      "at": "2026-10-09T03:29:18.711Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-6e196739-7749-4857-b819-758e34e305eb",
+      "at": "2026-10-09T03:29:18.753Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-4f867aff-5f45-413e-8922-7b941f18b945",
+      "at": "2026-10-09T03:34:18.720Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-92670b93-ff26-40da-92c5-999ac14dbf57",
+      "at": "2026-10-09T03:34:18.737Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-995c2a87-e15d-44e8-9c43-1232997df69f",
+      "at": "2026-10-09T03:39:18.707Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c208f413-7c0a-459b-9018-d6ac74716fb3",
+      "at": "2026-10-09T03:39:18.721Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-fee88647-25ff-406a-b840-2b8cced17be9",
+      "at": "2026-10-09T03:44:18.712Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-565228d1-9d44-4d92-a1ce-0d011571d822",
+      "at": "2026-10-09T03:44:18.737Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-3a11ea62-84f7-41ed-9c3a-f41f6d2ac3a7",
+      "at": "2026-10-09T03:49:18.705Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-d3717dbe-6147-4b58-afce-40953847b9f5",
+      "at": "2026-10-09T03:49:18.723Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-de0d034a-f337-422d-9a30-288a293c5323",
+      "at": "2026-10-09T03:54:18.712Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0dc906ff-15f1-43c3-b277-e9574adc30fb",
+      "at": "2026-10-09T03:54:18.727Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c9e52e99-57ce-4de3-9aa9-ab5156cb13d7",
+      "at": "2026-10-09T03:59:18.710Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-14e7b515-9727-424c-88b5-df07789b6fdf",
+      "at": "2026-10-09T03:59:18.746Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-6cc2641e-351c-4847-b03d-7930d42181a1",
+      "at": "2026-10-09T04:04:18.697Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0b8a56ce-5efe-4bb2-affe-1c17eac5f24b",
+      "at": "2026-10-09T04:04:18.712Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0f96d145-885b-44b9-973f-1b60b11e885d",
+      "at": "2026-10-09T04:09:18.711Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-81ecdd78-73d7-411d-96c5-d32b7e56b880",
+      "at": "2026-10-09T04:09:18.727Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-5d18a243-f9f8-477d-9ff9-fff083d77a8e",
+      "at": "2026-10-09T04:14:18.703Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-6363949c-1fe0-4020-b3c0-8b85e0c77468",
+      "at": "2026-10-09T04:14:18.748Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-30a8fb28-7c4b-4c06-beaa-0c3d0d1245cc",
+      "at": "2026-10-09T04:19:18.720Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-1ec5eb6b-64fd-48d4-ae28-c3a159b4071a",
+      "at": "2026-10-09T04:19:18.734Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0a2e1cc4-59a6-4feb-a5fe-26e6eea6feae",
+      "at": "2026-10-09T04:24:18.697Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-81df081f-d9d6-4cb1-9fb2-560dc5eb3cb8",
+      "at": "2026-10-09T04:24:18.714Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-9791f8c5-d17a-4f05-82d3-a8d755e554b0",
+      "at": "2026-10-09T04:29:18.701Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e25ff775-0189-4b07-b9a4-9846ad895fb5",
+      "at": "2026-10-09T04:29:18.739Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e5f3fd5e-be3e-45ea-ac6f-f72e330b68c0",
+      "at": "2026-10-09T04:34:18.694Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-f5ef4617-00b5-4dcf-8a23-0dc932323f4d",
+      "at": "2026-10-09T04:34:18.708Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-02ca2930-a143-472f-bb06-9b7f9f4bc3a9",
+      "at": "2026-10-09T04:39:18.699Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-ff0c2567-a5dd-47e4-a2a1-c591eb396365",
+      "at": "2026-10-09T04:39:18.712Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c022def3-4622-4079-ba73-1a117858b7d0",
+      "at": "2026-10-09T04:44:18.731Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-ef06643c-c3c9-4268-a723-143fe27d4165",
+      "at": "2026-10-09T04:44:18.777Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-8a29df79-dbdf-41ab-992e-dbd6a8ac2214",
+      "at": "2026-10-09T04:49:18.701Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0008f2cf-4af1-4748-af0e-1463fbed3a00",
+      "at": "2026-10-09T04:49:18.716Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c7dce442-e47c-49e9-8fef-b46c393a2133",
+      "at": "2026-10-09T04:54:18.703Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-1d74190a-d897-4b8a-ac86-ed1106158788",
+      "at": "2026-10-09T04:54:18.720Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e69fabea-724c-494c-8ce1-dcb1ce787720",
+      "at": "2026-10-09T04:59:18.693Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-129d13d2-eeb2-4a4a-958a-90df3ee526f1",
+      "at": "2026-10-09T04:59:18.717Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2b4fb792-dadb-47d4-9b37-f427f1d59715",
+      "at": "2026-10-09T05:04:18.690Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-23ad1011-a6be-4c2e-b94a-7f50dfefa1d9",
+      "at": "2026-10-09T05:04:18.702Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-3b366fa5-6a05-4194-be6a-979441ebfeb9",
+      "at": "2026-10-09T05:09:18.723Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-8feb04ab-3b21-492e-8651-0203c183fce6",
+      "at": "2026-10-09T05:09:18.739Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-b2ffbfad-4193-425e-b827-e0c83bf491f0",
+      "at": "2026-10-09T05:14:18.680Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-5ee8f950-e5f0-4b73-a1a7-f4c362ae575e",
+      "at": "2026-10-09T05:14:18.714Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-47c620ed-7614-4b45-8b12-b9ffcb1bd488",
+      "at": "2026-10-09T05:19:18.700Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0ac811b8-c3ba-4497-aac0-0d329b72e1e9",
+      "at": "2026-10-09T05:19:18.712Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0c4dbeb3-70eb-4fff-b423-eb3d4382b364",
+      "at": "2026-10-09T05:24:18.696Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-665aefcb-7633-4856-a225-f22b0d33c896",
+      "at": "2026-10-09T05:24:18.708Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c30b85c5-9594-48e5-ab88-4c48b9c3ded5",
+      "at": "2026-10-09T05:29:18.701Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-5d6b77a5-710d-46ab-a2a5-d009ee82cd37",
+      "at": "2026-10-09T05:29:18.725Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-65dd4dcb-6f13-4e44-b175-1798cfc0f5da",
+      "at": "2026-10-09T05:34:18.716Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0d6f50d3-64e4-4afa-9a29-6d479c303b8d",
+      "at": "2026-10-09T05:34:18.730Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2a053733-2a59-48ca-889b-f0c33aef3136",
+      "at": "2026-10-09T05:39:18.707Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-16ea0472-b047-4adc-9d76-dade9e3957b0",
+      "at": "2026-10-09T05:39:18.723Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-a110fefe-ab89-4489-97bd-f47149016fe7",
+      "at": "2026-10-09T05:44:18.727Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-42104537-80d1-4318-916e-4cdd3c69247a",
+      "at": "2026-10-09T05:44:18.773Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-1f8f56e9-cc08-4ff8-a9a2-ea559d57be9d",
+      "at": "2026-10-09T05:49:18.679Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e9bbc2bd-b70f-4975-9c27-0418d8d2c643",
+      "at": "2026-10-09T05:49:18.694Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-129c9824-503b-491d-a8f3-05013af9b813",
+      "at": "2026-10-09T05:54:18.727Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-9ece51fc-33d8-413d-80a6-e29332b569c2",
+      "at": "2026-10-09T05:54:18.744Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-40e35a66-63b2-46fe-92b7-f52f70d0f3d5",
+      "at": "2026-10-09T05:59:18.703Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-774fa1ba-e640-4625-9761-893615331914",
+      "at": "2026-10-09T05:59:18.726Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-63e1ce41-5028-422b-b91d-276af6ae667c",
+      "at": "2026-10-09T06:04:18.710Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-31ee545d-4f69-4e4c-b57f-2f73b58a12d5",
+      "at": "2026-10-09T06:04:18.724Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-7882de71-c2f2-4774-8257-597c4185d0ea",
+      "at": "2026-10-09T06:09:18.712Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c5e8883d-c709-4480-ba64-a478a23c19fb",
+      "at": "2026-10-09T06:09:18.726Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-87207d21-fc54-4453-9022-825a0d71bd88",
+      "at": "2026-10-09T06:14:18.684Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-396d68b9-1378-4cb9-9df3-87e49e5b20bf",
+      "at": "2026-10-09T06:14:18.702Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0ad3297c-a858-45e8-b5f5-79750be90cb4",
+      "at": "2026-10-09T06:19:18.980Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c51e9877-6309-487a-abc1-1ab8df81eeae",
+      "at": "2026-10-09T06:19:18.993Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-83327233-adfc-443c-b7d7-b4d7b43e22b3",
+      "at": "2026-10-09T06:31:54.113Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2e0eb211-860f-4c65-b184-1750f4cf41a4",
+      "at": "2026-10-09T06:31:54.140Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2041af07-01f4-4ee8-998b-9181739ffc3a",
+      "at": "2026-10-09T06:34:18.614Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-72445856-1b86-4da1-a9fd-41476462f0c0",
+      "at": "2026-10-09T06:34:18.630Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-cefd4d19-a4f0-4f6c-8d2c-5fe355d51217",
+      "at": "2026-10-09T06:39:18.600Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-a5dca06d-1dfc-41ea-8a30-42e4257bfb52",
+      "at": "2026-10-09T06:39:18.613Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-8fa87b86-2b46-4457-8553-edfcb052a342",
+      "at": "2026-10-09T06:44:18.690Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-8cbf89b4-2df7-4ab7-afd5-0e26cd0268ff",
+      "at": "2026-10-09T06:44:18.711Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-faecf4fc-56e1-4afa-878a-9acf8216d01c",
+      "at": "2026-10-09T06:49:18.775Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-9fa0004b-c862-4d63-80f5-b451a3a9f7e8",
+      "at": "2026-10-09T06:49:18.795Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c8ecee59-24ee-49da-b8b1-7e6c28ad8271",
+      "at": "2026-10-09T06:59:56.870Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e6849a9e-0189-4263-851f-11460048c6d9",
+      "at": "2026-10-09T06:59:56.901Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-50fe489d-6472-4348-a034-d4b156ff75c3",
+      "at": "2026-10-09T07:04:52.510Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-f57194de-063e-4eec-9ca2-cf96533fa13d",
+      "at": "2026-10-09T07:04:52.521Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-dc338e0d-7fb9-454f-a655-b93d46697cb6",
+      "at": "2026-10-09T07:09:52.629Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-f0fedea7-ded1-4e2e-acc1-9b1bbe19892e",
+      "at": "2026-10-09T07:09:52.644Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-b9dae0d4-7ec0-4de8-9d23-55ea1dac1e43",
+      "at": "2026-10-09T07:13:15.298Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-fb8d02ab-119a-416a-807c-6b0b6b24f02d",
+      "at": "2026-10-09T07:13:15.309Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-ebb1e107-0838-404c-96e2-a6393827636f",
+      "at": "2026-10-09T07:18:11.008Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-b7d405cf-ddf7-493f-a94a-6b7e87a218c6",
+      "at": "2026-10-09T07:18:11.021Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0d60eea8-0af9-4c59-a054-f0142646360f",
+      "at": "2026-10-09T07:23:11.015Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-7d559999-16fe-4f12-b5ba-256b65982895",
+      "at": "2026-10-09T07:23:11.029Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-776fb75a-be01-442f-b704-68c0dae72460",
+      "at": "2026-10-09T07:28:11.121Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-8b4576a6-5bae-44fb-a98e-bb04ab41b33f",
+      "at": "2026-10-09T07:28:11.160Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-f7545c9a-c4e2-4069-b7af-3fd82245d016",
+      "at": "2026-10-09T07:30:31.615Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-09f9daac-b0d0-4a3b-8217-a02881005d96",
+      "at": "2026-10-09T07:30:31.761Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-00da37ea-9106-4297-8bf3-031a35d407b5",
+      "at": "2026-10-09T07:35:26.735Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-fa89bdcf-458d-4696-a1cf-e8d72dc413d0",
+      "at": "2026-10-09T07:35:26.752Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-06cb4b36-648d-4a0c-8623-05cda882880c",
+      "at": "2026-10-09T07:39:51.472Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-9dc2438c-ae88-49fa-9d18-54f88ac6fb41",
+      "at": "2026-10-09T07:39:51.487Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-39ed1775-0934-45d0-aab8-632e46e87d31",
+      "at": "2026-10-09T07:44:42.050Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-9d7ccbc3-1ee8-43f7-ac37-6b183deabf27",
+      "at": "2026-10-09T07:44:42.070Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c94a4a0a-c69d-4c04-b9fd-99918e54527e",
+      "at": "2026-10-09T07:49:42.034Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-87db8b10-6320-4b49-beb5-5cd96ce37a81",
+      "at": "2026-10-09T07:49:42.049Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-554853c0-a413-40a0-a94b-53327c24d666",
+      "at": "2026-10-09T07:54:44.662Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-cc7be84c-deef-45f1-9f0c-982eb551784d",
+      "at": "2026-10-09T07:54:44.832Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-9ca19db4-add0-46ec-9af3-513488bfa199",
+      "at": "2026-10-09T07:59:40.859Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-b02a473b-2c1d-4a34-9ea7-6701b01276ef",
+      "at": "2026-10-09T07:59:40.873Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-9c9285ab-393d-4dc9-9b4b-dc673832aa0b",
+      "at": "2026-10-09T08:04:36.879Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-5b9d5baf-ddc5-4be8-984d-117f97db7f18",
+      "at": "2026-10-09T08:04:36.894Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-5aeb3d87-b72c-440a-9de9-f7c5213036c7",
+      "at": "2026-10-09T08:09:37.385Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-80943443-010a-4a44-bd82-b8512d090a99",
+      "at": "2026-10-09T08:09:37.401Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-590b2623-8b34-4cfe-969c-460e1a84cde8",
+      "at": "2026-10-09T08:14:37.015Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-4ab877da-f067-4612-abec-109b0bc68c7a",
+      "at": "2026-10-09T08:14:37.051Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-4045f2ce-2d6d-475b-8ba6-bbee40661966",
+      "at": "2026-10-09T08:19:36.870Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-3e3f63a6-7086-4fb7-b0a3-d33a0e953895",
+      "at": "2026-10-09T08:19:36.882Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-4c26820b-9d73-49af-b534-849684aca43c",
+      "at": "2026-10-09T08:21:18.783Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-5b4371a0-5c03-4785-ba22-e7a1825cf6e0",
+      "at": "2026-10-09T08:21:18.800Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-fa4b7cce-d4bb-4d1c-a371-c590423e5985",
+      "at": "2026-10-09T08:26:14.896Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-1753b2ff-5b7a-4d80-a696-d6e2b23b7753",
+      "at": "2026-10-09T08:26:14.910Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-05f84fc5-0e0f-4c11-8fa3-1ab3b6b0ca60",
+      "at": "2026-10-09T08:31:15.048Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c899f101-f5cf-499d-b826-7d9720736ded",
+      "at": "2026-10-09T08:31:15.062Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-bc3e04cd-9545-42ca-8009-20471acc16e0",
+      "at": "2026-10-09T08:33:54.350Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-41099330-3ac3-4091-9f77-e81adef4c594",
+      "at": "2026-10-09T08:33:54.364Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-925c40e3-767e-47ee-a267-72edb532050e",
+      "at": "2026-10-09T08:38:50.476Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-3400e529-0b47-470d-a1b4-8b69b0d9a7bf",
+      "at": "2026-10-09T08:38:50.489Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-85c32401-3403-459a-b13e-b87470accbae",
+      "at": "2026-10-09T08:43:50.465Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-8b683e79-5fbd-4574-a6d2-c423311f3533",
+      "at": "2026-10-09T08:43:50.479Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-67b3a2b8-3def-45fb-967a-c53d87b8b13c",
+      "at": "2026-10-09T08:48:50.482Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-99b2a73b-3a7e-41db-9738-7ad1958127d3",
+      "at": "2026-10-09T08:48:50.506Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-5440f470-4765-46ef-ae5c-6c37b8de0bdf",
+      "at": "2026-10-09T08:53:50.353Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-078b0161-5f22-40e3-b0c4-88fe612e8ea9",
+      "at": "2026-10-09T08:53:50.367Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-7286c360-cbd9-472b-b6ce-6225b105517f",
+      "at": "2026-10-09T08:58:50.362Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-eddbfdab-b67b-4ccb-8cee-91442e43a6b7",
+      "at": "2026-10-09T08:58:50.375Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-8b95b505-746a-4af8-82d5-107db04f9db7",
+      "at": "2026-10-09T09:03:50.350Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-d176d55c-0b5f-45e2-949a-060b9ad9f153",
+      "at": "2026-10-09T09:03:50.368Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-9b24a159-cfca-4a20-9ebd-30564ad002a0",
+      "at": "2026-10-09T09:08:50.468Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e73d8f51-5e81-4575-98d1-647259c78de7",
+      "at": "2026-10-09T09:08:50.484Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-8136493b-c470-4354-aa85-5c8e96f86702",
+      "at": "2026-10-09T09:10:32.328Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-41156321-9c0a-402b-a609-578f1e1cac48",
+      "at": "2026-10-09T09:10:32.340Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-dd6a3220-2971-49e2-9529-96760b1d0092",
+      "at": "2026-10-09T09:14:08.057Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-06c41283-00b9-412e-b41f-ba6c7325a151",
+      "at": "2026-10-09T09:14:08.076Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-21c5b000-0906-4edd-a0eb-d09554e4dd1a",
+      "at": "2026-10-09T09:15:28.036Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-a84a6e27-def4-4dab-99be-7d838c2dd159",
+      "at": "2026-10-09T09:15:28.051Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e6244f17-a2ea-4a6c-9a2f-6cdf8500b484",
+      "at": "2026-10-09T09:19:07.964Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2cd31d02-04fd-41fa-ab8c-168372d4cdfd",
+      "at": "2026-10-09T09:19:07.976Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0f962561-fae2-47e7-89c6-6a2d896a74d4",
+      "at": "2026-10-09T09:20:28.040Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2eb3d705-56e1-41ea-8939-9f4b471118dd",
+      "at": "2026-10-09T09:20:28.053Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-ad2dee94-c604-4f99-b785-f563d5dfe2fd",
+      "at": "2026-10-09T09:23:50.377Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-6e156fbc-f2e1-4de1-8a84-b83584bdc3c6",
+      "at": "2026-10-09T09:23:50.390Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0c0aaa7d-eca7-4267-b705-ea6242c1146e",
+      "at": "2026-10-09T09:25:28.980Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-993becad-9e10-4406-aa77-a9d29dad9cb8",
+      "at": "2026-10-09T09:25:29.017Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-b02af363-202a-4937-99ea-3f633f5b78b9",
+      "at": "2026-10-09T09:28:50.461Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-70a78cdb-4d89-475a-a567-12cc45eaabb1",
+      "at": "2026-10-09T09:28:50.474Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-38569f8e-67ee-443d-b6ab-f088b55c1636",
+      "at": "2026-10-09T09:30:17.605Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-725a55d1-91c0-42f2-8406-b2f5b42012db",
+      "at": "2026-10-09T09:30:17.615Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-510703f7-82e0-4395-a174-da22614206cc",
+      "at": "2026-10-09T09:30:28.963Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-916d161c-1161-4d4e-bbf1-188fc110b421",
+      "at": "2026-10-09T09:30:28.978Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-330747ef-9020-422b-9a8f-28920da6462f",
+      "at": "2026-10-09T09:35:13.311Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-f48c8934-c7bb-42b4-932e-f14cea9fc06d",
+      "at": "2026-10-09T09:35:13.326Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-7973d486-e073-4750-8a90-3b5aa11736a4",
+      "at": "2026-10-09T09:35:28.951Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-90d744c7-7cd2-49a4-a88c-6cc8919a6f6b",
+      "at": "2026-10-09T09:35:28.966Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-92cb53ef-73e1-4ce6-8475-f63e3c89c3ef",
+      "at": "2026-10-09T09:40:13.311Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-5dae9a6f-7c00-4f3c-8c04-60c11a7cca4c",
+      "at": "2026-10-09T09:40:13.325Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-dba0ebc0-2bc5-4b5d-8fd7-01e598a8523d",
+      "at": "2026-10-09T09:42:39.884Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-8e7eabee-bf4a-4efc-abd0-9d4d3f1620d6",
+      "at": "2026-10-09T09:42:39.902Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0ea24e5c-0074-4e73-8ea5-9d8c521beccb",
+      "at": "2026-10-09T09:42:46.111Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2b5bc117-c8ad-48a1-93a6-3587ff193d8d",
+      "at": "2026-10-09T09:42:46.122Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-9ccdb4b3-5f31-43d5-bc2d-83cee00277e7",
+      "at": "2026-10-09T09:45:13.423Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-959461b2-4a22-408a-b8ca-3097ad7593df",
+      "at": "2026-10-09T09:45:13.448Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-bf8f1228-5b10-4e76-bb83-80ffe57401a1",
+      "at": "2026-10-09T09:47:42.961Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-49aad9a1-0da4-495e-ac6f-d6ac384b7273",
+      "at": "2026-10-09T09:47:42.975Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-542c3c83-0d5c-47a5-b526-6bb400399b29",
+      "at": "2026-10-09T09:50:13.858Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-f5c59163-d253-42ec-9dbb-82cf0f50b923",
+      "at": "2026-10-09T09:50:13.872Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2798783a-98ff-4a0d-9606-14612026b02c",
+      "at": "2026-10-09T09:52:43.082Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-abf1262b-ebd9-4433-8247-302253594d62",
+      "at": "2026-10-09T09:52:43.097Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-97badf1a-c67f-4d2b-af5a-087ea1c3d6e4",
+      "at": "2026-10-09T09:55:13.411Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c9cae983-f5cd-4c93-9eb5-27322c3768cd",
+      "at": "2026-10-09T09:55:13.423Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-473337e3-a960-45ee-aad5-5f131e9e2aec",
+      "at": "2026-10-09T09:57:43.077Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c1c1002c-ae94-4e18-9786-04f58f79923a",
+      "at": "2026-10-09T09:57:43.102Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-172b5a11-2b40-44aa-9c15-a40bae382831",
+      "at": "2026-10-09T09:58:35.484Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-95e04ee6-1ce9-4a07-b9e2-97184c04858d",
+      "at": "2026-10-09T09:58:35.499Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-3832e8e6-aa67-4a4e-a017-1701ac3ab3da",
+      "at": "2026-10-09T10:03:31.630Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e5878adf-4431-4f01-81be-b1c1836134f0",
+      "at": "2026-10-09T10:03:31.648Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-5caae3b7-5f63-4fea-b710-f401bcc34999",
+      "at": "2026-10-09T10:08:31.616Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-37295b15-20ee-4fb4-9dc1-14c5a111aab3",
+      "at": "2026-10-09T10:08:31.632Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-f1da7d2c-caed-474a-ad17-58cf4887ed31",
+      "at": "2026-10-09T10:13:31.640Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-a0b2ac08-68bb-4dbf-abab-6f170fd1ebcc",
+      "at": "2026-10-09T10:13:31.662Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-4dad6802-f802-425c-8fe9-89d14a8fa5b1",
+      "at": "2026-10-09T10:18:31.601Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2a600ca1-ed61-4350-8170-9629e2dc5bcc",
+      "at": "2026-10-09T10:18:31.617Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-dedd5bc3-2375-4a35-8978-80c02e2b7403",
+      "at": "2026-10-09T10:23:31.605Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-6ac8ee43-125c-450d-8045-1eace5185365",
+      "at": "2026-10-09T10:23:31.622Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-5db70312-9e9b-4be6-9bd7-2518e2ecba80",
+      "at": "2026-10-09T10:28:31.616Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-319d9803-3272-4b18-83a6-23aff6a3ff41",
+      "at": "2026-10-09T10:28:31.639Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-f0d422f9-61e0-4b1c-afe7-142ddca3926f",
+      "at": "2026-10-09T10:33:31.611Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0b9775d0-e930-4c49-b3c6-6f14f6032f4a",
+      "at": "2026-10-09T10:33:31.624Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2bd3a565-69f5-4ef3-8245-44194099dead",
+      "at": "2026-10-09T10:38:31.601Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-d870c28d-57c2-4ba7-b2bd-8b617d713208",
+      "at": "2026-10-09T10:38:31.614Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-41eb7bf6-3ed5-47e9-97f4-d3e5f392d2ad",
+      "at": "2026-10-09T10:43:31.611Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-61561710-e78c-4a84-8a1a-ab1a1b4e32f0",
+      "at": "2026-10-09T10:43:31.639Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-84caab6b-e157-4192-a90f-12cc3e154b6b",
+      "at": "2026-10-09T10:48:31.593Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-117144e5-3f0c-4bf7-9346-4449aec3e624",
+      "at": "2026-10-09T10:48:31.607Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0c6d36d5-d256-4e6b-9c65-4e7f30eb3e15",
+      "at": "2026-10-09T10:53:31.620Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-7c14fe56-49cb-47be-ac4b-f307024183df",
+      "at": "2026-10-09T10:53:31.638Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-00c0bd87-9b35-47b0-8767-db52e749fec1",
+      "at": "2026-10-09T10:58:31.612Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-0b26cc84-9a20-4c6d-b6c6-feebb450b65b",
+      "at": "2026-10-09T10:58:31.640Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-1b4ebfa2-7267-467c-8fab-338c1769cbdf",
+      "at": "2026-10-09T11:03:31.586Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-8005f161-1f78-49c0-9f0e-baf55d8da85e",
+      "at": "2026-10-09T11:03:31.599Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-3cf4f67f-3f82-4ee8-8045-6ccb932f7853",
+      "at": "2026-10-09T11:08:31.628Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-d2cce0c0-ebce-4a50-a9b8-773100a4c658",
+      "at": "2026-10-09T11:08:31.639Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-bbcd3afa-e609-4fd1-b19c-b53ae9d6296c",
+      "at": "2026-10-09T11:13:31.495Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-cff25cdf-833f-47f7-b29c-e607f337ad6a",
+      "at": "2026-10-09T11:13:31.511Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-2c614aee-e9c5-44d1-b534-e955fe1dc74c",
+      "at": "2026-10-09T11:18:31.609Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-9c93eba0-066d-4db8-9f0c-53204c53cae0",
+      "at": "2026-10-09T11:18:31.623Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-8ad9fa5f-71cc-456b-aa10-1695f5057c31",
+      "at": "2026-10-09T11:23:31.487Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-d8c8de3f-e749-4b3b-a597-bfe6a6b1b925",
+      "at": "2026-10-09T11:23:31.498Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-b80ac6b0-2847-44fb-9744-d45a77b197bd",
+      "at": "2026-10-09T11:29:07.955Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-ac6fcad5-4948-45f4-8bac-3d5ee31be0af",
+      "at": "2026-10-09T11:29:07.967Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-af2fd0b8-9fce-4c5f-8096-56e7596e7036",
+      "at": "2026-10-09T11:29:45.753Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-f77f01fe-5268-4367-b6bd-4e9df110a3d4",
+      "at": "2026-10-09T11:29:45.770Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-7551d89e-e5e2-40d3-9dc8-c15e7fd2937f",
+      "at": "2026-10-09T11:32:43.062Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-fb22d295-dfd8-4747-8cb2-416407e3c424",
+      "at": "2026-10-09T11:32:43.073Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-4e47ba4d-7ee2-4cca-b9f0-cafc054b17c9",
+      "at": "2026-10-09T11:33:31.497Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-70cf1ae9-d054-4b87-85fe-30c1f6adf51d",
+      "at": "2026-10-09T11:33:31.516Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-15d19651-dd5d-423a-935a-9b44743be915",
+      "at": "2026-10-09T11:37:43.071Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-c855415a-d70e-4b69-be92-8c7aad8c6474",
+      "at": "2026-10-09T11:37:43.087Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-d71dedcc-3b76-4289-a9e8-23be139af133",
+      "at": "2026-10-09T11:38:31.492Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-cfa3f5eb-16c3-4010-b9c6-daf7d2a94dc2",
+      "at": "2026-10-09T11:38:31.506Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-fa00db4b-fe2c-4403-83f3-9a7a6f6887b7",
+      "at": "2026-10-09T11:42:54.954Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-725dbb98-fc9c-40a8-a9b1-43df8a75757a",
+      "at": "2026-10-09T11:42:54.966Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-ea6f1fbd-8158-4774-8178-283a63c3d855",
+      "at": "2026-10-09T11:43:31.507Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-552f016d-b94a-4ca0-b50d-ccb787fe32e4",
+      "at": "2026-10-09T11:43:31.525Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-8f1a2781-c380-4164-bcc0-ec5ab3ecb541",
+      "at": "2026-10-09T11:48:31.500Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-4f9775b7-9072-4ad2-b625-44ba5e6fd256",
+      "at": "2026-10-09T11:48:31.517Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-1d682cf9-067e-4147-8640-7936d0bd2f43",
+      "at": "2026-10-09T11:53:31.590Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-03815303-97e7-4fc7-9c11-ef079905f4bc",
+      "at": "2026-10-09T11:53:31.601Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-d6f2f9d0-5053-4887-8f53-64afc5110c32",
+      "at": "2026-10-09T11:58:32.116Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-afec22c8-546d-4227-bf6c-05188d6d060e",
+      "at": "2026-10-09T11:58:32.151Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-49356f9f-3cc6-4bfc-aa28-3712997e15b5",
+      "at": "2026-10-09T12:04:08.068Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-67ce3719-0075-46f1-a3cf-917b67c03f4b",
+      "at": "2026-10-09T12:04:08.080Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-d7b9f233-2428-41ef-883a-e1745c831afd",
+      "at": "2026-10-09T12:09:08.075Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-a650fd21-07eb-4adb-b8fd-1420b5e217e2",
+      "at": "2026-10-09T12:09:08.091Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-dcba58af-c4ab-40a1-b363-9ca4192db5b9",
+      "at": "2026-10-10T09:20:46.014Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-96653f2a-426a-46b2-ad48-2f1f79f36c93",
+      "at": "2026-10-10T09:20:48.143Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-dd4a68d7-8434-487c-be78-7c8320adefa3",
+      "at": "2026-10-10T09:23:45.611Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-e1ac272a-d470-474d-b016-86338cd340ea",
+      "at": "2026-10-10T09:23:45.621Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-1aaeab36-ab15-46f7-8eaa-40eb367aac3a",
+      "at": "2026-10-10T15:51:49.396Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-3803cc18-55b1-4f38-a4a5-5e49751d286f",
+      "at": "2026-10-10T15:51:49.408Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-3b3c5d97-e266-440c-a699-c635f80d8813",
+      "at": "2026-10-11T17:34:19.341Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-53535875-7d68-4ce6-9ec6-c2f19bdedb9e",
+      "at": "2026-10-11T17:34:19.362Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-95701fb2-8c81-48a1-ac0d-572046b1edcf",
+      "at": "2026-10-11T17:39:15.297Z",
+      "mailboxId": "mbx-philipp",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    },
+    {
+      "id": "mlog-414f12a9-85a3-4e59-a106-95c0e05135e2",
+      "at": "2026-10-11T17:39:15.308Z",
+      "mailboxId": "mbx-service",
+      "action": "sync",
+      "message": "Lokaler Sync ohne Outlook-Verbindung (Beispieldaten / manuelle Mails)."
+    }
+  ]
+}

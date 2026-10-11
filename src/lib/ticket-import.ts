@@ -55,7 +55,7 @@ export function normalizePersonName(name: string): string {
     .trim();
 }
 
-/** Erzeugt Match-Keys für „Vorname Nachname“ und CSV-Format „Nachname, Vorname“. */
+/** Erzeugt Match-Keys für „Vorname Nachname“, „Nachname Vorname“ und „Nachname, Vorname“. */
 export function personNameKeys(name: string): string[] {
   const keys = new Set<string>();
   const direct = normalizePersonName(name);
@@ -72,6 +72,11 @@ export function personNameKeys(name: string): string[] {
     if (sameOrder) keys.add(sameOrder);
   }
 
+  const tokens = (direct || "").split(" ").filter(Boolean);
+  if (tokens.length >= 2) {
+    keys.add([...tokens].sort().join(" "));
+  }
+
   return [...keys];
 }
 
@@ -82,7 +87,7 @@ export function parseFlexibleDate(value: string): string | null {
   const iso = raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
   if (iso) return `${iso[1]}-${iso[2]}-${iso[3]}`;
 
-  const de = raw.match(/^(\d{1,2})\.(\d{1,2})\.(\d{2,4})/);
+  const de = raw.match(/^(\d{1,2})[./](\d{1,2})[./](\d{2,4})/);
   if (de) {
     const day = Number(de[1]);
     const month = Number(de[2]);
@@ -91,6 +96,14 @@ export function parseFlexibleDate(value: string): string | null {
     const date = new Date(year, month - 1, day);
     if (date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day) {
       return toDateInputValue(date);
+    }
+  }
+
+  if (/^\d{5}(\.\d+)?$/.test(raw)) {
+    const serial = Number(raw);
+    if (serial >= 20000 && serial <= 80000) {
+      const utc = new Date(Math.round((serial - 25569) * 86400 * 1000));
+      if (!Number.isNaN(utc.getTime())) return utc.toISOString().slice(0, 10);
     }
   }
 
@@ -170,10 +183,10 @@ function buildTechnicianLookup(technicians: Technician[]): Map<string, Technicia
   return byKey;
 }
 
-export function matchTechnicianByName(
+export function matchTechnicianByName<T extends { id: string; name: string }>(
   csvName: string,
-  lookup: Map<string, Technician>,
-): Technician | null {
+  lookup: Map<string, T>,
+): T | null {
   for (const key of personNameKeys(csvName)) {
     const hit = lookup.get(key);
     if (hit) return hit;

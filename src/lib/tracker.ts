@@ -13,6 +13,7 @@ import {
 } from "./tracker-types";
 
 export const TRACKER_STORAGE_KEY = "technikerauswertung.tracker.v4";
+export const TRACKER_PENDING_BACKUP_KEY = "technikerauswertung.tracker.pending-backup.v1";
 
 /** Früher fälschlich als eigener Partner-Eintrag angelegt; zählt zu Partner / LKS Partner. */
 const LEGACY_CHRISTIAN_ZIMMERMANN_ID = "p1";
@@ -30,6 +31,12 @@ export function normalizeTechnician(raw: Partial<Technician> & { name?: string }
     name: raw.name.trim(),
     role,
     email: typeof raw.email === "string" ? raw.email.trim() : "",
+    street: typeof raw.street === "string" ? raw.street.trim() : "",
+    plz: typeof raw.plz === "string" ? raw.plz.replace(/\D/g, "").slice(0, 5) : "",
+    city: typeof raw.city === "string" ? raw.city.trim() : "",
+    endStreet: typeof raw.endStreet === "string" ? raw.endStreet.trim() : "",
+    endPlz: typeof raw.endPlz === "string" ? raw.endPlz.replace(/\D/g, "").slice(0, 5) : "",
+    endCity: typeof raw.endCity === "string" ? raw.endCity.trim() : "",
   };
 }
 
@@ -244,6 +251,41 @@ export function saveTrackerToStorage(state: TrackerState) {
   window.localStorage.setItem(TRACKER_STORAGE_KEY, JSON.stringify(state));
 }
 
+export function savePendingTrackerBackup(state: TrackerState, source = "tracker-persist") {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem(
+    TRACKER_PENDING_BACKUP_KEY,
+    JSON.stringify({
+      exportedAt: new Date().toISOString(),
+      storageKey: TRACKER_STORAGE_KEY,
+      source,
+      tracker: state,
+    }),
+  );
+}
+
+export function loadPendingTrackerBackup(): { tracker: TrackerState; source: string } | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = window.localStorage.getItem(TRACKER_PENDING_BACKUP_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { tracker?: unknown; source?: unknown };
+    const tracker = parseTrackerState(parsed.tracker);
+    if (!tracker) return null;
+    return {
+      tracker,
+      source: typeof parsed.source === "string" ? parsed.source : "tracker-persist",
+    };
+  } catch {
+    return null;
+  }
+}
+
+export function clearPendingTrackerBackup() {
+  if (typeof window === "undefined") return;
+  window.localStorage.removeItem(TRACKER_PENDING_BACKUP_KEY);
+}
+
 export function hasTrackerInStorage(): boolean {
   if (typeof window === "undefined") return false;
   return Boolean(
@@ -380,9 +422,9 @@ export function recoverTrackerFromSnapshot(
 }
 
 /** Auswertung startet ab diesem Datum (kein früherer Monat wählbar). */
-export const EVALUATION_START = "2026-07-01";
+export const EVALUATION_START = "2026-01-01";
 export const EVALUATION_START_YEAR = 2026;
-export const EVALUATION_START_MONTH_INDEX = 6;
+export const EVALUATION_START_MONTH_INDEX = 0;
 
 export function clampToEvaluationStart(date: string): string {
   return date < EVALUATION_START ? EVALUATION_START : date;

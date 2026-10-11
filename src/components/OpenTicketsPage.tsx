@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { parseCsvFile } from "@/lib/csv";
 import {
   availableYears,
+  EVALUATION_START,
   formatDisplayDate,
   isMonthInEvaluationRange,
 } from "@/lib/tracker";
@@ -45,8 +46,13 @@ export function OpenTicketsPage() {
   const years = availableYears(new Date().getFullYear());
 
   async function handleImportFiles(files: FileList | null) {
-    if (!canEdit) return;
     if (!files?.length) return;
+    if (!canEdit) {
+      setImportError(
+        "Import gesperrt: Bitte mit einem Benutzer anmelden, der Bearbeitungsrechte hat, oder in der Sidebar mit Passwort freischalten.",
+      );
+      return;
+    }
     const file = files[0];
     setImportBusy(true);
     setImportError(null);
@@ -55,6 +61,11 @@ export function OpenTicketsPage() {
     try {
       const dataset = await parseCsvFile(file);
       const analysis = analyzeOpenTicketImport(dataset);
+      if (analysis.matchedRows + analysis.partnerRows === 0) {
+        throw new Error(
+          `Keine Ticketzeilen erkannt. Gefundene Techniker-Spalte: „${analysis.techColumn}“. Prüfe, ob die CSV eine Spalte Bearbeiter/Techniker hat.`,
+        );
+      }
       setPendingImport({ fileName: dataset.fileName, analysis });
     } catch (err) {
       setPendingImport(null);
@@ -135,8 +146,21 @@ export function OpenTicketsPage() {
           <button
             type="button"
             className="btn btn-import"
-            disabled={importBusy || !canEdit}
-            onClick={() => importRef.current?.click()}
+            disabled={importBusy}
+            title={
+              canEdit
+                ? "CSV mit offenen Tickets importieren (Buchung auf heutiges Datum)"
+                : "Zum Import Bearbeitungsrecht oder Passwort-Freischaltung nötig"
+            }
+            onClick={() => {
+              if (!canEdit) {
+                setImportError(
+                  "Import gesperrt: Bitte mit einem Benutzer anmelden, der Bearbeitungsrechte hat, oder in der Sidebar mit Passwort freischalten.",
+                );
+                return;
+              }
+              importRef.current?.click();
+            }}
           >
             <svg viewBox="0 0 24 24" aria-hidden className="btn-icon">
               <path
@@ -150,7 +174,6 @@ export function OpenTicketsPage() {
             ref={importRef}
             className="sr-only-date"
             type="file"
-            disabled={!canEdit}
             accept=".csv,text/csv,text/plain"
             onChange={(event) => handleImportFiles(event.target.files)}
           />
@@ -172,7 +195,7 @@ export function OpenTicketsPage() {
             ref={dateRef}
             className="sr-only-date"
             type="date"
-            min="2026-07-01"
+            min={EVALUATION_START}
             value={selectedDate}
             onChange={(event) => setSelectedDate(event.target.value)}
             aria-label="Datum wählen"

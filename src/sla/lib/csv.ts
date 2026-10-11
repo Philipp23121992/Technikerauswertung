@@ -37,7 +37,26 @@ export function parseCsvFile(file: File): Promise<ParsedCsv> {
 }
 
 const FIELD_ALIASES: Record<keyof ColumnMapping, string[]> = {
-  ticketId: ['ticket', 'ticketid', 'ticket_id', 'id', 'nummer', 'ticketnummer', 'case', 'incident'],
+  ticketId: [
+    'ticket',
+    'ticketid',
+    'ticket_id',
+    'ticketnr',
+    'ticketno',
+    'ticketnummer',
+    'ticketnumber',
+    'ticketnnummer',
+    'id',
+    'nummer',
+    'fallnummer',
+    'vorgang',
+    'vorgangsnr',
+    'vorgangsnummer',
+    'referenz',
+    'referenznummer',
+    'case',
+    'incident',
+  ],
   customer: [
     'kunde',
     'customer',
@@ -148,7 +167,42 @@ function normalizeHeader(header: string): string {
     .replace(/[^a-z0-9]+/g, '')
 }
 
-export function guessColumnMapping(headers: string[]): ColumnMapping {
+const TICKET_NUMBER_VALUE = /^(?:ticket[-_ ]?)?\d{4}-\d{5,}$/i
+
+export function extractTicketNumber(value: string | null | undefined): string {
+  const raw = String(value ?? '').trim()
+  if (!raw || /^ROW-\d+$/i.test(raw)) return ''
+  const match = raw.match(/(?:ticket[-_ ]?)?(\d{4}-\d{5,})/i)
+  return match?.[1] ?? raw
+}
+
+function guessTicketIdByValues(
+  headers: string[],
+  rows: RawTicketRow[],
+): string {
+  const sample = rows.slice(0, 25)
+  if (!sample.length) return ''
+
+  let bestHeader = ''
+  let bestHits = 0
+  for (const header of headers) {
+    const hits = sample.filter((row) =>
+      TICKET_NUMBER_VALUE.test(String(row[header] ?? '').trim()),
+    ).length
+    if (hits > bestHits) {
+      bestHits = hits
+      bestHeader = header
+    }
+  }
+
+  const threshold = Math.max(2, Math.ceil(sample.length * 0.4))
+  return bestHits >= threshold ? bestHeader : ''
+}
+
+export function guessColumnMapping(
+  headers: string[],
+  rows: RawTicketRow[] = [],
+): ColumnMapping {
   const normalized = headers.map((header) => ({
     original: header,
     key: normalizeHeader(header),
@@ -156,12 +210,23 @@ export function guessColumnMapping(headers: string[]): ColumnMapping {
 
   const pick = (field: keyof ColumnMapping): string => {
     const aliases = new Set(FIELD_ALIASES[field].map(normalizeHeader))
-    const found = normalized.find((item) => aliases.has(item.key))
-    return found?.original ?? ''
+    const exact = normalized.find((item) => aliases.has(item.key))
+    if (exact) return exact.original
+
+    if (field === 'ticketId') {
+      const fuzzy = normalized.find((item) =>
+        /ticket(nr|no|nummer|number|id)|vorgang(s)?(nr|nummer)|referenz(nr|nummer)?/.test(
+          item.key,
+        ),
+      )
+      if (fuzzy) return fuzzy.original
+    }
+
+    return ''
   }
 
   return {
-    ticketId: pick('ticketId'),
+    ticketId: pick('ticketId') || guessTicketIdByValues(headers, rows),
     customer: pick('customer'),
     technician: pick('technician'),
     createdAt: pick('createdAt'),

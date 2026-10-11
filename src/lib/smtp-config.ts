@@ -51,7 +51,7 @@ export async function readSmtpConfig(): Promise<SmtpConfig> {
       port: Number(parsed.port) || 587,
       secure: Boolean(parsed.secure) || Number(parsed.port) === 465,
       user: typeof parsed.user === "string" ? parsed.user.trim() : "",
-      pass: typeof parsed.pass === "string" ? parsed.pass : "",
+      pass: typeof parsed.pass === "string" ? parsed.pass.trim() : "",
       from: typeof parsed.from === "string" ? parsed.from.trim() : "",
     };
     if (fileConfig.host && fileConfig.user && fileConfig.pass) {
@@ -79,7 +79,7 @@ export async function writeSmtpConfig(
     pass:
       input.keepPassword || input.pass === undefined || input.pass === ""
         ? current.pass
-        : input.pass,
+        : input.pass.trim(),
     from: (input.from ?? current.from).trim(),
   };
   if (!next.from) next.from = next.user;

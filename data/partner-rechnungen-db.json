@@ -1,0 +1,473 @@
+{
+  "version": 1,
+  "invoices": [
+    {
+      "id": "prtinv-70f2f081-00db-41d4-8b95-59c41b086d39",
+      "invoiceNumber": "REC-2026-108797",
+      "creditNoteNumber": "",
+      "invoiceDate": "2026-09-16",
+      "dueDate": null,
+      "amount": "100,08",
+      "currency": "EUR",
+      "vendor": "Partner",
+      "customer": "nnummer",
+      "ticketNumber": "60709) vom 07.09.2026.",
+      "assignee": "Kunz und Ritter",
+      "billingMonth": "2026-09",
+      "status": "zahlung-faellig",
+      "updates": [],
+      "attachments": [
+        {
+          "id": "prtfile-917ff878-1e84-4a1d-b80b-352a36837c29",
+          "kind": "rechnung",
+          "name": "REC-2026-108797.PDF",
+          "storedName": "prtfile-917ff878-1e84-4a1d-b80b-352a36837c29.pdf",
+          "mimeType": "application/pdf",
+          "size": 74775,
+          "uploadedAt": "2026-09-17T14:17:48.495Z",
+          "uploadedBy": "philipp.heyser@acp.de"
+        }
+      ],
+      "createdAt": "2026-09-17T14:17:48.492Z",
+      "updatedAt": "2026-09-18T06:42:37.379Z"
+    },
+    {
+      "id": "prtinv-08d15f04-34cb-41d6-a825-779495034815",
+      "invoiceNumber": "REC-2026-108796",
+      "creditNoteNumber": "",
+      "invoiceDate": "2026-09-16",
+      "dueDate": null,
+      "amount": "135,78",
+      "currency": "EUR",
+      "vendor": "Partner",
+      "customer": "nnummer",
+      "ticketNumber": "60666) vom 03.09.2026.",
+      "assignee": "Kunz und Ritter",
+      "billingMonth": "2026-09",
+      "status": "offen",
+      "updates": [],
+      "attachments": [
+        {
+          "id": "prtfile-df3fc739-62bc-4b47-a247-3e5269e8bd5a",
+          "kind": "rechnung",
+          "name": "REC-2026-108796.PDF",
+          "storedName": "prtfile-df3fc739-62bc-4b47-a247-3e5269e8bd5a.pdf",
+          "mimeType": "application/pdf",
+          "size": 75499,
+          "uploadedAt": "2026-09-17T14:16:30.161Z",
+          "uploadedBy": "philipp.heyser@acp.de"
+        }
+      ],
+      "createdAt": "2026-09-17T14:16:30.159Z",
+      "updatedAt": "2026-09-17T14:17:15.233Z"
+    },
+    {
+      "id": "prtinv-474360b1-44b3-47c7-803d-7ee8e0aa65c1",
+      "invoiceNumber": "202689827",
+      "creditNoteNumber": "",
+      "invoiceDate": "2026-09-15",
+      "dueDate": null,
+      "amount": "95,68",
+      "currency": "EUR",
+      "vendor": "Partner",
+      "customer": "n-Nr. Datum",
+      "ticketNumber": "101775",
+      "assignee": "Jahn GmbH",
+      "billingMonth": "2026-09",
+      "status": "zahlung-faellig",
+      "updates": [],
+      "attachments": [
+        {
+          "id": "prtfile-c92704a0-f8ac-4fe2-af86-1bd6e46dfaeb",
+          "kind": "rechnung",
+          "name": "Rechnung 202689827 Kundendienstbericht Nr. 267831 #101775 .pdf",
+          "storedName": "prtfile-c92704a0-f8ac-4fe2-af86-1bd6e46dfaeb.pdf",
+          "mimeType": "application/pdf",
+          "size": 180796,
+          "uploadedAt": "2026-09-17T14:14:52.839Z",
+          "uploadedBy": "philipp.heyser@acp.de"
+        }
+      ],
+      "createdAt": "2026-09-17T14:08:56.083Z",
+      "updatedAt": "2026-09-17T14:15:50.473Z"
+    },
+    {
+      "id": "prtinv-516a09fd-7562-4f0d-8e26-0a23b17228b5",
+      "invoiceNumber": "2026090017",
+      "creditNoteNumber": "",
+      "invoiceDate": "2026-09-15",
+      "dueDate": null,
+      "amount": "321,30",
+      "currency": "EUR",
+      "vendor": "Partner",
+      "customer": "n-Nr.: 22460",
+      "ticketNumber": "",
+      "assignee": "Michael Zeitlmeir",
+      "billingMonth": "2026-09",
+      "status": "zahlung-faellig",
+      "updates": [],
+      "attachments": [
+        {
+          "id": "prtfile-e1813926-2cdf-4f91-bbfd-e456960232c6",
+          "kind": "rechnung",
+          "name": "Rechnung Nr. 2026090017.pdf",
+          "storedName": "prtfile-e1813926-2cdf-4f91-bbfd-e456960232c6.pdf",
+          "mimeType": "application/pdf",
+          "size": 260014,
+          "uploadedAt": "2026-09-15T09:17:44.935Z",
+          "uploadedBy": "philipp.heyser@acp.de"
+        }
+      ],
+      "createdAt": "2026-09-15T09:17:44.932Z",
+      "updatedAt": "2026-09-15T09:55:42.396Z"
+    },
+    {
+      "id": "prtinv-8d5a83f5-a375-4a3c-8d1b-95e494aa5ec3",
+      "invoiceNumber": "2026090015",
+      "creditNoteNumber": "",
+      "invoiceDate": "2026-09-15",
+      "dueDate": null,
+      "amount": "3.332,00",
+      "currency": "EUR",
+      "vendor": "Partner",
+      "customer": "n-Nr.: 22460",
+      "ticketNumber": "",
+      "assignee": "Michael Zeitlmeir",
+      "billingMonth": "2026-09",
+      "status": "zahlung-faellig",
+      "updates": [
+        {
+          "id": "prtupd-0a66c006-5861-47bd-8eb0-7f4575412bdb",
+          "text": "Vertretung Kaufbeuren",
+          "createdAt": "2026-09-15T08:55:10.080Z"
+        }
+      ],
+      "attachments": [
+        {
+          "id": "prtfile-06e9c9a7-2711-4b99-bdaa-85ca244d0afe",
+          "kind": "rechnung",
+          "name": "Rechnung Nr. 2026090015.pdf",
+          "storedName": "prtfile-06e9c9a7-2711-4b99-bdaa-85ca244d0afe.pdf",
+          "mimeType": "application/pdf",
+          "size": 263721,
+          "uploadedAt": "2026-09-15T08:54:14.471Z",
+          "uploadedBy": "philipp.heyser@acp.de"
+        }
+      ],
+      "createdAt": "2026-09-15T08:54:14.468Z",
+      "updatedAt": "2026-09-15T09:55:49.913Z"
+    },
+    {
+      "id": "prtinv-cf0151e6-5473-4477-b038-5f1846c1092d",
+      "invoiceNumber": "2026090014",
+      "creditNoteNumber": "",
+      "invoiceDate": "2026-09-15",
+      "dueDate": null,
+      "amount": "406,98",
+      "currency": "EUR",
+      "vendor": "Partner",
+      "customer": "n-Nr.: 22460",
+      "ticketNumber": "",
+      "assignee": "Michael Zeitlmeir",
+      "billingMonth": "2026-09",
+      "status": "zahlung-faellig",
+      "updates": [],
+      "attachments": [
+        {
+          "id": "prtfile-f6be862b-e1f8-4c0f-b5c4-3fe4dcb2daab",
+          "kind": "rechnung",
+          "name": "Rechnung Nr. 2026090014.pdf",
+          "storedName": "prtfile-f6be862b-e1f8-4c0f-b5c4-3fe4dcb2daab.pdf",
+          "mimeType": "application/pdf",
+          "size": 263440,
+          "uploadedAt": "2026-09-15T08:52:44.931Z",
+          "uploadedBy": "philipp.heyser@acp.de"
+        }
+      ],
+      "createdAt": "2026-09-15T08:52:44.926Z",
+      "updatedAt": "2026-09-15T08:55:31.104Z"
+    },
+    {
+      "id": "prtinv-6df0c8fe-3f43-4a8d-a133-5f3706ceb923",
+      "invoiceNumber": "60965",
+      "creditNoteNumber": "",
+      "invoiceDate": "2026-09-08",
+      "dueDate": "2026-09-22",
+      "amount": "180,88",
+      "currency": "EUR",
+      "vendor": "Partner",
+      "customer": "n Nr.: 5610",
+      "ticketNumber": "267357",
+      "assignee": "Roj",
+      "billingMonth": "2026-09",
+      "status": "zahlung-faellig",
+      "updates": [],
+      "attachments": [
+        {
+          "id": "prtfile-f8f62647-ce14-4018-8237-0592a186f06a",
+          "kind": "rechnung",
+          "name": "Rg. 60965 ACP.pdf",
+          "storedName": "prtfile-f8f62647-ce14-4018-8237-0592a186f06a.pdf",
+          "mimeType": "application/pdf",
+          "size": 80435,
+          "uploadedAt": "2026-09-09T11:02:27.868Z",
+          "uploadedBy": "philipp.heyser@acp.de"
+        }
+      ],
+      "createdAt": "2026-09-09T11:02:27.864Z",
+      "updatedAt": "2026-09-15T09:22:10.438Z"
+    },
+    {
+      "id": "prtinv-9f0ad634-d44c-4a38-bb16-46676e94e93a",
+      "invoiceNumber": "2026040016",
+      "creditNoteNumber": "",
+      "invoiceDate": "2026-04-13",
+      "dueDate": null,
+      "amount": "499,80",
+      "currency": "EUR",
+      "vendor": "Partner",
+      "customer": "n-Nr.: 22460",
+      "ticketNumber": "",
+      "assignee": "Michael Zeitlmeir",
+      "billingMonth": "2026-04",
+      "status": "offen",
+      "updates": [],
+      "attachments": [
+        {
+          "id": "prtfile-d38ad35d-f971-4949-af62-1d0c7cbfec45",
+          "kind": "rechnung",
+          "name": "Rechnung Nr. 2026040016 ACP.pdf",
+          "storedName": "prtfile-d38ad35d-f971-4949-af62-1d0c7cbfec45.pdf",
+          "mimeType": "application/pdf",
+          "size": 268074,
+          "uploadedAt": "2026-09-03T09:37:31.341Z",
+          "uploadedBy": "philipp.heyser@acp.de"
+        }
+      ],
+      "createdAt": "2026-09-03T09:37:31.337Z",
+      "updatedAt": "2026-09-03T09:37:55.771Z"
+    },
+    {
+      "id": "prtinv-b0e57bf0-0de8-4c47-abd8-7dda4e58e1cd",
+      "invoiceNumber": "2026040012",
+      "creditNoteNumber": "",
+      "invoiceDate": "2026-04-08",
+      "dueDate": null,
+      "amount": "481,95",
+      "currency": "EUR",
+      "vendor": "Partner",
+      "customer": "n-Nr.: 22460",
+      "ticketNumber": "",
+      "assignee": "Michael Zeitlmeir",
+      "billingMonth": "2026-04",
+      "status": "offen",
+      "updates": [],
+      "attachments": [
+        {
+          "id": "prtfile-81e965d4-a2be-47ff-88b7-b782a496ca74",
+          "kind": "rechnung",
+          "name": "Rechnung Nr. 2026040012 ACP.pdf",
+          "storedName": "prtfile-81e965d4-a2be-47ff-88b7-b782a496ca74.pdf",
+          "mimeType": "application/pdf",
+          "size": 267711,
+          "uploadedAt": "2026-09-03T09:37:00.711Z",
+          "uploadedBy": "philipp.heyser@acp.de"
+        }
+      ],
+      "createdAt": "2026-09-03T09:37:00.706Z",
+      "updatedAt": "2026-09-03T09:37:22.575Z"
+    },
+    {
+      "id": "prtinv-8f2bde85-85c5-4dad-a582-dc9ea63f8e2e",
+      "invoiceNumber": "2026070027",
+      "creditNoteNumber": "",
+      "invoiceDate": "2026-07-13",
+      "dueDate": null,
+      "amount": "410,55",
+      "currency": "EUR",
+      "vendor": "Partner",
+      "customer": "n-Nr.: 22460",
+      "ticketNumber": "",
+      "assignee": "Michael Zeitlmeir",
+      "billingMonth": "2026-07",
+      "status": "offen",
+      "updates": [
+        {
+          "id": "prtupd-3072ed15-b19b-4662-841e-e83aa1ff3a1e",
+          "text": "Rechnung noch offen",
+          "createdAt": "2026-09-03T09:36:30.139Z"
+        }
+      ],
+      "attachments": [
+        {
+          "id": "prtfile-8d5c7872-ee69-4ce6-8a92-e8685624376c",
+          "kind": "rechnung",
+          "name": "Rechnung Nr. 2026070027.pdf",
+          "storedName": "prtfile-8d5c7872-ee69-4ce6-8a92-e8685624376c.pdf",
+          "mimeType": "application/pdf",
+          "size": 266991,
+          "uploadedAt": "2026-09-03T09:36:02.980Z",
+          "uploadedBy": "philipp.heyser@acp.de"
+        }
+      ],
+      "createdAt": "2026-09-03T09:36:02.973Z",
+      "updatedAt": "2026-09-03T09:36:47.698Z"
+    },
+    {
+      "id": "prtinv-c93c5556-0221-4ae9-9a08-d8345355bca6",
+      "invoiceNumber": "20261333",
+      "creditNoteNumber": "",
+      "invoiceDate": "2026-09-02",
+      "dueDate": null,
+      "amount": "585",
+      "currency": "EUR",
+      "vendor": "Partner",
+      "customer": "n-Nr.:",
+      "ticketNumber": "100417",
+      "assignee": "ERZ AG",
+      "billingMonth": "2026-09",
+      "status": "offen",
+      "updates": [
+        {
+          "id": "prtupd-16bd23dc-446a-49cc-899a-3dfe3bddbd91",
+          "text": "Abrechnung über KV TVDAU1287413",
+          "createdAt": "2026-09-03T06:30:31.652Z"
+        }
+      ],
+      "attachments": [
+        {
+          "id": "prtfile-308b9915-d676-469c-95d3-a1e2a62212a3",
+          "kind": "rechnung",
+          "name": "ACPPrint&MobilityGmbH_Rechnung_20261333.pdf",
+          "storedName": "prtfile-308b9915-d676-469c-95d3-a1e2a62212a3.pdf",
+          "mimeType": "application/pdf",
+          "size": 102458,
+          "uploadedAt": "2026-09-03T06:28:49.910Z",
+          "uploadedBy": "philipp.heyser@acp.de"
+        }
+      ],
+      "createdAt": "2026-09-03T06:28:49.905Z",
+      "updatedAt": "2026-09-03T06:30:33.766Z"
+    },
+    {
+      "id": "prtinv-90de048d-2162-45f8-a9a6-4188535c65d8",
+      "invoiceNumber": "REC-2026-108621",
+      "creditNoteNumber": "",
+      "invoiceDate": "2026-09-01",
+      "dueDate": null,
+      "amount": "95,20",
+      "currency": "EUR",
+      "vendor": "Partner",
+      "customer": "nnummer",
+      "ticketNumber": "60332) vom 17.08.2026.",
+      "assignee": "Kunz und Ritter",
+      "billingMonth": "2026-09",
+      "status": "zahlung-faellig",
+      "updates": [],
+      "attachments": [
+        {
+          "id": "prtfile-80310cb8-8c30-46fc-99ed-1990059a9dde",
+          "kind": "rechnung",
+          "name": "REC-2026-108621.PDF",
+          "storedName": "prtfile-80310cb8-8c30-46fc-99ed-1990059a9dde.pdf",
+          "mimeType": "application/pdf",
+          "size": 75461,
+          "uploadedAt": "2026-09-02T07:41:30.341Z",
+          "uploadedBy": "philipp.heyser@acp.de"
+        }
+      ],
+      "createdAt": "2026-09-02T07:41:30.335Z",
+      "updatedAt": "2026-09-02T07:49:13.452Z"
+    },
+    {
+      "id": "prtinv-c563bb4d-2a21-429e-9dea-a7cbfd684551",
+      "invoiceNumber": "2620382",
+      "creditNoteNumber": "",
+      "invoiceDate": "2026-08-19",
+      "dueDate": null,
+      "amount": "147,56",
+      "currency": "EUR",
+      "vendor": "Partner SB Büro",
+      "customer": "n Nr. Datum\tNummer Seite",
+      "ticketNumber": "267356 / 100717",
+      "assignee": "SB Büro",
+      "billingMonth": "2026-08",
+      "status": "zahlung-faellig",
+      "updates": [],
+      "attachments": [
+        {
+          "id": "prtfile-2f994ded-4f10-480f-b9db-5666dea6bbfd",
+          "kind": "rechnung",
+          "name": "Rechnung_260523.pdf",
+          "storedName": "prtfile-2f994ded-4f10-480f-b9db-5666dea6bbfd.pdf",
+          "mimeType": "application/pdf",
+          "size": 227989,
+          "uploadedAt": "2026-08-27T11:00:01.603Z",
+          "uploadedBy": "philipp.heyser@acp.de"
+        }
+      ],
+      "createdAt": "2026-08-27T11:00:01.598Z",
+      "updatedAt": "2026-08-27T11:02:09.221Z"
+    },
+    {
+      "id": "prtinv-a03a4a0a-add9-4b86-b6ac-d8b13ed9c2e0",
+      "invoiceNumber": "60897",
+      "creditNoteNumber": "",
+      "invoiceDate": "2026-08-17",
+      "dueDate": "2026-08-31",
+      "amount": "180,88",
+      "currency": "EUR",
+      "vendor": "Partner Roj",
+      "customer": "n Nr.: 5610",
+      "ticketNumber": "267357 / 098395",
+      "assignee": "Roj",
+      "billingMonth": "2026-08",
+      "status": "zahlung-faellig",
+      "updates": [],
+      "attachments": [
+        {
+          "id": "prtfile-2ad408ff-553a-488c-a1e5-cfe8b3c66e75",
+          "kind": "rechnung",
+          "name": "Rg. 60897 ACP.pdf",
+          "storedName": "prtfile-2ad408ff-553a-488c-a1e5-cfe8b3c66e75.pdf",
+          "mimeType": "application/pdf",
+          "size": 80295,
+          "uploadedAt": "2026-08-27T10:56:53.978Z",
+          "uploadedBy": "philipp.heyser@acp.de"
+        }
+      ],
+      "createdAt": "2026-08-27T10:56:53.973Z",
+      "updatedAt": "2026-08-27T11:02:17.825Z"
+    },
+    {
+      "id": "prtinv-82e20721-433b-4a26-aa99-06da43d6d2ec",
+      "invoiceNumber": "60896",
+      "creditNoteNumber": "",
+      "invoiceDate": "2026-08-17",
+      "dueDate": "2026-08-31",
+      "amount": "166,60",
+      "currency": "EUR",
+      "vendor": "Partner Roj",
+      "customer": "n Nr.: 5610",
+      "ticketNumber": "267286 / 100596",
+      "assignee": "Roj",
+      "billingMonth": "2026-08",
+      "status": "zahlung-faellig",
+      "updates": [],
+      "attachments": [
+        {
+          "id": "prtfile-3436a81b-a869-4296-b4db-784e2e45f474",
+          "kind": "rechnung",
+          "name": "Rg. 60896 ACP.pdf",
+          "storedName": "prtfile-3436a81b-a869-4296-b4db-784e2e45f474.pdf",
+          "mimeType": "application/pdf",
+          "size": 79804,
+          "uploadedAt": "2026-08-27T10:54:37.431Z",
+          "uploadedBy": "philipp.heyser@acp.de"
+        }
+      ],
+      "createdAt": "2026-08-27T10:54:37.427Z",
+      "updatedAt": "2026-08-27T11:02:25.937Z"
+    }
+  ]
+}

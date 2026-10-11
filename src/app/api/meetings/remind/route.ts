@@ -44,14 +44,14 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         error:
-          "SMTP ist nicht konfiguriert. Bitte unter Meetings → E-Mail / SMTP einrichten.",
+          "SMTP ist nicht konfiguriert. Bitte unter Einstellung → E-Mail / SMTP einrichten.",
       },
       { status: 503 },
     );
   }
 
   try {
-    await sendAgendaReminderMail({
+    const sentMail = await sendAgendaReminderMail({
       to,
       assigneeName,
       agendaText,
@@ -59,6 +59,12 @@ export async function POST(req: Request) {
       protocolTitle,
       meetingKindLabel,
     });
+    if (!sentMail) {
+      return NextResponse.json(
+        { error: "Die Vorlage „Meetings – Fälligkeit“ ist deaktiviert." },
+        { status: 400 },
+      );
+    }
     return NextResponse.json({ ok: true });
   } catch (error) {
     return NextResponse.json(

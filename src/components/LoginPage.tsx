@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, Suspense, useEffect, useState } from "react";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/components/AuthProvider";
 
@@ -19,7 +18,7 @@ function LoginForm() {
     nextPath && nextPath.startsWith("/") && !nextPath.startsWith("//")
       ? nextPath
       : homeHref === "/login"
-        ? "/finder"
+        ? "/"
         : homeHref;
 
   useEffect(() => {
@@ -55,8 +54,8 @@ function LoginForm() {
           <p className="login-kicker">APM Servicetools</p>
           <h1>Anmelden</h1>
           <p className="login-text">
-            Techniker Finder ist ohne Login nutzbar. Für alle anderen Apps brauchst du
-            ein Benutzerkonto.
+            Bitte mit Benutzerkonto anmelden. Die Apps sind über Freigaben
+            gesteuert.
           </p>
         </div>
 
@@ -86,10 +85,6 @@ function LoginForm() {
         <button type="submit" className="btn btn-primary" disabled={busy}>
           {busy ? "Anmelden…" : "Anmelden"}
         </button>
-
-        <Link href="/finder" className="login-public-link">
-          Ohne Anmeldung zum Techniker Finder →
-        </Link>
       </form>
     </div>
   );

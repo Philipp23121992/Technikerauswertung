@@ -10,6 +10,14 @@ export type Technician = {
   role: TechnicianRole;
   /** Für optionale Zusatzinfos; Auswertung nutzt die E-Mail nicht. */
   email?: string;
+  /** Startpunkt / Standortadresse für Disposition. */
+  street?: string;
+  plz?: string;
+  city?: string;
+  /** Endpunkt der Tour; leer = wie Standort. */
+  endStreet?: string;
+  endPlz?: string;
+  endCity?: string;
 };
 
 export type DayStatus =
@@ -52,6 +60,11 @@ export const ROLE_OPTIONS: { id: TechnicianRole; label: string }[] = [
   { id: "partner", label: "Partner" },
   { id: "ausser_wertung", label: "Außer Wertung" },
 ];
+
+/** Fieldservice und Onsite erscheinen in der Disposition; Partner nicht. */
+export function isBoardTechnician(tech: Pick<Technician, "role">): boolean {
+  return tech.role === "fieldservice" || tech.role === "onsite";
+}
 
 export const STATUS_OPTIONS: {
   id: DayStatus;

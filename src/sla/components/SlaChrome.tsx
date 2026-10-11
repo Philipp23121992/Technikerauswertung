@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import {
   CloudOff,
   CloudUpload,
@@ -11,15 +9,6 @@ import {
 import { EditLockBanner } from "@/components/EditAccessControls";
 import { getApiBaseUrl } from "@/sla/lib/api";
 import { useAppStore } from "@/sla/store/useAppStore";
-
-const LINKS = [
-  { href: "/sla/kunden", label: "Kunden & SLA" },
-  { href: "/sla", label: "Auswertung", exact: true },
-  { href: "/sla/bearbeitungszeit", label: "Bearbeitungszeit" },
-  { href: "/sla/techniker", label: "Techniker" },
-  { href: "/sla/import", label: "CSV Import" },
-  { href: "/sla/zuordnung", label: "Zuordnung" },
-] as const;
 
 function SyncBadge() {
   const syncStatus = useAppStore((state) => state.syncStatus);
@@ -58,36 +47,17 @@ function SyncBadge() {
         }`
       }
     >
-      <Icon size={14} className={syncStatus === "connecting" ? "spin" : undefined} />
+      <Icon size={18} className={syncStatus === "connecting" ? "spin" : undefined} />
       <span>{label}</span>
     </div>
   );
 }
 
 export function SlaChrome({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
-
   return (
     <div className="sla-module">
       <header className="finder-subnav">
         <strong>SLA Auswertung</strong>
-        <nav aria-label="SLA-Navigation">
-          {LINKS.map((item) => {
-            const exact = "exact" in item && item.exact;
-            const active = exact
-              ? pathname === item.href
-              : pathname === item.href || pathname.startsWith(`${item.href}/`);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={active ? "is-active" : undefined}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
         <SyncBadge />
       </header>
       <EditLockBanner />

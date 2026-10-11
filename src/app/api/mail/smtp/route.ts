@@ -1,16 +1,16 @@
 import { NextResponse } from "next/server";
-import { denyIfResponse, requireAppAccess, requireAppWrite } from "@/lib/auth/guards";
+import { denyIfResponse, requireAdmin } from "@/lib/auth/guards";
 import {
   readSmtpConfig,
   toPublicSmtpConfig,
   writeSmtpConfig,
 } from "@/lib/smtp-config";
-import { sendTestMail } from "@/lib/mail";
+import { formatSmtpError, sendTestMail } from "@/lib/mail";
 
 export const runtime = "nodejs";
 
 export async function GET(req: Request) {
-  const access = await requireAppAccess(req, "meetings");
+  const access = await requireAdmin(req);
   if (denyIfResponse(access)) return access;
 
   const config = await readSmtpConfig();
@@ -18,7 +18,7 @@ export async function GET(req: Request) {
 }
 
 export async function PUT(req: Request) {
-  const access = await requireAppWrite(req, "meetings");
+  const access = await requireAdmin(req);
   if (denyIfResponse(access)) return access;
 
   const body = (await req.json().catch(() => null)) as {
@@ -67,12 +67,12 @@ export async function PUT(req: Request) {
 }
 
 export async function POST(req: Request) {
-  const access = await requireAppWrite(req, "meetings");
+  const access = await requireAdmin(req);
   if (denyIfResponse(access)) return access;
 
   const body = (await req.json().catch(() => null)) as { to?: string } | null;
   const to = body?.to?.trim() ?? "";
-  if (!to) {
+  if (!to || !to.includes("@")) {
     return NextResponse.json(
       { error: "Bitte Empfänger-E-Mail angeben." },
       { status: 400 },
@@ -84,12 +84,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true });
   } catch (error) {
     return NextResponse.json(
-      {
-        error:
-          error instanceof Error
-            ? error.message
-            : "Testmail konnte nicht gesendet werden.",
-      },
+      { error: formatSmtpError(error) },
       { status: 500 },
     );
   }

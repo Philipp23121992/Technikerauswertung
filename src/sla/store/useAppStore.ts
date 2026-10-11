@@ -127,12 +127,17 @@ export const useAppStore = create<AppState>((set, get) => ({
   setSyncMeta: (meta) => set(meta),
 
   hydrateFromServer: (state) => {
+    const customers = state.customers
+    const technicians = state.technicians
     set({
-      customers: state.customers,
-      technicians: state.technicians,
-      tickets: state.tickets,
+      customers,
+      technicians,
+      tickets: refreshTickets(state.tickets, customers, technicians),
       imports: state.imports,
-      timeTickets: Array.isArray(state.timeTickets) ? state.timeTickets : [],
+      timeTickets: refreshTimeTickets(
+        Array.isArray(state.timeTickets) ? state.timeTickets : [],
+        technicians,
+      ),
       timeImports: Array.isArray(state.timeImports) ? state.timeImports : [],
       revision: state.revision,
       lastSyncedAt: state.updatedAt,

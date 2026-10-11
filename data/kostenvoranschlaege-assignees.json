@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "assignees": [
+    {
+      "id": "kvasg-e0500e1a-4c11-430c-bb93-f1b5083620c0",
+      "name": "Korki",
+      "email": "ozan.korkmaz@acp.de",
+      "createdAt": "2026-08-28T12:31:48.560Z",
+      "updatedAt": "2026-08-28T12:31:48.560Z"
+    },
+    {
+      "id": "kvasg-0f9916c4-ead4-4915-84fd-7548f2c69d21",
+      "name": "Philipp Heyser",
+      "email": "philipp.heyser@acp.de",
+      "createdAt": "2026-08-28T12:31:35.412Z",
+      "updatedAt": "2026-08-28T12:31:35.412Z"
+    }
+  ]
+}

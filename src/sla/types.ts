@@ -68,6 +68,7 @@ export interface SlaBucketStats {
   total: number
   evaluated: number
   met: number
+  sameDay: number
   breached: number
   metPercent: number | null
   breachedPercent: number | null
@@ -87,6 +88,7 @@ export interface TechnicianVolumeStats {
   total: number
   evaluated: number
   met: number
+  sameDay: number
   breached: number
   metPercent: number | null
   breachedPercent: number | null
@@ -106,12 +108,14 @@ export interface OverallStats {
   partnerTickets: number
   evaluated: number
   met: number
+  sameDay: number
   breached: number
   metPercent: number | null
   breachedPercent: number | null
   avgBusinessDays: number | null
   byCustomer: CustomerSlaStats[]
   byTechnician: TechnicianVolumeStats[]
+  byPartner: TechnicianVolumeStats[]
   byMonth: MonthStats[]
   bySlaType: {
     slaType: SlaType

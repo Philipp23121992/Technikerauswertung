@@ -13,26 +13,23 @@
         "sla",
         "meetings",
         "wissen",
-        "admin"
+        "verwaltung",
+        "technikerverwaltung",
+        "urlaube",
+        "serviceboard",
+        "garantiefaelle",
+        "admin",
+        "hprechnungen",
+        "partnerrechnungen",
+        "kostenvoranschlaege",
+        "mailverwaltung",
+        "disposition",
+        "lexmark"
       ],
       "canEdit": true,
       "active": true,
       "createdAt": "2026-08-12T20:55:36.960Z",
-      "updatedAt": "2026-08-12T21:00:52.886Z"
-    },
-    {
-      "id": "user-a8cb278c-8127-4de4-a945-ad94d0806922",
-      "username": "max mustermann",
-      "displayName": "max mustermann",
-      "passwordHash": "d006ca2033a6a41d4803bec78ec5542dea5e4df207f81b361eff33c74ad0a176",
-      "passwordSalt": "4730803651c08d82ca8988833358d00f",
-      "apps": [
-        "finder"
-      ],
-      "canEdit": false,
-      "active": true,
-      "createdAt": "2026-08-12T20:57:23.593Z",
-      "updatedAt": "2026-08-12T20:58:41.682Z"
+      "updatedAt": "2026-09-24T06:06:29.520Z"
     },
     {
       "id": "user-829140a4-596a-4ca1-8745-524cdc32308f",
@@ -44,12 +41,20 @@
         "finder",
         "auswertung",
         "sla",
-        "meetings"
+        "meetings",
+        "urlaube",
+        "disposition",
+        "technikerverwaltung",
+        "serviceboard",
+        "hprechnungen",
+        "partnerrechnungen",
+        "kostenvoranschlaege",
+        "garantiefaelle"
       ],
       "canEdit": true,
       "active": true,
       "createdAt": "2026-08-12T21:00:42.478Z",
-      "updatedAt": "2026-08-12T21:00:42.478Z"
+      "updatedAt": "2026-09-10T18:08:25.501Z"
     },
     {
       "id": "user-93d60216-6ed6-43d4-ab85-65b4ed51ba1f",
@@ -59,12 +64,161 @@
       "passwordSalt": "bf1452fc9fedb345c27520d8088cf7af",
       "apps": [
         "finder",
-        "meetings"
+        "meetings",
+        "urlaube",
+        "sla",
+        "kostenvoranschlaege",
+        "partnerrechnungen",
+        "hprechnungen",
+        "serviceboard",
+        "disposition",
+        "garantiefaelle",
+        "auswertung"
       ],
       "canEdit": true,
       "active": true,
       "createdAt": "2026-08-12T21:01:33.960Z",
-      "updatedAt": "2026-08-12T21:01:33.960Z"
+      "updatedAt": "2026-09-25T05:55:35.472Z"
+    },
+    {
+      "id": "user-c8bf82df-5413-4c63-8ce5-ef49770c1813",
+      "username": "ozan.korkmaz@acp.de",
+      "displayName": "Korki",
+      "passwordHash": "b7bb718c18c3bb528c9b32a563ab8eeed85885dd14bd83fc700424652b83eb64",
+      "passwordSalt": "bf93f95dcdef3a0d08a6e5c8c4d30b3e",
+      "apps": [
+        "finder",
+        "kostenvoranschlaege",
+        "urlaube",
+        "disposition",
+        "auswertung"
+      ],
+      "canEdit": true,
+      "active": true,
+      "createdAt": "2026-08-13T22:59:07.565Z",
+      "updatedAt": "2026-09-25T07:47:32.308Z"
+    },
+    {
+      "id": "user-79164948-309b-4583-aa0a-524e9fa8dfd5",
+      "username": "mathias.mueller@acp.de",
+      "displayName": "Mathis",
+      "passwordHash": "37d67dfeaebbd4613fcce09be5c0fa2610b4f1e3514ad203f8616df867cc5b01",
+      "passwordSalt": "bdf5c980ad55e3bbec1c9d2e7bd5b15b",
+      "apps": [
+        "finder",
+        "urlaube"
+      ],
+      "canEdit": true,
+      "active": true,
+      "createdAt": "2026-08-13T22:59:50.122Z",
+      "updatedAt": "2026-09-10T18:11:15.756Z"
+    },
+    {
+      "id": "user-8de852e2-c168-4524-9442-8ff089c38eb0",
+      "username": "martin.graeler@acp.de",
+      "displayName": "Martin",
+      "passwordHash": "0dc26c78e267a09a877a10e342cc9d2b06cd44ee71c81585f8647a03d8a16715",
+      "passwordSalt": "969caa5b6097f6b96b415a2225a1e4f8",
+      "apps": [
+        "urlaube",
+        "hprechnungen",
+        "finder",
+        "kostenvoranschlaege"
+      ],
+      "canEdit": true,
+      "active": true,
+      "createdAt": "2026-08-13T23:00:48.712Z",
+      "updatedAt": "2026-09-10T18:10:55.384Z"
+    },
+    {
+      "id": "user-91187454-0533-4c61-82f5-bbe03f21bdda",
+      "username": "anja.kleindl@acp.de",
+      "displayName": "Anja",
+      "passwordHash": "9aacc5b1959ea6be386388934f17c24796136fb4d7571015b7ca1b663100f6b2",
+      "passwordSalt": "6392ccd6ceb2e5a4abb6b955efbf7a3b",
+      "apps": [
+        "meetings",
+        "urlaube"
+      ],
+      "canEdit": false,
+      "active": true,
+      "createdAt": "2026-08-14T09:08:00.240Z",
+      "updatedAt": "2026-08-14T09:08:00.240Z"
+    },
+    {
+      "id": "user-516d4c17-4bbf-4beb-b73c-993f38f55acb",
+      "username": "chris.zimmermann@acp.de",
+      "displayName": "Chris",
+      "passwordHash": "e99e454fb8557b3241c630973e501152c864cdf55510900b4cd11a2c9d73ea35",
+      "passwordSalt": "569e976b2c31e3cdfd74458fd2eb1c49",
+      "apps": [
+        "finder",
+        "urlaube"
+      ],
+      "canEdit": false,
+      "active": true,
+      "createdAt": "2026-08-14T09:29:37.941Z",
+      "updatedAt": "2026-09-10T18:11:37.166Z"
+    },
+    {
+      "id": "user-3044da80-3404-4d8a-8157-9408ef502c52",
+      "username": "stefan.schmid@acp.de",
+      "displayName": "Stefan",
+      "passwordHash": "6abba4e960c3e69fb312c2556d6edd69cc5e405af6d50efb78fc14e59bf5fbd3",
+      "passwordSalt": "f690b20c81fe38d1d7099699309cb620",
+      "apps": [
+        "finder",
+        "urlaube"
+      ],
+      "canEdit": false,
+      "active": true,
+      "createdAt": "2026-08-24T08:25:06.959Z",
+      "updatedAt": "2026-08-24T08:25:06.959Z"
+    },
+    {
+      "id": "user-30eec76e-c934-446b-9f47-bfed5399f9f5",
+      "username": "andreas.sinatulin@acp.de",
+      "displayName": "Andy",
+      "passwordHash": "f4e6c945725113064804e023987b78c3d3e478618849ee5c861b3c6cf0e33b2f",
+      "passwordSalt": "111cd566160eaddad53446535d5ef2f0",
+      "apps": [
+        "finder",
+        "technikerverwaltung",
+        "auswertung",
+        "urlaube",
+        "sla",
+        "serviceboard",
+        "meetings",
+        "garantiefaelle",
+        "wissen",
+        "admin",
+        "verwaltung",
+        "hprechnungen",
+        "partnerrechnungen",
+        "kostenvoranschlaege",
+        "mailverwaltung",
+        "disposition",
+        "lexmark"
+      ],
+      "canEdit": true,
+      "active": true,
+      "createdAt": "2026-08-25T11:45:37.786Z",
+      "updatedAt": "2026-09-24T06:06:29.520Z"
+    },
+    {
+      "id": "user-f6121f57-3b88-4853-af2f-62d8d5f5445d",
+      "username": "thomas.vogl@acp.de",
+      "displayName": "Thomas",
+      "passwordHash": "93818846c5ec2b4116a257986d883a4d011b25b6c1dd33da7fe40d224ed6694f",
+      "passwordSalt": "1f0fc6fbc37a0dbf8b7f51e80b3a0fff",
+      "apps": [
+        "auswertung",
+        "disposition"
+      ],
+      "canEdit": true,
+      "active": true,
+      "createdAt": "2026-09-14T08:48:15.872Z",
+      "updatedAt": "2026-09-14T08:50:03.784Z"
     }
   ]
 }

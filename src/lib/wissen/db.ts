@@ -1,5 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
+import { writeJsonAtomic } from "@/lib/atomic-write";
 import {
   createEmptyKnowledgeDb,
   type KnowledgeDb,
@@ -26,12 +27,11 @@ export async function readKnowledgeDb(): Promise<KnowledgeDb> {
 }
 
 export async function writeKnowledgeDb(db: KnowledgeDb): Promise<KnowledgeDb> {
-  await fs.mkdir(DATA_DIR, { recursive: true });
   const next: KnowledgeDb = {
     version: 1,
     docs: db.docs,
     chunks: db.chunks,
   };
-  await fs.writeFile(WISSEN_DB_PATH, JSON.stringify(next, null, 2), "utf8");
+  await writeJsonAtomic(WISSEN_DB_PATH, next);
   return next;
 }

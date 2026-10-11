@@ -1,3 +1,4 @@
+import { createId } from "./id";
 import type { CsvRow, ImportedDataset } from "./types";
 
 export const DEFAULT_HEADERS = [
@@ -13,7 +14,7 @@ export const STORAGE_KEY = "technikerauswertung.dataset.v1";
 
 export function createEmptyDataset(fileName = "manuelle-eingabe.csv"): ImportedDataset {
   return {
-    id: crypto.randomUUID(),
+    id: createId("dataset"),
     fileName,
     importedAt: new Date().toISOString(),
     headers: [...DEFAULT_HEADERS],

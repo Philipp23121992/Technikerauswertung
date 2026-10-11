@@ -1,4 +1,20 @@
 {
   "version": 1,
-  "technicians": []
+  "technicians": [
+    {
+      "id": "mt-msqnwhsw-lx834m",
+      "name": "Philipp Heyser",
+      "email": "philipp.heyser@acp.de"
+    },
+    {
+      "id": "mt-cc5d688b-4ade-4649-915a-f6d28d0ec7c4",
+      "name": "Christian Zimmermann",
+      "email": "christian.zimmermann@acp.de"
+    },
+    {
+      "id": "mt-cb10d637-c8ee-4fce-ac11-30522060d6ef",
+      "name": "Fabian Eberhard",
+      "email": "fabian.eberhard@acp.de"
+    }
+  ]
 }

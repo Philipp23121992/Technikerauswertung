@@ -27,6 +27,41 @@ function containsWholePhrase(haystack: string, needle: string): boolean {
   return new RegExp(`(?:^|\\s)${escaped}(?:\\s|$)`).test(haystack)
 }
 
+const NAME_STOP_TOKENS = new Set([
+  'gmbh',
+  'ggmbh',
+  'ag',
+  'eg',
+  'kg',
+  'co',
+  'ohg',
+  'ug',
+  'ev',
+  'se',
+  'mbh',
+  'der',
+  'die',
+  'das',
+  'und',
+  'fuer',
+  'von',
+  'the',
+  'inc',
+  'ltd',
+])
+
+function significantTokens(normalized: string): string[] {
+  return normalized.split(' ').filter((token) => token.length >= 3 && !NAME_STOP_TOKENS.has(token))
+}
+
+/** „Caritas Augsburg gGmbH“ trifft „CAB Caritas Betriebsträger Augsburg gGmbH“. */
+function tokensCover(query: string, candidate: string): boolean {
+  const queryTokens = significantTokens(query)
+  const candidateTokens = significantTokens(candidate)
+  if (queryTokens.length < 2 || candidateTokens.length === 0) return false
+  return queryTokens.every((token) => candidateTokens.includes(token))
+}
+
 function matchByNamesDetailed<T extends { name: string; aliases: string[] }>(
   keyRaw: string,
   entries: T[],
@@ -62,6 +97,16 @@ function matchByNamesDetailed<T extends { name: string; aliases: string[] }>(
       containsWholePhrase(key, item.normalized) ||
       containsWholePhrase(item.normalized, key)
     ) {
+      return {
+        matched: item.entry,
+        kind: 'partial',
+        matchedVia: item.candidate,
+      }
+    }
+  }
+
+  for (const item of ranked) {
+    if (tokensCover(key, item.normalized)) {
       return {
         matched: item.entry,
         kind: 'partial',

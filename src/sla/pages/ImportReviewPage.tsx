@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
+import { extractTicketNumber } from '../lib/csv'
 import { formatBusinessDays } from '../lib/businessDays'
 import { formatSlaType } from '../lib/slaTypes'
 import {
@@ -73,6 +74,7 @@ export function ImportReviewPage() {
           customerExplain,
           techExplain,
           slaReason,
+          ticketNumber: extractTicketNumber(ticket.externalId),
         }
       })
   }, [tickets, customers, technicians, imports, query, filter, batchId])
@@ -143,7 +145,7 @@ export function ImportReviewPage() {
                 <table className="data review-table">
                   <thead>
                     <tr>
-                      <th>Ticket</th>
+                      <th>Ticketnummer</th>
                       <th>CSV Kunde → Zuordnung</th>
                       <th>CSV Bearbeiter → Zuordnung</th>
                       <th>SLA</th>
@@ -158,10 +160,15 @@ export function ImportReviewPage() {
                         customerExplain,
                         techExplain,
                         slaReason,
+                        ticketNumber,
                       }) => (
                         <tr key={ticket.id}>
                           <td>
-                            <div className="mono">{ticket.externalId}</div>
+                            {ticketNumber ? (
+                              <div className="mono">{ticketNumber}</div>
+                            ) : (
+                              <div className="metric-hint">keine Ticketnummer</div>
+                            )}
                             {ticket.subject && (
                               <div className="metric-hint" title={ticket.subject}>
                                 {ticket.subject.length > 36

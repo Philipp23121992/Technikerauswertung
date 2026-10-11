@@ -1,16 +1,18 @@
 import type { KnowledgeChunk, KnowledgeDb } from "@/lib/wissen/types";
 import { searchKnowledge, type RetrievedChunk } from "@/lib/wissen/types";
+import { answerFromTickets } from "@/lib/wissen/ticket-chat";
+import type { KnowledgeTicket } from "@/lib/wissen/tickets";
 
 export type ChatSource = { title: string; excerpt: string };
-export type ChatResult = { answer: string; sources: ChatSource[] };
+export type ChatResult = { answer: string; sources: ChatSource[]; model?: string | null };
 
 type ChatIntent = "part" | "error" | "general";
 
-const PART_PN_RE = /\b(\d{2}X\d{4})\b/gi;
-const ERROR_CODE_RE = /\b(\d{2,3}\.\d{1,3}[A-Za-z]?)\b/g;
+const PART_PN_RE = /\b(\d{2}X\d{4}|\d{2}[A-Z]\d[A-Z]\d{2})\b/gi;
+const ERROR_CODE_RE = /\b(\d{1,3}\.\d{2}[A-Za-z]?)\b/g;
 
 const PART_INTENT_RE =
-  /\b(teilenummer|teile[- ]?nr|teilnr|ersatzteil|bestellnummer|artikelnummer|fru|p\/?n|part\s*number|part\s*no)\b/i;
+  /\b(teilenummer|teile[- ]?nr|teilnr|ersatzteil(?:e|nummer|nummern)?|bestellnummer|artikelnummer|fru|p\/?n|part\s*number|part\s*no|ausbau|ausbauen|anleitung(?:en)?|removal|removing|demontage|tausch|tauschen|austauschen|austausch|wechsel|wechseln|auswechseln|ersetzen|einbau|einbauen|replace|replacing|replacement)\b/i;
 
 const ERROR_INTENT_RE =
   /\b(fehlercode|fehler[- ]?code|error[- ]?code|störungscode|fehlermeldung|error\s*message|user\s*attendance|was\s+bedeutet|bedeutung)\b/i;
@@ -83,6 +85,9 @@ const STOP_WORDS = new Set(
     "nr",
     "teilnr",
     "ersatzteil",
+    "ersatzteile",
+    "ersatzteilnummer",
+    "ersatzteilnummern",
     "bestellnummer",
     "artikelnummer",
     "fru",
@@ -209,7 +214,7 @@ function collectPartHits(chunks: KnowledgeChunk[], tokens: string[], preferPn?: 
     }
 
     const labeledRe =
-      /\b(?:PN|P\/N)\s*(\d{2}X\d{4})\s*(?:\(([^)]{2,120})\)|[-–:]\s*([^\n.]{2,120}))?/gi;
+      /\b(?:PN|P\/N|FRU)\s*(\d{2}X\d{4}|\d{2}[A-Z]\d[A-Z]\d{2})\s*(?:\(([^)]{2,120})\)|[-–—:]\s*([^\n.]{2,120}))?/gi;
     for (const match of text.matchAll(labeledRe)) {
       const pn = match[1].toUpperCase();
       if (prefer && pn !== prefer) continue;
@@ -231,6 +236,22 @@ function collectPartHits(chunks: KnowledgeChunk[], tokens: string[], preferPn?: 
         description,
         title: chunk.title,
         score: (prefer ? 90 : descScore) + 10,
+      });
+    }
+
+    const lineRe = /\b(\d{2}X\d{4}|\d{2}[A-Z]\d[A-Z]\d{2})\s*[-–—]\s*([^\n]{2,160})/gi;
+    for (const match of text.matchAll(lineRe)) {
+      const pn = match[1].toUpperCase();
+      if (prefer && pn !== prefer) continue;
+      const description = cleanDescription(match[2] || "");
+      if (!description) continue;
+      const descScore = scoreText(description, tokens);
+      if (!prefer && tokens.length && descScore <= 0) continue;
+      hits.push({
+        pn,
+        description,
+        title: chunk.title,
+        score: (prefer ? 85 : descScore) + 8,
       });
     }
   }
@@ -256,17 +277,19 @@ type ErrorHit = {
 function extractErrorBlock(text: string, code: string): string | null {
   const escaped = code.replace(/\./g, "\\.");
   const re = new RegExp(
-    `(?:^|\\n)\\s*(${escaped})\\s+([\\s\\S]*?)(?=(?:\\n\\s*\\d{2,3}\\.\\d{1,3}[A-Za-z]?\\s+)|$)`,
+    `(?:^|\\n|[\\s])(${escaped})\\s+([\\s\\S]*?)(?=(?:\\n\\s*\\d{1,3}\\.\\d{2}[A-Za-z]?\\s+)|$)`,
     "i",
   );
   const match = text.match(re);
-  if (!match) return null;
-  let explanation = normalizeSpace(match[2]);
+  let explanation = match?.[2] ? normalizeSpace(match[2]) : "";
+  if (!explanation && text.toUpperCase().includes(code.toUpperCase())) {
+    explanation = normalizeSpace(text.replace(new RegExp(escaped, "ig"), " "));
+  }
   explanation = explanation
     .replace(/\s*See\s+[^.]+(?:on page\s+\d+)?\.?/gi, "")
     .replace(/\s*Siehe\s+[^.]+(?:auf Seite\s+\d+)?\.?/gi, "")
     .trim();
-  if (explanation.length > 320) explanation = `${explanation.slice(0, 320).trim()}…`;
+  if (explanation.length > 420) explanation = `${explanation.slice(0, 420).trim()}…`;
   return explanation || null;
 }
 
@@ -429,13 +452,35 @@ function pickBestExcerpt(hit: RetrievedChunk, query: string): string {
   return best;
 }
 
-export function answerKnowledgeQuery(db: KnowledgeDb, query: string): ChatResult {
+export function answerKnowledgeQuery(
+  db: KnowledgeDb,
+  query: string,
+  tickets: KnowledgeTicket[] = [],
+): ChatResult {
   const cleaned = query.trim();
   if (!cleaned) {
     return { answer: "Bitte stelle eine Frage.", sources: [] };
   }
 
+  const fromTickets = answerFromTickets(tickets, cleaned);
   const intent = detectIntent(cleaned);
+
+  if (fromTickets?.sources.length) {
+    if (intent === "error" || intent === "part") {
+      const fromDocs = intent === "part" ? answerPart(db, cleaned) : answerError(db, cleaned);
+      const usefulDoc =
+        fromDocs.sources.length > 0 &&
+        !/keine|nicht gefunden/i.test(fromDocs.answer);
+      if (usefulDoc) {
+        return {
+          answer: `${fromTickets.answer}\n\nAus den Manualen: ${fromDocs.answer}`,
+          sources: [...fromTickets.sources, ...fromDocs.sources].slice(0, 6),
+        };
+      }
+    }
+    return fromTickets;
+  }
+
   if (intent === "part") return answerPart(db, cleaned);
   if (intent === "error") return answerError(db, cleaned);
   return answerGeneral(db, cleaned);

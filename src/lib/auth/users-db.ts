@@ -48,6 +48,82 @@ function normalizeDb(raw: Partial<UsersDb> | null | undefined): UsersDb {
   return { version: 1, users };
 }
 
+/** Ergänzt fehlende App-Rechte nach neuen Modulen (z. B. Garantiefälle). */
+function migrateUserApps(user: AppUser): AppUser {
+  let apps = [...user.apps];
+  let changed = false;
+
+  if (apps.includes("serviceboard") && !apps.includes("garantiefaelle")) {
+    apps.push("garantiefaelle");
+    changed = true;
+  }
+  if (
+    (apps.includes("serviceboard") || apps.includes("garantiefaelle")) &&
+    !apps.includes("hprechnungen")
+  ) {
+    apps.push("hprechnungen");
+    changed = true;
+  }
+  if (
+    (apps.includes("serviceboard") || apps.includes("garantiefaelle")) &&
+    !apps.includes("partnerrechnungen")
+  ) {
+    apps.push("partnerrechnungen");
+    changed = true;
+  }
+  if (
+    (apps.includes("serviceboard") ||
+      apps.includes("garantiefaelle") ||
+      apps.includes("hprechnungen") ||
+      apps.includes("partnerrechnungen")) &&
+    !apps.includes("kostenvoranschlaege")
+  ) {
+    apps.push("kostenvoranschlaege");
+    changed = true;
+  }
+  if (
+    (apps.includes("verwaltung") || apps.includes("admin")) &&
+    !apps.includes("mailverwaltung")
+  ) {
+    apps.push("mailverwaltung");
+    changed = true;
+  }
+  if (apps.includes("auswertung") && !apps.includes("disposition")) {
+    apps.push("disposition");
+    changed = true;
+  }
+
+  if (
+    (apps.includes("verwaltung") || apps.includes("admin")) &&
+    !apps.includes("lexmark")
+  ) {
+    apps.push("lexmark");
+    changed = true;
+  }
+  if (apps.includes("admin")) {
+    for (const appId of APP_IDS) {
+      if (!apps.includes(appId)) {
+        apps.push(appId);
+        changed = true;
+      }
+    }
+  }
+
+  if (!changed) return user;
+
+  return {
+    ...user,
+    apps: normalizeApps(apps),
+    updatedAt: new Date().toISOString(),
+  };
+}
+
+function migrateUsersDb(db: UsersDb): { db: UsersDb; changed: boolean } {
+  const users = db.users.map(migrateUserApps);
+  const changed = users.some((user, index) => user !== db.users[index]);
+  return changed ? { db: { version: 1, users }, changed: true } : { db, changed: false };
+}
+
 async function readRaw(): Promise<UsersDb> {
   try {
     const raw = await fs.readFile(USERS_DB_PATH, "utf8");
@@ -83,7 +159,7 @@ function createBootstrapAdmin(): AppUser {
 
 /** Stellt sicher, dass mindestens ein Admin existiert. */
 export async function ensureUsersDb(): Promise<UsersDb> {
-  const db = await readRaw();
+  let db = await readRaw();
   if (db.users.length === 0) {
     return writeUsersDb({ version: 1, users: [createBootstrapAdmin()] });
   }
@@ -91,12 +167,17 @@ export async function ensureUsersDb(): Promise<UsersDb> {
     (user) => user.active && user.apps.includes("admin"),
   );
   if (!hasAdmin) {
-    return writeUsersDb({
+    db = {
       version: 1,
       users: [...db.users, createBootstrapAdmin()],
-    });
+    };
   }
-  return db;
+
+  const migrated = migrateUsersDb(db);
+  if (migrated.changed || !hasAdmin) {
+    return writeUsersDb(migrated.db);
+  }
+  return migrated.db;
 }
 
 export async function readUsersDb(): Promise<UsersDb> {

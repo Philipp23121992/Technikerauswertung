@@ -15,6 +15,7 @@ export async function GET() {
     stats: {
       trackerTickets: Object.keys(backup.tracker?.tickets ?? {}).length,
       trackerTechnicians: backup.tracker?.technicians?.length ?? 0,
+      urlaubeRequests: backup.urlaube.requests.length,
       meetingsTechniker: backup.meetingsTechniker.protocols.length,
       meetingsRessourcen: backup.meetingsRessourcen.protocols.length,
       meetingsTechnicians: backup.meetingsTechnicians.technicians.length,
@@ -43,6 +44,7 @@ export async function POST(req: Request) {
     stats: {
       trackerTickets: Object.keys(saved.tracker?.tickets ?? {}).length,
       trackerTechnicians: saved.tracker?.technicians?.length ?? 0,
+      urlaubeRequests: saved.urlaube.requests.length,
       meetingsTechniker: saved.meetingsTechniker.protocols.length,
       meetingsRessourcen: saved.meetingsRessourcen.protocols.length,
       meetingsTechnicians: saved.meetingsTechnicians.technicians.length,

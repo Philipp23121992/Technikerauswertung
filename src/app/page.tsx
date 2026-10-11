@@ -9,22 +9,24 @@ const APPS: {
   title: string;
   text: string;
   appId: AppId;
-  publicAccess?: boolean;
 }[] = [
-  // Benutzerverwaltung: Finder-Recht ist für Lesen optional (öffentlich),
-  // bleibt aber als Checkbox für Schreibfreigabe sinnvoll.
   {
     href: "/finder",
     title: "Techniker Finder",
-    text: "PLZ-Suche, Standortkarte sowie Techniker- und Partner-Kontakte. (öffentlich lesbar)",
+    text: "PLZ-Suche, Standortkarte sowie Techniker- und Partner-Kontakte.",
     appId: "finder",
-    publicAccess: true,
   },
   {
     href: "/gefahren",
     title: "Technikerauswertung",
     text: "Gefahrene Tickets, Offene Tickets, Touren, Techniker-DB und KPI Philipp.",
     appId: "auswertung",
+  },
+  {
+    href: "/disposition",
+    title: "Disposition",
+    text: "Wochenauslastung, Kanban und Tourenplanung für Fieldservice-Techniker.",
+    appId: "disposition",
   },
   {
     href: "/sla",
@@ -41,8 +43,20 @@ const APPS: {
   {
     href: "/wissen",
     title: "Wissensassistent",
-    text: "Wissensdatenbank mit Manualen/Leitfäden und Chatbot.",
+    text: "Alttickets, Manuale/Leitfäden und Chatbot.",
     appId: "wissen",
+  },
+  {
+    href: "/verwaltung/aufgaben",
+    title: "Verwaltung Philipp",
+    text: "Aufgaben, Dienstreisen, Projekte und Telefonnummern.",
+    appId: "verwaltung",
+  },
+  {
+    href: "/mailverwaltung",
+    title: "Mailverwaltung",
+    text: "Mehrere Outlook-Postfächer, Absenderordner, KI-Priorisierung und wichtige Dateien.",
+    appId: "mailverwaltung",
   },
   {
     href: "/benutzer",
@@ -54,9 +68,7 @@ const APPS: {
 
 export default function HubHomePage() {
   const { hasApp, user } = useAuth();
-  const visible = APPS.filter(
-    (app) => app.publicAccess || (user && hasApp(app.appId)),
-  );
+  const visible = APPS.filter((app) => user && hasApp(app.appId));
 
   return (
     <div className="page-panel">
@@ -66,7 +78,7 @@ export default function HubHomePage() {
           <p>
             {user
               ? `Angemeldet als ${user.displayName}. Dir stehen ${visible.length} Bereiche zur Verfügung.`
-              : "Techniker Finder ist frei zugänglich. Für die übrigen Apps bitte anmelden."}
+              : "Bitte anmelden, um die Servicetools zu nutzen."}
           </p>
         </div>
         {!user ? (

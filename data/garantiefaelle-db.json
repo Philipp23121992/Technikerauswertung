@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "gar-a2183f4f-d892-4ac5-b5da-6ecf33e54a1b",
+      "caseDate": "2026-08-19",
+      "manufacturer": "Lexmark",
+      "partner": "Jodeit",
+      "category": "Hardware",
+      "reference": "2026-100122",
+      "manufacturerAmount": 100,
+      "partnerAmount": 160,
+      "notes": "",
+      "invoiceFileName": "",
+      "createdAt": "2026-08-19T21:05:39.937Z",
+      "updatedAt": "2026-08-19T21:05:39.937Z"
+    }
+  ],
+  "manufacturerPrices": [
+    {
+      "id": "mpr-2eadb6a0-a348-48ca-abdb-f1fa5656a328",
+      "manufacturer": "Lexmark A4 Kat 1",
+      "category": "Onsite",
+      "amount": 80,
+      "validFrom": null,
+      "validTo": null,
+      "createdAt": "2026-08-24T10:22:58.459Z",
+      "updatedAt": "2026-08-24T10:22:58.459Z"
+    },
+    {
+      "id": "mpr-307a6059-c2a3-4aa2-bc36-d08b2ea86b4c",
+      "manufacturer": "Lexmark A4 Kat 2",
+      "category": "Onsite",
+      "amount": 94,
+      "validFrom": null,
+      "validTo": null,
+      "createdAt": "2026-08-24T10:22:45.236Z",
+      "updatedAt": "2026-08-24T10:22:45.236Z"
+    },
+    {
+      "id": "mpr-75c336ee-4ec9-4b1a-a7ce-8adb3c782404",
+      "manufacturer": "Lexmark A4 Kat 3",
+      "category": "Onsite",
+      "amount": 100,
+      "validFrom": null,
+      "validTo": null,
+      "createdAt": "2026-08-24T10:22:28.010Z",
+      "updatedAt": "2026-08-24T10:22:28.010Z"
+    },
+    {
+      "id": "mpr-286b7562-6d9b-448e-82f9-e415c99bd4da",
+      "manufacturer": "Lexmark A3",
+      "category": "Onsite",
+      "amount": 115,
+      "validFrom": null,
+      "validTo": null,
+      "createdAt": "2026-08-24T10:21:53.389Z",
+      "updatedAt": "2026-08-24T10:21:53.389Z"
+    }
+  ]
+}

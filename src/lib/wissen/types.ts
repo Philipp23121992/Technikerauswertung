@@ -53,11 +53,19 @@ export function chunkText(text: string, size = 900, overlap = 120): string[] {
 }
 
 function tokenize(input: string): string[] {
-  return input
+  const preserved: string[] = [];
+  for (const match of input.matchAll(/\b\d{1,3}[.,]\d{2}[A-Za-z]?\b/g)) {
+    preserved.push(match[0].replace(",", ".").toLowerCase());
+  }
+  for (const match of input.matchAll(/\b\d{2}x\d{4}\b/gi)) {
+    preserved.push(match[0].toLowerCase());
+  }
+  const words = input
     .toLowerCase()
     .replace(/[^\p{L}\p{N}\s-]/gu, " ")
     .split(/\s+/)
     .filter((token) => token.length > 2);
+  return [...new Set([...preserved, ...words])];
 }
 
 export type RetrievedChunk = KnowledgeChunk & { score: number };

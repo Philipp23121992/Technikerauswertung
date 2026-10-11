@@ -1,8 +1,12 @@
 import { NextResponse } from "next/server";
+import { denyIfResponse, requireAppAccess } from "@/lib/auth/guards";
 import { findNearest } from "@/lib/finder/search";
 import type { EntityKind } from "@/lib/finder/types";
 
 export async function GET(req: Request) {
+  const access = await requireAppAccess(req, "finder");
+  if (denyIfResponse(access)) return access;
+
   const { searchParams } = new URL(req.url);
   const plz = searchParams.get("plz") ?? "";
   const kind = (searchParams.get("kind") ?? "TECHNICIAN") as EntityKind;

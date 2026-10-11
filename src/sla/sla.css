@@ -358,6 +358,13 @@ table.data td {
   white-space: nowrap;
 }
 
+table.data.sla-wide th {
+  white-space: normal;
+  line-height: 1.25;
+  vertical-align: bottom;
+  max-width: 7.5rem;
+}
+
 table.data th {
   color: var(--ink-soft);
   font-size: 0.78rem;
@@ -623,6 +630,25 @@ table.data tr:hover td {
 
 .tech-service-row td {
   color: var(--ink-soft);
+}
+
+.tech-expand-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tech-sla-child td {
+  background: #fafafa;
+}
+
+.tech-sla-child .tech-expand-label {
+  padding-left: 10px;
+}
+
+.tech-sla-child .tech-service-label {
+  font-weight: 600;
+  color: var(--ink);
 }
 
 .tech-service-label {

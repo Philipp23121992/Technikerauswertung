@@ -45,8 +45,8 @@ export function WissensdatenbankPage() {
   async function onUpload(event: FormEvent) {
     event.preventDefault();
     if (!canEdit) return;
-    const file = fileRef.current?.files?.[0];
-    if (!file) {
+    const files = fileRef.current?.files ? Array.from(fileRef.current.files) : [];
+    if (!files.length) {
       setError("Bitte eine Datei auswählen.");
       return;
     }
@@ -54,24 +54,32 @@ export function WissensdatenbankPage() {
     setError("");
     setMessage("");
     try {
-      const body = new FormData();
-      body.set("file", file);
-      body.set("title", title);
-      body.set("category", category);
-      const res = await fetch("/api/wissen/docs", {
-        method: "POST",
-        credentials: "same-origin",
-        body,
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(data.error || "Upload fehlgeschlagen.");
-        return;
+      const titles: string[] = [];
+      for (const file of files) {
+        const body = new FormData();
+        body.set("file", file);
+        body.set("title", files.length === 1 ? title : title || file.name.replace(/\.[^.]+$/, ""));
+        body.set("category", category);
+        const res = await fetch("/api/wissen/docs", {
+          method: "POST",
+          credentials: "same-origin",
+          body,
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          setError(data.error || `Upload von „${file.name}“ fehlgeschlagen.`);
+          return;
+        }
+        titles.push(data.doc?.title || file.name);
       }
       setTitle("");
       setCategory("manual");
       if (fileRef.current) fileRef.current.value = "";
-      setMessage(`„${data.doc.title}“ wurde in die Wissensdatenbank übernommen.`);
+      setMessage(
+        titles.length === 1
+          ? `„${titles[0]}“ wurde in die Wissensdatenbank übernommen.`
+          : `${titles.length} Excel-/Dokumentlisten wurden in die Wissensdatenbank übernommen.`,
+      );
       await load();
     } catch {
       setError("Upload fehlgeschlagen.");
@@ -116,7 +124,7 @@ export function WissensdatenbankPage() {
       <header className="section-header">
         <div>
           <h1>Wissensdatenbank</h1>
-          <p>Manuale und Leitfäden für den Chatbot hinterlegen</p>
+          <p>Manuale, Leitfäden und Lexmark-Excel-Listen. Alte Tickets importierst du unter Tickets.</p>
         </div>
         <div className="wissen-stats">
           <span>{stats.docs} Dokumente</span>
@@ -129,7 +137,7 @@ export function WissensdatenbankPage() {
         <div className="content-card-head">
           <div>
             <h2>Dokument hochladen</h2>
-            <p>Unterstützt: PDF, TXT, MD, CSV</p>
+            <p>Unterstützt: PDF, Excel (.xlsx, z. B. Lexmark-Listen), TXT, MD, CSV</p>
           </div>
         </div>
         <form className="wissen-upload" onSubmit={onUpload}>
@@ -154,7 +162,8 @@ export function WissensdatenbankPage() {
             ref={fileRef}
             type="file"
             disabled={!canEdit || busy}
-            accept=".pdf,.txt,.md,.csv,application/pdf,text/plain,text/markdown,text/csv"
+            accept=".pdf,.txt,.md,.csv,.xlsx,application/pdf,text/plain,text/markdown,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            multiple
           />
           <button type="submit" className="btn btn-primary" disabled={!canEdit || busy}>
             {busy ? "Lade hoch…" : "Hochladen"}

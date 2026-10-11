@@ -4,19 +4,28 @@
   "private": true,
   "scripts": {
     "dev": "next dev --hostname 0.0.0.0 --port 3002",
-    "build": "next build",
+    "build": "node scripts/copy-pdfjs-worker.mjs && next build",
+    "restart:apm": "powershell -ExecutionPolicy Bypass -File scripts/restart-apm-servicetools.ps1",
+    "ship": "npm run build && npm run restart:apm",
     "start": "next start --hostname 0.0.0.0 --port 3002",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:lexmark": "npx --yes tsx --test src/lib/lexmark/extract.test.ts"
   },
   "dependencies": {
+    "@kenjiuno/msgreader": "^1.28.0",
     "@types/leaflet": "^1.9.22",
     "date-fns": "^4.4.0",
+    "html2canvas": "^1.4.1",
+    "imapflow": "^1.7.7",
+    "jspdf": "^4.2.1",
     "leaflet": "^1.9.4",
     "lucide-react": "^1.31.0",
+    "mailparser": "^3.9.19",
     "next": "16.3.0",
     "nodemailer": "^9.0.5",
     "papaparse": "^5.5.4",
     "pdf-parse": "^2.4.5",
+    "pdfjs-dist": "5.4.296",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "react-leaflet": "^5.0.0",
@@ -26,6 +35,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/mailparser": "^3.4.6",
     "@types/node": "^20",
     "@types/nodemailer": "^8.0.1",
     "@types/papaparse": "^5.5.2",

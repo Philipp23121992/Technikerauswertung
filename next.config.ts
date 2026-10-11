@@ -1,12 +1,28 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // LAN-Zugriff (z. B. http://192.168.x.x:3002) darf Dev-Chunks laden
-  allowedDevOrigins: ["192.168.178.65", "127.0.0.1"],
+  // Netzwerk-/Domain-Zugriff darf Dev-Chunks laden
+  allowedDevOrigins: [
+    "apm-servicetools.de",
+    "www.apm-servicetools.de",
+    "krsystems-techtools.de",
+    "www.krsystems-techtools.de",
+    "164.132.79.76",
+    "127.0.0.1",
+    "localhost",
+  ],
   transpilePackages: ["leaflet", "react-leaflet"],
-  serverExternalPackages: ["pdf-parse", "pdfjs-dist"],
+  serverExternalPackages: [
+    "pdf-parse",
+    "pdfjs-dist",
+    "imapflow",
+    "mailparser",
+    "@kenjiuno/msgreader",
+    "iconv-lite",
+  ],
   experimental: {
     proxyClientMaxBodySize: "50mb",
+    cpus: 1,
   },
 };
 

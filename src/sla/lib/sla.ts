@@ -4,8 +4,8 @@ import {
   countBusinessDaysUsed,
   isSlaMetByBusinessDays,
 } from './businessDays'
-import { cell } from './csv'
-import { parseFlexibleDate } from './dates'
+import { cell, extractTicketNumber } from './csv'
+import { isSameCalendarDay, parseFlexibleDate } from './dates'
 import { matchCustomer, matchTechnician } from './match'
 import { getSlaTypeOption } from './slaTypes'
 import type {
@@ -58,9 +58,15 @@ function evaluateTicketFields(
     businessDaysAllowed: option?.businessDays ?? null,
     slaMet: isSlaMetByBusinessDays(businessDaysUsed, slaType),
     technicianId: matchedTechnician?.id ?? null,
-    technicianName: matchedTechnician?.name ?? PARTNER_NAME,
+    technicianName: matchedTechnician?.name ?? (ticket.technicianKey.trim() || PARTNER_NAME),
     isPartner: !matchedTechnician,
   }
+}
+
+export function partnerDisplayName(
+  ticket: Pick<Ticket, 'technicianKey' | 'technicianName'>,
+): string {
+  return ticket.technicianKey.trim() || ticket.technicianName.trim() || PARTNER_NAME
 }
 
 export function buildTicketsFromRows(
@@ -83,7 +89,10 @@ export function buildTicketsFromRows(
       technicians,
     )
 
-    const externalId = cell(row, mapping.ticketId) || `ROW-${index + 1}`
+    const externalId =
+      extractTicketNumber(cell(row, mapping.ticketId)) ||
+      extractTicketNumber(cell(row, mapping.subject)) ||
+      `ROW-${index + 1}`
 
     return {
       id: `${importBatchId}-${index}-${externalId}`,
@@ -118,6 +127,7 @@ function emptyCustomerStats(
     total: 0,
     evaluated: 0,
     met: 0,
+    sameDay: 0,
     breached: 0,
     metPercent: null,
     breachedPercent: null,
@@ -138,6 +148,49 @@ function finalizeCustomerStats({
   }
 }
 
+function emptyTechnicianStats(
+  technicianId: string | null,
+  technicianName: string,
+  isPartner: boolean,
+): TechnicianVolumeStats {
+  return {
+    technicianId,
+    technicianName,
+    isPartner,
+    total: 0,
+    evaluated: 0,
+    met: 0,
+    sameDay: 0,
+    breached: 0,
+    metPercent: null,
+    breachedPercent: null,
+  }
+}
+
+function aggregateTechnicianStats(
+  rows: TechnicianVolumeStats[],
+  technicianName: string,
+  isPartner: boolean,
+): TechnicianVolumeStats {
+  const total = rows.reduce((sum, row) => sum + row.total, 0)
+  const evaluated = rows.reduce((sum, row) => sum + row.evaluated, 0)
+  const met = rows.reduce((sum, row) => sum + row.met, 0)
+  const sameDay = rows.reduce((sum, row) => sum + row.sameDay, 0)
+  const breached = rows.reduce((sum, row) => sum + row.breached, 0)
+  return {
+    technicianId: null,
+    technicianName,
+    isPartner,
+    total,
+    evaluated,
+    met,
+    sameDay,
+    breached,
+    metPercent: percent(met, evaluated),
+    breachedPercent: percent(breached, evaluated),
+  }
+}
+
 export function computeStats(tickets: Ticket[]): OverallStats {
   const customerGroups = new Map<string, MutableCustomerStats>()
   const techGroups = new Map<string, TechnicianVolumeStats>()
@@ -150,6 +203,7 @@ export function computeStats(tickets: Ticket[]): OverallStats {
   let met = 0
   let breached = 0
   let evaluated = 0
+  let sameDay = 0
   let matchedTickets = 0
   let technicianMatched = 0
   let partnerTickets = 0
@@ -168,6 +222,12 @@ export function computeStats(tickets: Ticket[]): OverallStats {
       customerGroups.get(customerKey) ??
       emptyCustomerStats(ticket.customerId, customerName, ticket.slaType)
     customerStats.total += 1
+
+    const resolvedSameDay = isSameCalendarDay(ticket.createdAt, ticket.resolvedAt)
+    if (resolvedSameDay) {
+      sameDay += 1
+      customerStats.sameDay += 1
+    }
 
     if (ticket.businessDaysUsed != null) {
       customerStats.businessDaySamples.push(ticket.businessDaysUsed)
@@ -204,21 +264,19 @@ export function computeStats(tickets: Ticket[]): OverallStats {
 
     customerGroups.set(customerKey, customerStats)
 
+    const partnerName = partnerDisplayName(ticket)
     const techKey = ticket.isPartner
-      ? '__partner__'
+      ? `__partner__:${partnerName.toLowerCase()}`
       : (ticket.technicianId ?? `__tech__:${ticket.technicianKey}`)
-    const techStats = techGroups.get(techKey) ?? {
-      technicianId: ticket.technicianId,
-      technicianName: ticket.technicianName,
-      isPartner: ticket.isPartner,
-      total: 0,
-      evaluated: 0,
-      met: 0,
-      breached: 0,
-      metPercent: null,
-      breachedPercent: null,
-    }
+    const techStats =
+      techGroups.get(techKey) ??
+      emptyTechnicianStats(
+        ticket.technicianId,
+        ticket.isPartner ? partnerName : ticket.technicianName,
+        ticket.isPartner,
+      )
     techStats.total += 1
+    if (resolvedSameDay) techStats.sameDay += 1
     if (ticket.slaMet != null) {
       techStats.evaluated += 1
       if (ticket.slaMet) techStats.met += 1
@@ -237,28 +295,17 @@ export function computeStats(tickets: Ticket[]): OverallStats {
     .map(finalizeCustomerStats)
     .sort((a, b) => b.total - a.total)
 
-  const byTechnician = Array.from(techGroups.values())
+  const groupedTechnicians = Array.from(techGroups.values())
     .map((stats) => ({
       ...stats,
       metPercent: percent(stats.met, stats.evaluated),
       breachedPercent: percent(stats.breached, stats.evaluated),
     }))
-    .sort((a, b) => {
-      if (a.isPartner !== b.isPartner) return a.isPartner ? 1 : -1
-      return b.total - a.total
-    })
+    .sort((a, b) => b.total - a.total)
 
-  const partner = byTechnician.find((item) => item.isPartner) ?? {
-    technicianId: null,
-    technicianName: PARTNER_NAME,
-    isPartner: true,
-    total: 0,
-    evaluated: 0,
-    met: 0,
-    breached: 0,
-    metPercent: null,
-    breachedPercent: null,
-  }
+  const byTechnician = groupedTechnicians.filter((item) => !item.isPartner)
+  const byPartner = groupedTechnicians.filter((item) => item.isPartner)
+  const partner = aggregateTechnicianStats(byPartner, PARTNER_NAME, true)
 
   const byMonth: MonthStats[] = Array.from(monthGroups.entries())
     .sort(([a], [b]) => a.localeCompare(b))
@@ -296,12 +343,14 @@ export function computeStats(tickets: Ticket[]): OverallStats {
     partnerTickets,
     evaluated,
     met,
+    sameDay,
     breached,
     metPercent: percent(met, evaluated),
     breachedPercent: percent(breached, evaluated),
     avgBusinessDays: average(businessDaySamples),
     byCustomer,
     byTechnician,
+    byPartner,
     byMonth,
     bySlaType,
     partner,

@@ -1,15 +1,28 @@
 import type { ColumnKind, CsvRow, SortState, TechnicianSummary } from "./types";
 
 const TECHNICIAN_ALIASES = [
+  "bearbeiter",
   "techniker",
   "technician",
   "mitarbeiter",
-  "name",
   "monteur",
-  "bearbeiter",
+  "zugewiesenan",
   "zugewiesen",
   "assignee",
+  "owner",
+  "zustaendig",
+  "zuständig",
+  "servicetechniker",
+  "fieldtechnician",
+  "assignedto",
+  "technikername",
+  "bearbeitername",
+  // Nur exakt matchen – sonst trifft „name“ z. B. auf „Kundenname“
+  "name",
 ];
+
+/** Kurz-Aliase nur bei exakter Spaltenübereinstimmung, nie als Teilstring. */
+const EXACT_ONLY_ALIASES = new Set(["name", "tag", "day", "date", "zeit", "termin"]);
 
 const DURATION_ALIASES = [
   "dauer",
@@ -47,26 +60,45 @@ export function detectColumnKind(values: string[]): ColumnKind {
   return "text";
 }
 
-export function findBestColumn(headers: string[], aliases: string[]): string | null {
-  const normalizeKey = (value: string) =>
-    value
-      .toLowerCase()
-      .replace(/ä/g, "ae")
-      .replace(/ö/g, "oe")
-      .replace(/ü/g, "ue")
-      .replace(/ß/g, "ss")
-      .replace(/[\s_-]+/g, "");
+function normalizeColumnKey(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/ä/g, "ae")
+    .replace(/ö/g, "oe")
+    .replace(/ü/g, "ue")
+    .replace(/ß/g, "ss")
+    .replace(/[\s_-]+/g, "");
+}
 
-  const normalized = headers.map((header) => ({
-    header,
-    key: normalizeKey(header),
-  }));
+export function findBestColumn(
+  headers: string[],
+  aliases: string[],
+  exclude: string | null = null,
+): string | null {
+  const skip = exclude ? normalizeColumnKey(exclude) : "";
+  const normalized = headers
+    .map((header) => ({
+      header,
+      key: normalizeColumnKey(header),
+    }))
+    .filter((item) => !skip || item.key !== skip);
 
+  // 1) Exakte Treffer (Alias-Reihenfolge behalten)
   for (const alias of aliases) {
-    const aliasKey = normalizeKey(alias);
-    const match = normalized.find(
-      (item) => item.key === aliasKey || item.key.includes(aliasKey),
-    );
+    const aliasKey = normalizeColumnKey(alias);
+    const exact = normalized.find((item) => item.key === aliasKey);
+    if (exact) return exact.header;
+  }
+
+  // 2) Teiltreffer: längere Aliase zuerst, Kurz-Aliase nie als Substring
+  const partialAliases = [...aliases]
+    .filter((alias) => !EXACT_ONLY_ALIASES.has(normalizeColumnKey(alias)))
+    .sort((a, b) => normalizeColumnKey(b).length - normalizeColumnKey(a).length);
+
+  for (const alias of partialAliases) {
+    const aliasKey = normalizeColumnKey(alias);
+    if (aliasKey.length < 4) continue;
+    const match = normalized.find((item) => item.key.includes(aliasKey));
     if (match) return match.header;
   }
 

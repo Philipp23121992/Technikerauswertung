@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { denyIfResponse, requireAppWrite } from "@/lib/auth/guards";
+import { denyIfResponse, requireAppAccess, requireAppWrite } from "@/lib/auth/guards";
 import { createEntry, entryInputSchema } from "@/lib/finder/entries";
 import { listByKind, readDb } from "@/lib/finder/db";
 import type { EntityKind } from "@/lib/finder/types";
@@ -10,6 +10,9 @@ function parseKind(value: string | null): EntityKind | null {
 }
 
 export async function GET(req: Request) {
+  const access = await requireAppAccess(req, "finder");
+  if (denyIfResponse(access)) return access;
+
   const kind = parseKind(new URL(req.url).searchParams.get("kind"));
   if (!kind) {
     return NextResponse.json({ error: "kind fehlt." }, { status: 400 });

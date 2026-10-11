@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useEditAccess } from "@/components/EditAccessProvider";
-import { loadMeetingStore, saveMeetingStore } from "@/lib/meetings/storage";
+import { loadMeetingStore, saveMeetingStore, stampMeetingStore } from "@/lib/meetings/storage";
 import {
   loadMeetingTechnicians,
   saveMeetingTechnicians,
@@ -16,6 +16,7 @@ import {
   formatMeetingDateTime,
   isAgendaDue,
   meetingKindLabel,
+  pickNewerMeetingStore,
   statusLabel,
   todayIso,
   type AgendaItem,
@@ -61,6 +62,7 @@ export function MeetingWorkspace({ kind }: MeetingWorkspaceProps) {
   const [dragId, setDragId] = useState<string | null>(null);
   const [reminderNote, setReminderNote] = useState("");
   const reminderBusy = useRef(false);
+  const skipNextPersist = useRef(true);
   const storeRef = useRef(store);
   storeRef.current = store;
 
@@ -76,10 +78,13 @@ export function MeetingWorkspace({ kind }: MeetingWorkspaceProps) {
           const data = await res.json();
           const serverStore =
             kind === "techniker" ? data.meetingsTechniker : data.meetingsRessourcen;
-          if (
-            serverStore?.protocols?.length > (loaded.protocols?.length ?? 0)
-          ) {
-            loaded = { ...serverStore, kind };
+          if (serverStore && typeof serverStore === "object") {
+            // Neuere Version gewinnt – nicht mehr die mit mehr Einträgen
+            loaded = pickNewerMeetingStore(
+              loaded,
+              { ...serverStore, kind },
+              "a",
+            );
             saveMeetingStore(loaded);
           }
           if (
@@ -94,6 +99,7 @@ export function MeetingWorkspace({ kind }: MeetingWorkspaceProps) {
         /* ignore */
       }
       if (cancelled) return;
+      skipNextPersist.current = true;
       setStore(loaded);
       setTechnicians(techs);
       setReady(true);
@@ -107,11 +113,18 @@ export function MeetingWorkspace({ kind }: MeetingWorkspaceProps) {
 
   useEffect(() => {
     if (!ready) return;
-    saveMeetingStore(store);
+    // Ersten Persist nach Hydrate überspringen – verhindert Wipe bei leerem localStorage
+    if (skipNextPersist.current) {
+      skipNextPersist.current = false;
+      saveMeetingStore(store);
+      return;
+    }
+    const stamped = stampMeetingStore(store);
+    saveMeetingStore(stamped);
     const body =
       kind === "techniker"
-        ? { meetingsTechniker: store, source: "meetings-persist" }
-        : { meetingsRessourcen: store, source: "meetings-persist" };
+        ? { meetingsTechniker: stamped, source: "meetings-persist" }
+        : { meetingsRessourcen: stamped, source: "meetings-persist" };
     void fetch("/api/backup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

@@ -89,7 +89,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       refresh,
       hasApp: (app) => (user ? userHasApp(user, app) : false),
       canEdit: Boolean(user?.canEdit),
-      homeHref: user ? firstAllowedAppHref(user.apps) : "/finder",
+      homeHref: user ? firstAllowedAppHref(user.apps) : "/login",
     }),
     [ready, user, login, logout, refresh],
   );

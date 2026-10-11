@@ -1,0 +1,764 @@
+{
+  "version": 1,
+  "projects": [
+    {
+      "id": "proj-6402ec9e-7e0a-403f-95d9-dbe6918da9eb",
+      "title": "Hilti Store Umbauten",
+      "status": "offen",
+      "priority": "hoch",
+      "plannedDate": null,
+      "dueDate": null,
+      "dateFrom": null,
+      "dateTo": null,
+      "totalCost": "",
+      "rentTransporter": false,
+      "ownerName": "philipp.heyser@acp.de",
+      "technicianIds": [],
+      "subtasks": [],
+      "updates": [
+        {
+          "id": "upd-646796fe-b2fc-4053-8c1a-6a8b181ae5b1",
+          "text": "ASP für Rückfragen:\nMayr Ludwig\n08191903026",
+          "author": "philipp.heyser@acp.de",
+          "createdAt": "2026-09-22T06:04:25.247Z"
+        }
+      ],
+      "attachments": [
+        {
+          "id": "pfile-14e2c90e-5345-4685-a1b1-2a2b0176cd78",
+          "name": "Technische-Anleitung-Hilti-Stores-2026-v2.pdf",
+          "storedName": "pfile-14e2c90e-5345-4685-a1b1-2a2b0176cd78.pdf",
+          "mimeType": "application/pdf",
+          "size": 761382,
+          "uploadedAt": "2026-09-22T06:03:44.956Z",
+          "uploadedBy": "philipp.heyser@acp.de"
+        }
+      ],
+      "expanded": true,
+      "order": 13,
+      "archived": false,
+      "dueMailSentAt": null,
+      "createdAt": "2026-09-22T06:02:43.667Z",
+      "updatedAt": "2026-09-22T06:04:33.132Z",
+      "projectKind": "standard",
+      "schemaDocument": null
+    },
+    {
+      "id": "proj-06bd52a2-b9a6-425e-8bc6-48a85b16b050",
+      "title": "Kanban-Test bitte löschen",
+      "status": "abgeschlossen",
+      "priority": "mittel",
+      "plannedDate": null,
+      "dueDate": null,
+      "dateFrom": null,
+      "dateTo": null,
+      "totalCost": "",
+      "rentTransporter": false,
+      "ownerName": "philipp.heyser@acp.de",
+      "technicianIds": [],
+      "subtasks": [],
+      "updates": [],
+      "attachments": [],
+      "expanded": true,
+      "order": 12,
+      "archived": true,
+      "dueMailSentAt": null,
+      "createdAt": "2026-09-14T19:23:25.158Z",
+      "updatedAt": "2026-09-14T19:26:29.890Z",
+      "projectKind": "standard",
+      "schemaDocument": null
+    },
+    {
+      "id": "proj-15108a4f-dfc0-49df-90a7-5adf2f5a251d",
+      "title": "Austausch einer VC Anlage bei RWE auf Rügen in Sassnitz",
+      "status": "abgeschlossen",
+      "priority": "mittel",
+      "plannedDate": null,
+      "dueDate": "2026-09-15",
+      "dateFrom": "2026-09-15",
+      "dateTo": "2026-09-16",
+      "totalCost": "",
+      "rentTransporter": false,
+      "ownerName": "philipp.heyser@acp.de",
+      "technicianIds": [
+        "t4",
+        "t2"
+      ],
+      "subtasks": [],
+      "updates": [
+        {
+          "id": "upd-1379680d-7c4a-4766-b40b-7360dc405bbf",
+          "text": "Yoldas macht mehr Sinn, von der Auslastung und von der Fahrtstrecke.",
+          "author": "philipp.heyser@acp.de",
+          "createdAt": "2026-08-27T14:11:36.120Z"
+        },
+        {
+          "id": "upd-2607ea97-4caf-4d43-8100-78ea9dd5e126",
+          "text": "Andy:\n\nHallo zusammen,\ndie RWE muss einen Austausch einer VC bei RWE auf Rügen in Sassnitz planen und benötigt 1-2 Terminvorschläge.\nWann wäre der Austausch möglich?",
+          "author": "philipp.heyser@acp.de",
+          "createdAt": "2026-08-24T06:21:51.787Z"
+        }
+      ],
+      "attachments": [],
+      "expanded": false,
+      "order": 2,
+      "archived": true,
+      "dueMailSentAt": null,
+      "createdAt": "2026-08-24T06:21:41.882Z",
+      "updatedAt": "2026-09-22T09:01:02.489Z",
+      "projectKind": "standard",
+      "schemaDocument": null
+    },
+    {
+      "id": "proj-583ce526-1153-4700-8ccb-354ac5a72989",
+      "title": "Anfrage Videoanlage für Hydro Bernkastel",
+      "status": "abgeschlossen",
+      "priority": "mittel",
+      "plannedDate": "21.09.2026",
+      "dueDate": "2026-09-21",
+      "dateFrom": null,
+      "dateTo": null,
+      "totalCost": "",
+      "rentTransporter": false,
+      "ownerName": "philipp.heyser@acp.de",
+      "technicianIds": [
+        "t4"
+      ],
+      "subtasks": [],
+      "updates": [
+        {
+          "id": "upd-c1c0f144-e2f7-44f5-8111-82bba576d32c",
+          "text": "PSA muss bestellt werden!\n\n•\t1 x Helm:                                 JSP VISTAshield Schutzhelm Bauhelm mit integriertem Gesichtsschutz, Weiß | Versenkbares Gesichtsschutzvisier mit A-Klassifizierung, Antibeschlag- und Kratzschutzbeschichtung. EN 397 EN 166-zertifizier : Amazon.de: Baumarkt\n•\tHandschuhe:                            6 Paar Arbeitshandschuhe mit grip herren, mit Rutschfeste Nitril-Beschichtung Mechaniker Handschuhe, Montagehandschuhe mit optimaler Griffigkeit & feinem Tastgefühl, gartenhandschuhe damen, Größe 8/M : Amazon.de: Baumarkt\n•\t2 x Weste(bitte Größe erfragen): AYKRM Orange Sicherheitsweste mit Reflektorstreifen mit Reißverschluss und Taschen Arbeitsweste bei Amazon.de | Günstiger Preis | Kostenloser Versand ab 29€ für ausgewählte Artikel\n•\t2 x Hose (bitte Größe erfragen) Generisch CraftGear Warnschutz Arbeitshose Herren - Hochsichtbare Warnhose Herren Verstärkt mit Cordura Reflektierend mit Cargo-Taschen für Handwerk BAU und Industrie Größe 54 : Amazon.de: Fashion\n\n\nHaben wir bereits Schuhe S3 ?\nWenn nicht, dann hier ein Vorschlag:\n\nELTEN LAURENZO Mid ESD S3 - Herren-Sicherheitsstiefel | grobstolliges Profil | robustes Rindleder | textiler Durchtrittschutz | Stahlkappe : Amazon.de: Fashion",
+          "author": "philipp.heyser@acp.de",
+          "createdAt": "2026-08-27T14:08:04.542Z"
+        }
+      ],
+      "attachments": [],
+      "expanded": false,
+      "order": 3,
+      "archived": true,
+      "dueMailSentAt": null,
+      "createdAt": "2026-08-27T11:43:18.136Z",
+      "updatedAt": "2026-10-07T11:23:57.785Z",
+      "projectKind": "standard",
+      "schemaDocument": null
+    },
+    {
+      "id": "proj-ed2198a0-ed83-4aa7-9411-8455ad235deb",
+      "title": "RWE / Geleen",
+      "status": "in-planung",
+      "priority": "mittel",
+      "plannedDate": "Anfank Okt.",
+      "dueDate": null,
+      "dateFrom": null,
+      "dateTo": null,
+      "totalCost": "",
+      "rentTransporter": false,
+      "ownerName": "philipp.heyser@acp.de",
+      "technicianIds": [
+        "t4"
+      ],
+      "subtasks": [],
+      "updates": [],
+      "attachments": [],
+      "expanded": false,
+      "order": 5,
+      "archived": false,
+      "dueMailSentAt": null,
+      "createdAt": "2026-09-03T14:33:15.272Z",
+      "updatedAt": "2026-09-15T11:35:27.318Z",
+      "projectKind": "standard",
+      "schemaDocument": null
+    },
+    {
+      "id": "proj-7b961684-db5f-4d73-afd5-c9107307d11b",
+      "title": "Süd Hollstein",
+      "status": "in-planung",
+      "priority": "mittel",
+      "plannedDate": "ab 21.09.2026",
+      "dueDate": "2026-09-21",
+      "dateFrom": null,
+      "dateTo": null,
+      "totalCost": "",
+      "rentTransporter": false,
+      "ownerName": "philipp.heyser@acp.de",
+      "technicianIds": [
+        "t3"
+      ],
+      "subtasks": [],
+      "updates": [],
+      "attachments": [],
+      "expanded": false,
+      "order": 6,
+      "archived": false,
+      "dueMailSentAt": null,
+      "createdAt": "2026-09-03T14:31:30.030Z",
+      "updatedAt": "2026-09-14T07:16:16.548Z",
+      "projectKind": "standard",
+      "schemaDocument": null
+    },
+    {
+      "id": "proj-mss1gyz4-9xfgtb0v",
+      "title": "Rückbau CX825 - Vattenfall 1-79GJ82R1",
+      "status": "in-planung",
+      "priority": "mittel",
+      "plannedDate": "ab 21.09.2026 10 Uhr",
+      "dueDate": "2026-09-21",
+      "dateFrom": null,
+      "dateTo": null,
+      "totalCost": "",
+      "rentTransporter": false,
+      "ownerName": "philipp.heyser@acp.de",
+      "technicianIds": [
+        "o5",
+        "t3"
+      ],
+      "subtasks": [],
+      "updates": [],
+      "attachments": [],
+      "expanded": false,
+      "order": 7,
+      "archived": false,
+      "dueMailSentAt": null,
+      "createdAt": "2026-08-13T21:37:19.888Z",
+      "updatedAt": "2026-09-14T07:16:16.548Z",
+      "projectKind": "standard",
+      "schemaDocument": null
+    },
+    {
+      "id": "proj-mss1bvvr-s70ug72e",
+      "title": "Neuer Drucker für Rotterdam & Umzug Belgien",
+      "status": "in-planung",
+      "priority": "mittel",
+      "plannedDate": "28.09. - 02.10",
+      "dueDate": "2026-09-29",
+      "dateFrom": "2026-09-28",
+      "dateTo": "2026-10-02",
+      "totalCost": "",
+      "rentTransporter": false,
+      "ownerName": "philipp.heyser@acp.de",
+      "technicianIds": [
+        "t4"
+      ],
+      "subtasks": [],
+      "updates": [
+        {
+          "id": "upd-ee58e8ba-32ef-4e81-8d9c-75fd0e92dd69",
+          "text": "Hallo zusammen,\nKann die \"Anlieferung\" fuer die Woche vom  28.9 und 2.10 eingeplant werden?\n\nBesten Dank und Gruss, ein schoenes Wochenende,\nAndre Nottenkaemper",
+          "author": "philipp.heyser@acp.de",
+          "createdAt": "2026-08-24T06:16:31.637Z"
+        },
+        {
+          "id": "upd-mss1bzbi-vwv6h7pq",
+          "text": "Zusammenfassung 04.08.2026:\n\n- Der Drucker muss bis zum 12.08.2026 aus Belgien abgeholt und im September in Rotterdam aufgestellt werden; die Abholung ist für Montag, den 10.08., geplant, mit Zwischenlagerung in Eschweiler.\n\n- Die Aufstellung des Druckers in Rotterdam ist noch nicht terminiert; Nottenkaemper, Andre wird sich am 17./18.08. melden und einen Termin mit 3–4 Wochen Vorlauf abstimmen.\n\n- Die Transporter-Anmietung wurde von Zimmermann Christian erledigt, wie von Fecke Stephan empfohlen; Kostenübernahme ist geklärt.\n\nPhilipp Heyser\n04.08.2026, 06:33\nGerät wird am 10.08. in Belgien abgeholt und bis zur Aufstellung im September in Eschweiler gelagert.\n\nPhilipp Heyser\n04.08.2026, 06:21\nZimbo hat den Transporter gemietet für Fecke\n\nPhilipp Heyser\n04.08.2026, 05:32\nlaut Fecke würde der 10.08. gehen\n-> Anmietung Transporter wird durch Zimbo angefragt\n\nPhilipp Heyser\n04.08.2026, 03:12\nwir benötigen einen neuen Drucker für unser Büro in Rotterdam – das Konfigurationssheet findest du im Anhang. Das Leasing sollte über die Westlake Epoxy BV laufen. Alternativ gib mir bitte kurz Bescheid, wie der Drucker LLN-MAIN-189f derzeit abgerechnet wird.\n\nGleichzeitig muss der Drucker LLN-MAIN-189f (Lexmark XC9235) von folgender Adresse\nAvenue Jean Monnet 1, Louvain-la-Neuve, B-1348, Belgien\nzur unten genannten Adresse im Trinity-Gebäude umgezogen werden.\n\nDer Drucker steht im Erdgeschoss und kann direkt zu den Verladerampen gebracht werden. Im Trinity-Gebäude stehen ebenfalls Laderampen und Aufzüge zur Verfügung. Der Umzug kann per Rechnung analog zu den anderen „Nicht-Klickleistungen“ abgerechnet werden.\n\nHintergrund ist der Umzug des Standorts Rotterdam von:\nSeattleweg 17, 3195 ND Pernis, Niederlande\nnach:\nTrinity Building – 10th Floor, Fascinatio Boulevard 350, 3065 WB Rotterdam, Niederlande\nsowie die Schließung des Vertriebsbüros in Belgien.\n\nDie Drucker sollten im September umgezogen bzw. aufgestellt werden.",
+          "author": "philipp.heyser@acp.de",
+          "createdAt": "2026-08-13T21:33:27.054Z"
+        }
+      ],
+      "attachments": [],
+      "expanded": false,
+      "order": 8,
+      "archived": false,
+      "dueMailSentAt": null,
+      "createdAt": "2026-08-13T21:33:22.599Z",
+      "updatedAt": "2026-09-22T14:37:46.262Z",
+      "projectKind": "standard",
+      "schemaDocument": null
+    },
+    {
+      "id": "proj-mss18axb-wkms7exd",
+      "title": "Innio Rollout in Ippenbüren (D)",
+      "status": "abgeschlossen",
+      "priority": "mittel",
+      "plannedDate": "Woche vom 21.09. - 25.09",
+      "dueDate": null,
+      "dateFrom": null,
+      "dateTo": null,
+      "totalCost": "",
+      "rentTransporter": false,
+      "ownerName": "philipp.heyser@acp.de",
+      "technicianIds": [
+        "t1"
+      ],
+      "subtasks": [],
+      "updates": [
+        {
+          "id": "upd-2129f16d-8748-4c8c-9e7b-fa72ca5cb458",
+          "text": "Gerät wurde noch nicht geliefert laut Leo",
+          "author": "philipp.heyser@acp.de",
+          "createdAt": "2026-08-27T11:56:25.276Z"
+        },
+        {
+          "id": "upd-mss19k8k-wx1qvsv9",
+          "text": "Anlieferung des Gerätes:\n\nM.S.E\nRudolf-Diesel-Straße 2, 59425 Unna",
+          "author": "philipp.heyser@acp.de",
+          "createdAt": "2026-08-13T21:31:34.196Z"
+        },
+        {
+          "id": "upd-mss19b5h-i3pflmkq",
+          "text": "Hey,\n\nAnlieferung ist kein Problem.\nM.S.E hat auch angeboten das ich das Gerät da im Lager aufbauen kann und die das nach ibbenbüren zu transportieren.\nPreise wären 40€ für Verpackungsmaterial entsorgen und beim Aufbau helfen und 150€ für den Transport.\nBeim Transport wäre ich trotzdem dabei, um das Gerät anzuschließen.\nDie M.S.E braucht nur ein Datum, wann das stattfinden soll.",
+          "author": "philipp.heyser@acp.de",
+          "createdAt": "2026-08-13T21:31:22.421Z"
+        }
+      ],
+      "attachments": [],
+      "expanded": false,
+      "order": 9,
+      "archived": true,
+      "dueMailSentAt": null,
+      "createdAt": "2026-08-13T21:30:35.471Z",
+      "updatedAt": "2026-10-07T11:23:34.818Z",
+      "projectKind": "standard",
+      "schemaDocument": null
+    },
+    {
+      "id": "proj-mss1al17-cu3ejeig",
+      "title": "Moerdijk",
+      "status": "in-planung",
+      "priority": "mittel",
+      "plannedDate": "Anfang okt",
+      "dueDate": null,
+      "dateFrom": null,
+      "dateTo": null,
+      "totalCost": "",
+      "rentTransporter": true,
+      "ownerName": "philipp.heyser@acp.de",
+      "technicianIds": [
+        "t4"
+      ],
+      "subtasks": [],
+      "updates": [],
+      "attachments": [],
+      "expanded": false,
+      "order": 10,
+      "archived": false,
+      "dueMailSentAt": null,
+      "createdAt": "2026-08-13T21:32:21.883Z",
+      "updatedAt": "2026-09-14T07:16:16.548Z",
+      "projectKind": "standard",
+      "schemaDocument": null
+    },
+    {
+      "id": "proj-962107df-7155-4769-b700-5b4067e305c5",
+      "title": "New Counter Payment Rollout Enterprise",
+      "status": "in-planung",
+      "priority": "niedrig",
+      "plannedDate": null,
+      "dueDate": null,
+      "dateFrom": null,
+      "dateTo": null,
+      "totalCost": "",
+      "rentTransporter": false,
+      "ownerName": "philipp.heyser@acp.de",
+      "technicianIds": [],
+      "subtasks": [],
+      "updates": [
+        {
+          "id": "upd-1d8faab8-58f6-443d-9713-73a070de01ad",
+          "text": "Thomas:\n\nHi,\n\nich bräuchte ein Angebot in englischer Sprache (müsste im AX möglich sein) für folgende Positionen:\n\nFlat-rate installation fee per location for payment terminals at all German enterprise sites\nincluding:\n- Co-ordinating an appointment with IT\n- Travel allowance\n- One hour of on-site service\n\nEinzelpreis 225,00 €\n\nAdditional on-site service time (billed in quarter-hourly increments)\n\nEinzelpreis 92,00 €\n\n\nAußerdem Standard-Netzwerkkabel in den Längen\n\n1m\n2m\n3m\n\nSowie eine Netzwerkkupplung (zur Verlängerung von Netzwerkkabeln)\n\nMit jeweils 100% Aufschlag\n\nVG\n\nThomas\n\nTHOMAS VOGL\nVertriebsleiter DE",
+          "author": "philipp.heyser@acp.de",
+          "createdAt": "2026-08-26T06:39:28.083Z"
+        },
+        {
+          "id": "upd-fbfd4cf6-17a3-4601-902b-e37760d47557",
+          "text": "Kunde: \n\nHallo Thomas, \n\nwir haben wieder ein aktuelles Projekt welches externe Dienstleistungen vor Ort benötig.\nEs werden in unseren Filialen die festinstallierten Zahlungsgeräte erneuert. \nEventuell wäre dies ein Thema für euch.\n\nIm Anhang eine Beschreibung zu den Arbeiten in der Filiale und Ablauf.\nEs handelt sich um 214 Standorte in Deutschland mit ca. 385 Geräten, die getauscht werden müssen.\n\nIm Anhang die Beschreibung.\nDie Standortliste ist derzeit in Überarbeitung und ich würde sie dir bis Dienstag nachmittags zukommen lassen.  \n\nKönnten wir hierzu bitte ein Angebot von euch zur Dienstleistung bekommen, wenn möglich bitte in Englisch.\nWunsch von unserem Projekt Team ist ein Preis per Filiale.\n\nDenke wir können im Nachmittag mal kurz Telefonieren.\n\nDanke und Gruß\n\nrni\nErni",
+          "author": "philipp.heyser@acp.de",
+          "createdAt": "2026-08-25T12:52:43.852Z"
+        }
+      ],
+      "attachments": [
+        {
+          "id": "pfile-0f1c71b8-6138-4260-ad7e-52726200960a",
+          "name": "Projekt Filialen - Kopie.xlsx",
+          "storedName": "pfile-0f1c71b8-6138-4260-ad7e-52726200960a.xlsx",
+          "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "size": 45316,
+          "uploadedAt": "2026-08-25T13:55:19.307Z",
+          "uploadedBy": "philipp.heyser@acp.de"
+        },
+        {
+          "id": "pfile-5fcc27c3-baab-4c5f-b044-b614a6637f36",
+          "name": "L3k to E235 Refresh_Onsite Installation Tasks_v1.0 - Germany.pdf",
+          "storedName": "pfile-5fcc27c3-baab-4c5f-b044-b614a6637f36.pdf",
+          "mimeType": "application/pdf",
+          "size": 749680,
+          "uploadedAt": "2026-08-25T13:55:51.376Z",
+          "uploadedBy": "philipp.heyser@acp.de"
+        }
+      ],
+      "expanded": false,
+      "order": 11,
+      "archived": false,
+      "dueMailSentAt": null,
+      "createdAt": "2026-08-25T12:50:41.519Z",
+      "updatedAt": "2026-09-14T07:16:16.548Z",
+      "projectKind": "standard",
+      "schemaDocument": null
+    },
+    {
+      "id": "proj-mss1ef0g-sg7qctim",
+      "title": "Proxity: Umzug am 08.09. in Frankfurt [Ticket: SCTASK0041041]",
+      "status": "abgeschlossen",
+      "priority": "mittel",
+      "plannedDate": "07.09.",
+      "dueDate": "2026-09-08",
+      "dateFrom": null,
+      "dateTo": null,
+      "totalCost": "3000 einnahmen",
+      "rentTransporter": false,
+      "ownerName": "philipp.heyser@acp.de",
+      "technicianIds": [
+        "t8",
+        "t10",
+        "t6"
+      ],
+      "subtasks": [],
+      "updates": [
+        {
+          "id": "upd-0f298c24-a981-49f7-b756-a1ed9720d2d6",
+          "text": "Angebot über 3000€ wurde angenommen durch den Kunden",
+          "author": "philipp.heyser@acp.de",
+          "createdAt": "2026-08-24T13:09:05.971Z"
+        },
+        {
+          "id": "upd-mss1g0vy-6b6bn8rv",
+          "text": "Angebot mit 3000€ gemacht für 3 Techniker + Sogaro",
+          "author": "philipp.heyser@acp.de",
+          "createdAt": "2026-08-13T21:36:35.710Z"
+        },
+        {
+          "id": "upd-mss1ftm0-m5b0di3w",
+          "text": "Folgende Tätigkeiten fallen an:\n\n•\tUmzug Monitore (All-in-one) (71 Stück – 60 Umzug + 11 Neu)\n•\tUmzug Headset Docking Station (Verbindung mit Monitor)\n•\tUmzug Printer\n•\tUmzug Videokonferenzsstem (Halterungen an der Wand werden vorbereitet)\n•\tVerkabelung (Strom, Netzwerk, Thunderbolt USB C)\n•\tDokumentation der genutzten Netzwerkports und Versand an Marius Aschbacher (Marius.Aschbacher@acp.de)\n•\tAbschließende Funktionsprüfung der Arbeitsplätze (Strom und USB C Verbindung zum Monitor/Kamera/Ton)\n\nMitzubringen ist:\n•\tKabelschläuche in schwarz in ausreichender Stückzahl\n•\tNotebooks mit USB C zum Verbinden mit den Monitoren für die Tests\n\nVor Ort wird der Umzug durch den Kunden (Christian Goebel) und Alexander Sogaro (Alexander.Sogaro@acp.de) koordiniert.\n\nEs wird ein Beispiel Schreibtisch bereitgestellt, an dem der Aufbau im Ziel sichtbar ist.\nNach dem Umzug soll eine Funktionsprüfung der Arbeitsplätze durchgeführt werden.",
+          "author": "philipp.heyser@acp.de",
+          "createdAt": "2026-08-13T21:36:26.280Z"
+        }
+      ],
+      "attachments": [
+        {
+          "id": "pfile-dcec5dee-26b5-42a0-b868-387f7f811f8e",
+          "name": "HAN-8028133.pdf",
+          "storedName": "pfile-dcec5dee-26b5-42a0-b868-387f7f811f8e.pdf",
+          "mimeType": "application/pdf",
+          "size": 34400,
+          "uploadedAt": "2026-09-03T07:07:26.151Z",
+          "uploadedBy": "philipp.heyser@acp.de"
+        }
+      ],
+      "expanded": false,
+      "order": 1,
+      "archived": true,
+      "dueMailSentAt": null,
+      "createdAt": "2026-08-13T21:35:20.704Z",
+      "updatedAt": "2026-09-10T18:00:16.027Z",
+      "projectKind": "standard",
+      "schemaDocument": null
+    },
+    {
+      "id": "proj-mss0wkf6-7n556nlr",
+      "title": "Den Helder (NL)",
+      "status": "abgeschlossen",
+      "priority": "mittel",
+      "plannedDate": "2026-09-07",
+      "dueDate": "2026-09-09",
+      "dateFrom": null,
+      "dateTo": null,
+      "totalCost": "",
+      "rentTransporter": true,
+      "ownerName": "philipp.heyser@acp.de",
+      "technicianIds": [
+        "t4"
+      ],
+      "subtasks": [],
+      "updates": [],
+      "attachments": [],
+      "expanded": false,
+      "order": 2,
+      "archived": true,
+      "dueMailSentAt": null,
+      "createdAt": "2026-08-13T21:21:27.906Z",
+      "updatedAt": "2026-09-10T18:00:31.211Z",
+      "projectKind": "standard",
+      "schemaDocument": null
+    },
+    {
+      "id": "proj-mss1jvia-734eao7h",
+      "title": "Umzug A3 Gerät bei der Polizei München",
+      "status": "abgeschlossen",
+      "priority": "mittel",
+      "plannedDate": "anfang September",
+      "dueDate": null,
+      "dateFrom": null,
+      "dateTo": null,
+      "totalCost": "",
+      "rentTransporter": false,
+      "ownerName": "philipp.heyser@acp.de",
+      "technicianIds": [],
+      "subtasks": [],
+      "updates": [
+        {
+          "id": "upd-b9cfe341-8c0d-44f2-b88b-9edf4a8b3d7a",
+          "text": "wird durch RollouTeam erledigt",
+          "author": "philipp.heyser@acp.de",
+          "createdAt": "2026-08-27T14:14:16.952Z"
+        }
+      ],
+      "attachments": [],
+      "expanded": false,
+      "order": 5,
+      "archived": true,
+      "dueMailSentAt": null,
+      "createdAt": "2026-08-13T21:39:35.362Z",
+      "updatedAt": "2026-08-27T14:14:32.735Z",
+      "projectKind": "standard",
+      "schemaDocument": null
+    },
+    {
+      "id": "proj-mss1i5t3-pu39r6hi",
+      "title": "RWE Campus -( RWEP6 D4.017)- Austausch Room55",
+      "status": "abgeschlossen",
+      "priority": "mittel",
+      "plannedDate": "am 24.08.",
+      "dueDate": "2026-08-24",
+      "dateFrom": null,
+      "dateTo": null,
+      "totalCost": "",
+      "rentTransporter": false,
+      "ownerName": "philipp.heyser@acp.de",
+      "technicianIds": [
+        "t4"
+      ],
+      "subtasks": [],
+      "updates": [],
+      "attachments": [],
+      "expanded": false,
+      "order": 1,
+      "archived": true,
+      "dueMailSentAt": null,
+      "createdAt": "2026-08-13T21:38:15.399Z",
+      "updatedAt": "2026-08-25T10:46:01.596Z",
+      "projectKind": "standard",
+      "schemaDocument": null
+    },
+    {
+      "id": "proj-ded0a903-1e47-4fa8-9d09-ed9ad2b8af84",
+      "title": "Zukünftig Siebel",
+      "status": "offen",
+      "priority": "mittel",
+      "plannedDate": null,
+      "dueDate": null,
+      "dateFrom": null,
+      "dateTo": null,
+      "totalCost": "",
+      "rentTransporter": false,
+      "ownerName": "philipp.heyser@acp.de",
+      "technicianIds": [],
+      "subtasks": [],
+      "updates": [],
+      "attachments": [],
+      "expanded": true,
+      "order": 1791529313356,
+      "archived": false,
+      "dueMailSentAt": null,
+      "createdAt": "2026-10-09T07:01:53.356Z",
+      "updatedAt": "2026-10-09T09:38:21.532Z",
+      "projectKind": "schema",
+      "schemaDocument": {
+        "version": 1,
+        "mode": "flowchart",
+        "nodes": [
+          {
+            "id": "snode-d25b103e-924a-4801-986d-11a2f7d9c352",
+            "label": "Martin übernimmt Siebel als Hauptaufgabe",
+            "labelHtml": "Martin übernimmt Siebel als Hauptaufgabe",
+            "x": 606.666748046875,
+            "y": 114.44442749023438,
+            "style": {
+              "fontSize": 20,
+              "color": "#0f172a",
+              "fontWeight": "bold",
+              "textDecoration": "none",
+              "backgroundColor": "#ffffff",
+              "borderColor": "#94a3b8"
+            },
+            "width": 179,
+            "height": 184,
+            "userSized": true
+          },
+          {
+            "id": "snode-d1be4b86-772b-434e-8f59-e8e34b89b623",
+            "label": "Mathias Müller übernimmt Martins seine Vertretung, da Skip ja in Zukunft wegfällt",
+            "labelHtml": "Mathias Müller übernimmt Martins seine Vertretung, da Skip ja in Zukunft wegfällt",
+            "x": 1008.888916015625,
+            "y": 335.5555725097656,
+            "style": {
+              "fontSize": 19,
+              "color": "#fa0000",
+              "fontWeight": "bold",
+              "textDecoration": "none",
+              "backgroundColor": "#ffffff",
+              "borderColor": "#94a3b8"
+            },
+            "width": 196,
+            "height": 212,
+            "userSized": true
+          },
+          {
+            "id": "snode-7ed8ead1-703a-484c-845e-24a47d57bd30",
+            "label": "Chris Fährt zu 100% seine Tickets und macht Urlaubsvertretung bei Office First in FFM\n\nWenn er mal Luft haben SOLLTE, wird er bei Lexmark Claims abmelden um sein Tag zu füllen",
+            "labelHtml": "<b>Chris Fährt zu 100% seine Tickets und macht Urlaubsvertretung bei Office First in FFM</b>\n\n<span style=\"color:rgb(253, 8, 8)\">Wenn er mal Luft haben SOLLTE, wird er bei Lexmark Claims abmelden um sein Tag zu füllen</span>",
+            "x": 165.55560302734375,
+            "y": 418.88885498046875,
+            "style": {
+              "fontSize": 20,
+              "color": "#0f172a",
+              "fontWeight": "normal",
+              "textDecoration": "none",
+              "backgroundColor": "#ffffff",
+              "borderColor": "#94a3b8"
+            },
+            "width": 223,
+            "height": 448,
+            "userSized": true
+          },
+          {
+            "id": "snode-e6c62a66-0f44-43f0-8ad7-3ccb3f384f34",
+            "label": "Aufgaben im Siebel:\n\n- Garantieabwicklung Lexmark\n\n- Garantieabwicklung HP\n\n- Kennzeichnen aller Tickets im Pam\n- Qualifizierung der Ersatzteile im PAM\n- Zuweisung der Tickets \n- Bestellung der Ersatzteile zu den Technikern\nAcht geben auf:\n- High Cost Parts\n- Tage der offenen Claims\n- Alle Lexmark Partner Punkte",
+            "labelHtml": "<b>Aufgaben im Siebel:\n\n- Garantieabwicklung Lexmark\n\n- Garantieabwicklung HP\n\n</b><b>- Kennzeichnen aller Tickets im Pam</b><b><br></b><b>- Qualifizierung der Ersatzteile im PAM</b><b><br></b><b>- Zuweisung der Tickets </b><b><br></b><b>- Bestellung der Ersatzteile zu den Technikern</b><b><br></b><span style=\"color:rgb(253, 8, 8)\"><b><u>Acht geben auf:<br>- High Cost Parts<br>- Tage der offenen Claims<br>- Alle Lexmark Partner Punkte</u></b></span>",
+            "x": 615.5555419921875,
+            "y": 641.5450744628906,
+            "style": {
+              "fontSize": 20,
+              "color": "#0f172a",
+              "fontWeight": "normal",
+              "textDecoration": "none",
+              "backgroundColor": "#ffffff",
+              "borderColor": "#94a3b8"
+            },
+            "width": 396,
+            "height": 742,
+            "userSized": true
+          },
+          {
+            "id": "snode-b68d109e-6c8e-48cc-ad93-70c806b67ed4",
+            "label": "Vorteile des Vorgehen:\n- 1 Abeitsgang bei neuen Tickets\n- Schnellere Ersatzteilbestellung und somit schneller bearbeitungszeit der Tickets\n- Wir können besser die Teile der Bestellungen überwachen",
+            "labelHtml": "<span style=\"color:rgb(9, 250, 5)\">Vorteile des Vorgehen:<br>- 1 Abeitsgang bei neuen Tickets<br>- Schnellere Ersatzteilbestellung und somit schneller bearbeitungszeit der Tickets<br>- Wir können besser die Teile der Bestellungen überwachen</span>",
+            "x": 627.77783203125,
+            "y": 1262.2222595214844,
+            "style": {
+              "fontSize": 19,
+              "color": "#0f172a",
+              "fontWeight": "bold",
+              "textDecoration": "none",
+              "backgroundColor": "#ffffff",
+              "borderColor": "#94a3b8"
+            },
+            "width": 459,
+            "height": 315,
+            "userSized": true
+          }
+        ],
+        "edges": [
+          {
+            "id": "sedge-f39cac62-c318-493f-b70c-f6a3474be43a",
+            "fromId": "snode-d25b103e-924a-4801-986d-11a2f7d9c352",
+            "toId": "snode-e6c62a66-0f44-43f0-8ad7-3ccb3f384f34",
+            "color": "#64748b",
+            "width": 2,
+            "bendX": 611.6667175292969,
+            "bendY": 395.55552673339844
+          },
+          {
+            "id": "sedge-49471bb1-fcb2-42cb-8ade-873d7c38b351",
+            "fromId": "snode-d25b103e-924a-4801-986d-11a2f7d9c352",
+            "toId": "snode-d1be4b86-772b-434e-8f59-e8e34b89b623",
+            "color": "#64748b",
+            "width": 2,
+            "bendX": 807.77783203125,
+            "bendY": 225
+          },
+          {
+            "id": "sedge-d36014fd-6699-4355-aead-c9ff43aacc07",
+            "fromId": "snode-d1be4b86-772b-434e-8f59-e8e34b89b623",
+            "toId": "snode-e6c62a66-0f44-43f0-8ad7-3ccb3f384f34",
+            "color": "#64748b",
+            "width": 2,
+            "bendX": 812.7778015136719,
+            "bendY": 506.11109924316406
+          },
+          {
+            "id": "sedge-9cf8b7e0-be5e-41c5-bf82-17ccf277b698",
+            "fromId": "snode-7ed8ead1-703a-484c-845e-24a47d57bd30",
+            "toId": "snode-e6c62a66-0f44-43f0-8ad7-3ccb3f384f34",
+            "color": "#64748b",
+            "width": 2,
+            "bendX": 391.11114501953125,
+            "bendY": 547.7777404785156
+          },
+          {
+            "id": "sedge-3571671b-e972-4809-a732-621585194e59",
+            "fromId": "snode-b68d109e-6c8e-48cc-ad93-70c806b67ed4",
+            "toId": "snode-e6c62a66-0f44-43f0-8ad7-3ccb3f384f34",
+            "color": "#64748b",
+            "width": 2,
+            "bendX": 622.2222595214844,
+            "bendY": 969.4444427490234
+          }
+        ],
+        "autoLinkBranches": false,
+        "defaultEdgeColor": "#64748b",
+        "defaultEdgeWidth": 2
+      }
+    },
+    {
+      "id": "proj-688dd309-ff1f-432d-a3dc-f80bc472b2b2",
+      "title": "Siebel zuküftig",
+      "status": "offen",
+      "priority": "mittel",
+      "plannedDate": null,
+      "dueDate": null,
+      "dateFrom": null,
+      "dateTo": null,
+      "totalCost": "",
+      "rentTransporter": false,
+      "ownerName": "philipp.heyser@acp.de",
+      "technicianIds": [],
+      "subtasks": [],
+      "updates": [],
+      "attachments": [],
+      "expanded": true,
+      "order": 1791529520345,
+      "archived": false,
+      "dueMailSentAt": null,
+      "createdAt": "2026-10-09T07:05:20.345Z",
+      "updatedAt": "2026-10-09T08:00:56.412Z",
+      "projectKind": "schema",
+      "schemaDocument": {
+        "version": 1,
+        "mode": "mindmap",
+        "nodes": [
+          {
+            "id": "snode-186fb4fa-14e2-488f-a26f-364bb9d710e9",
+            "label": "Thema",
+            "x": 420,
+            "y": 260,
+            "style": {
+              "fontSize": 14,
+              "color": "#0f172a",
+              "fontWeight": "normal",
+              "textDecoration": "none",
+              "backgroundColor": "#ffffff",
+              "borderColor": "#94a3b8"
+            },
+            "width": 180,
+            "height": 99,
+            "userSized": false
+          }
+        ],
+        "edges": [],
+        "autoLinkBranches": false,
+        "defaultEdgeColor": "#64748b",
+        "defaultEdgeWidth": 2
+      }
+    }
+  ]
+}
